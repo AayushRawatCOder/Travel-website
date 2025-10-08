@@ -1,0 +1,360 @@
+$primary: #6366f1;
+$secondary: #ec4899;
+$accent: #f59e0b;
+$dark: #111827;
+$light: #ffffff;
+$gray: #6b7280;
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+$transition: all 0.3s ease;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  background: $light;
+  box-shadow: $shadow-sm;
+}
+
+.navbar.scrolled {
+  padding: 0.75rem 0;
+  box-shadow: $shadow-md;
+}
+
+.navbar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.logo-icon {
+  color: $primary;
+}
+
+.logo-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $dark;
+}
+
+.logo-tagline {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: $gray;
+  letter-spacing: 0.5px;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.navbar-menu .nav-link,
+.navbar-menu .nav-link:visited {
+  text-decoration: none !important;
+  color: $dark !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  transition: $transition;
+  border-radius: 6px;
+}
+
+.navbar-menu .nav-link:hover {
+  color: $primary !important;
+  background: rgba(99, 102, 241, 0.07);
+}
+
+.dropdown-icon {
+  transition: transform 0.3s;
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: $light;
+  border-radius: 8px;
+  box-shadow: $shadow-md;
+  list-style: none;
+  padding: 0.5rem 0;
+  min-width: 180px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: $transition;
+}
+
+.dropdown-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu li {
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-menu .dropdown-link,
+.dropdown-menu .dropdown-link:visited {
+  text-decoration: none !important;
+  color: $dark !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+  display: block;
+  transition: $transition;
+  border-radius: 6px;
+}
+
+.dropdown-menu .dropdown-link:hover {
+  background: rgba(99, 102, 241, 0.07);
+  color: $primary !important;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon-btn,
+.mobile-icon-btn {
+  color: $dark !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: $transition;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:hover,
+.mobile-icon-btn:hover {
+  background: rgba(99, 102, 241, 0.07);
+  color: $primary !important;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: $secondary;
+  color: $light;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.2rem 0.4rem;
+  border-radius: 10px;
+  box-shadow: $shadow-sm;
+}
+
+.btn-primary {
+  background: $primary;
+  color: $light;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: $transition;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background: darken($primary, 10%);
+}
+
+.btn-text {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: $dark;
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: $transition;
+}
+
+@media (max-width: 968px) {
+  .navbar-menu,
+  .navbar-actions {
+    display: none;
+  }
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 320px;
+  height: 100vh;
+  background: $light;
+  box-shadow: $shadow-md;
+  z-index: 999;
+  transition: right 0.3s;
+}
+
+.mobile-menu.open {
+  right: 0;
+}
+
+.mobile-menu-content {
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mobile-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.mobile-nav-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.mobile-nav-link,
+.mobile-nav-link:visited {
+  text-decoration: none !important;
+  color: $dark !important;
+  font-weight: 500;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  transition: $transition;
+  border-radius: 6px;
+}
+
+.mobile-nav-link:hover {
+  background: rgba(99, 102, 241, 0.07);
+  color: $primary !important;
+}
+
+.mobile-dropdown-menu {
+  list-style: none;
+  padding: 0.5rem 1.5rem;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 6px;
+  margin: 0.5rem 0;
+}
+
+.mobile-dropdown-menu li {
+  padding: 0.5rem 0;
+}
+
+.mobile-dropdown-link,
+.mobile-dropdown-link:visited {
+  text-decoration: none !important;
+  color: $dark !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: block;
+  transition: $transition;
+  border-radius: 6px;
+}
+
+.mobile-dropdown-link:hover {
+  color: $primary !important;
+}
+
+.mobile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.mobile-book {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+.mobile-icons {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  opacity: 0.95;
+}

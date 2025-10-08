@@ -4,24 +4,20 @@ import Home from "./pages/Home";
 import Destinations from "./pages/Destinations.tsx";
 import Packages from "./pages/Packages.tsx";
 import Contact from "./pages/Contact.tsx";
+import Navbar from "./components/common/Navbar/navbar.tsx";
+import HomePage from "./components/Home/Main.tsx";
+import ContactUs from "./components/ContactUs/ContactUs.tsx";
 
 const App = () => {
   return (
     <>
-      <nav className="navbar">
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/destinations">Destinations</Link></li>
-          <li><Link to="/packages">Packages</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-        </ul>
-      </nav>
+      <Navbar/>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<HomePage/>} />
         <Route path="/destinations" element={<Destinations />} />
         <Route path="/packages" element={<Packages />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/contact" element={<ContactUs/>} />
       </Routes>
     </>
   );
