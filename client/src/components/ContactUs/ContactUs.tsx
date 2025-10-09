@@ -44,30 +44,30 @@ const ContactUs = () => {
     <section className="contact-us" aria-label="Contact Us">
       <div className="contact-container">
         <div className="contact-header">
-          <h2 className="section-title">Contact Us</h2>
+          <h2 className="section-title">Get In Touch</h2>
           <p className="section-subtitle">
-            We're here to help you plan your dream vacation. Reach out with any questions!
+            We're here to help you plan your dream vacation. Reach out with any questions or special requests!
           </p>
         </div>
 
         <div className="contact-content">
           <div className="contact-info">
             <div className="info-item">
-              <MapPin size={24} aria-hidden="true" />
+              <MapPin size={28} aria-hidden="true" />
               <div>
                 <h3>Address</h3>
                 <p>123 Wanderlust Lane, Travel City, TC 12345</p>
               </div>
             </div>
             <div className="info-item">
-              <Phone size={24} aria-hidden="true" />
+              <Phone size={28} aria-hidden="true" />
               <div>
                 <h3>Phone</h3>
                 <p>+1 (800) 555-1234</p>
               </div>
             </div>
             <div className="info-item">
-              <Mail size={24} aria-hidden="true" />
+              <Mail size={28} aria-hidden="true" />
               <div>
                 <h3>Email</h3>
                 <p>support@wanderlust.com</p>
@@ -177,7 +177,7 @@ const ContactUs = () => {
                 <textarea
                   id="message-input"
                   name="message"
-                  placeholder="Your Message"
+                  placeholder="Tell us about your travel plans and preferences..."
                   value={formData.message}
                   onChange={handleChange}
                   required
@@ -188,7 +188,7 @@ const ContactUs = () => {
             </div>
 
             <button type="submit" className="submit-btn" aria-label="Send Message">
-              <Send size={20} aria-hidden="true" /> Send Message
+              <Send size={22} aria-hidden="true" /> Send Message
             </button>
 
             {status && (

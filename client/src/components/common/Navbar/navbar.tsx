@@ -91,13 +91,13 @@ const Navbar = () => {
             ))}
           </ul>
           <div className="navbar-actions">
-            <button className="icon-btn search-btn">
+            <button className="icon-btn search-btn" aria-label="Search">
               <Search size={20} />
             </button>
-            <button className="icon-btn">
+            <button className="icon-btn" aria-label="Favorites">
               <Heart size={20} />
             </button>
-            <button className="icon-btn">
+            <button className="icon-btn" aria-label="User profile">
               <User size={20} />
             </button>
             <button className="btn-primary">
@@ -151,13 +151,13 @@ const Navbar = () => {
               <span className="btn-shine"></span>
             </button>
             <div className="mobile-icons">
-              <button className="mobile-icon-btn">
+              <button className="mobile-icon-btn" aria-label="Search">
                 <Search size={20} />
               </button>
-              <button className="mobile-icon-btn">
+              <button className="mobile-icon-btn" aria-label="Favorites">
                 <Heart size={20} />
               </button>
-              <button className="mobile-icon-btn">
+              <button className="mobile-icon-btn" aria-label="User profile">
                 <User size={20} />
               </button>
             </div>
