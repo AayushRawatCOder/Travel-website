@@ -7,6 +7,7 @@ import Contact from "./pages/Contact.tsx";
 import Navbar from "./components/common/Navbar/navbar.tsx";
 import HomePage from "./components/Home/Main.tsx";
 import ContactUs from "./components/ContactUs/ContactUs.tsx";
+import DestinationDetail from "./components/Deatil/DestinationDetail.tsx";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="/destinations" element={<Destinations />} />
+        <Route path="/destination/:id" element={<DestinationDetail />} />
         <Route path="/packages" element={<Packages />} />
         <Route path="/contact" element={<ContactUs/>} />
       </Routes>
