@@ -11,6 +11,10 @@ import Experiences from "./components/Experiences/Experiences.tsx";
 import DestinationDetail from "./components/Deatil/DestinationDetail.tsx";
 import AboutUs from "./components/about/aboutus.tsx";
 import FAQs from "./pages/FAQs.tsx";
+import AboutPage from "./components/About/About.tsx";
+import AdventureTours from "./components/Tour/AdventureTours.tsx";
+import CultureTours from "./components/Tour/CultureTours.tsx";
+import BeachGetaway from "./components/Tour/BeachGetaway.tsx";
 
 const App = () => {
   return (
@@ -22,11 +26,14 @@ const App = () => {
         <Route path="/destinations" element={<Destinations />} />
         <Route path="/destination/:id" element={<DestinationDetail />} />
         <Route path="/packages" element={<Packages />} />
-        <Route path="/about" element={<AboutUs/>} />
+        {/* <Route path="/about" element={<AboutUs/>} /> */}
         <Route path="/FAQs" element={<FAQs/>} />
         <Route path="/contact" element={<ContactUs/>} />
         <Route path="/experiences" element={<Experiences/>} />
         <Route path="/about" element={<AboutPage/>} />
+        <Route path="/tours/adventuretours" element={<AdventureTours/>} />
+        <Route path="/tours/cultural" element={<CultureTours/>} />
+        <Route path="/tours/beach" element={<BeachGetaway/>} />
       </Routes>
     </>
   );

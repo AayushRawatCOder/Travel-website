@@ -31,7 +31,7 @@ const navItems: NavItem[] = [
     href: '/tours',
     hasDropdown: true,
     dropdownItems: [
-      { name: 'Adventure Tours', href: '/tours/adventure' },
+      { name: 'Adventure Tours', href: '/tours/adventuretours' },
       { name: 'Cultural Tours', href: '/tours/cultural' },
       { name: 'Beach Getaways', href: '/tours/beach' },
     ],
