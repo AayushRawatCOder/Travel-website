@@ -9,6 +9,8 @@ import HomePage from "./components/Home/Main.tsx";
 import ContactUs from "./components/ContactUs/ContactUs.tsx";
 import Experiences from "./components/Experiences/Experiences.tsx";
 import DestinationDetail from "./components/Deatil/DestinationDetail.tsx";
+import AboutUs from "./components/about/aboutus.tsx";
+import FAQs from "./pages/FAQs.tsx";
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
         <Route path="/destinations" element={<Destinations />} />
         <Route path="/destination/:id" element={<DestinationDetail />} />
         <Route path="/packages" element={<Packages />} />
+        <Route path="/about" element={<AboutUs/>} />
+        <Route path="/FAQs" element={<FAQs/>} />
         <Route path="/contact" element={<ContactUs/>} />
         <Route path="/experiences" element={<Experiences/>} />
       </Routes>
