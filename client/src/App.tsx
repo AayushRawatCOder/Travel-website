@@ -7,6 +7,7 @@ import Contact from "./pages/Contact.tsx";
 import Navbar from "./components/common/Navbar/navbar.tsx";
 import HomePage from "./components/Home/Main.tsx";
 import ContactUs from "./components/ContactUs/ContactUs.tsx";
+import Experiences from "./components/Experiences/Experiences.tsx";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/destinations" element={<Destinations />} />
         <Route path="/packages" element={<Packages />} />
         <Route path="/contact" element={<ContactUs/>} />
+        <Route path="/experiences" element={<Experiences/>} />
       </Routes>
     </>
   );

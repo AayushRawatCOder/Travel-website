@@ -2,48 +2,111 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Plane, Heart, User, Search, ChevronDown } from 'lucide-react';
 import './navbar.style.scss';
 
-const navItems = [
+interface DropdownItem {
+  name: string;
+  href: string;
+}
+
+interface NavItem {
+  name: string;
+  href: string;
+  hasDropdown: boolean;
+  dropdownItems?: DropdownItem[];
+}
+
+const navItems: NavItem[] = [
   {
     name: 'Destinations',
-    href: '#destinations',
+    href: '/destinations',
     hasDropdown: true,
     dropdownItems: [
-      { name: 'Europe', href: '#europe' },
-      { name: 'Asia', href: '#asia' },
-      { name: 'Americas', href: '#americas' },
-      { name: 'Africa', href: '#africa' },
+      { name: 'Europe', href: '/destinations/europe' },
+      { name: 'Asia', href: '/destinations/asia' },
+      { name: 'Americas', href: '/destinations/americas' },
+      { name: 'Africa', href: '/destinations/africa' },
     ],
   },
   {
     name: 'Tours',
-    href: '#tours',
+    href: '/tours',
     hasDropdown: true,
     dropdownItems: [
-      { name: 'Adventure Tours', href: '#adventure' },
-      { name: 'Cultural Tours', href: '#cultural' },
-      { name: 'Beach Getaways', href: '#beach' },
+      { name: 'Adventure Tours', href: '/tours/adventure' },
+      { name: 'Cultural Tours', href: '/tours/cultural' },
+      { name: 'Beach Getaways', href: '/tours/beach' },
     ],
   },
-  { name: 'Experiences', href: '#experiences' },
-  { name: 'About', href: '#about' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'Experiences', href: '/experiences', hasDropdown: false },
+  { name: 'About', href: '/about', hasDropdown: false },
+  { name: 'Contact', href: '/contact', hasDropdown: false },
 ];
 
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
+const Navbar: React.FC = () => {
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeMobileDropdown, setActiveMobileDropdown] = useState<string | null>(null);
+  const [isMobileView, setIsMobileView] = useState<boolean>(typeof window !== 'undefined' ? window.innerWidth <= 1024 : false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
+
+    const handleResize = () => {
+      const mobileView = window.innerWidth <= 1024;
+      setIsMobileView(mobileView);
+      if (!mobileView) {
+        setIsMobileMenuOpen(false);
+        setActiveMobileDropdown(null);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
-  const toggleDropdown = (name) => {
-    setActiveDropdown(activeDropdown === name ? null : name);
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';
+    }
+    return () => {
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = 'unset';
+      }
+    };
+  }, [isMobileMenuOpen]);
+
+  const toggleDesktopDropdown = (name: string) => {
+    if (!isMobileView) {
+      setActiveDropdown(activeDropdown === name ? null : name);
+    }
+  };
+
+  const toggleMobileDropdown = (name: string) => {
+    setActiveMobileDropdown(activeMobileDropdown === name ? null : name);
+  };
+
+  const handleMobileClose = () => {
+    setIsMobileMenuOpen(false);
+    setActiveMobileDropdown(null);
+  };
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavItem) => {
+    if (item.hasDropdown) {
+      e.preventDefault();
+      if (isMobileView) {
+        toggleMobileDropdown(item.name);
+      }
+    } else if (isMobileView) {
+      handleMobileClose();
+    }
   };
 
   return (
@@ -52,7 +115,7 @@ const Navbar = () => {
         <div className="navbar-container">
           <div className="navbar-logo">
             <div className="logo-wrapper">
-              <Plane className="logo-icon" size={32} />
+              <Plane className="logo-icon" size={30} />
             </div>
             <div className="logo-content">
               <span className="logo-text">Wanderlust</span>
@@ -64,23 +127,28 @@ const Navbar = () => {
               <li
                 key={item.name}
                 className="nav-item"
-                onMouseEnter={() => item.hasDropdown && toggleDropdown(item.name)}
-                onMouseLeave={() => item.hasDropdown && toggleDropdown(null)}
+                onMouseEnter={() => toggleDesktopDropdown(item.name)}
+                onMouseLeave={() => toggleDesktopDropdown(item.name)}
               >
-                <a href={item.href} className="nav-link">
+                <a
+                  href={item.href}
+                  className="nav-link"
+                  onClick={(e) => handleNavClick(e, item)}
+                  aria-expanded={item.hasDropdown ? activeDropdown === item.name : undefined}
+                >
                   {item.name}
                   {item.hasDropdown && (
                     <ChevronDown
                       size={16}
-                      className={`dropdown-icon ${activeDropdown === item.name ? 'rotated' : ''}`}
+                      className={`dropdown-icon ${activeDropdown === item.name || activeMobileDropdown === item.name ? 'rotated' : ''}`}
                     />
                   )}
                 </a>
                 {item.hasDropdown && (
-                  <ul className={`dropdown-menu ${activeDropdown === item.name ? 'open' : ''}`}>
-                    {item.dropdownItems.map((dropdownItem) => (
+                  <ul className={`dropdown-menu ${activeDropdown === item.name || activeMobileDropdown === item.name ? 'open' : ''}`}>
+                    {item.dropdownItems?.map((dropdownItem) => (
                       <li key={dropdownItem.name}>
-                        <a href={dropdownItem.href} className="dropdown-link">
+                        <a href={dropdownItem.href} className="dropdown-link" onClick={isMobileView ? handleMobileClose : undefined}>
                           {dropdownItem.name}
                         </a>
                       </li>
@@ -114,33 +182,50 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
+      <div className={`mobile-overlay ${isMobileMenuOpen ? 'open' : ''}`} onClick={handleMobileClose}></div>
       <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
         <div className="mobile-menu-content">
           <ul className="mobile-nav-list">
             {navItems.map((item) => (
               <li key={item.name} className="mobile-nav-item">
-                <a
-                  href={item.href}
-                  className="mobile-nav-link"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <span className="mobile-link-text">{item.name}</span>
-                  <span className="mobile-link-arrow">→</span>
-                </a>
-                {item.hasDropdown && (
-                  <ul className="mobile-dropdown-menu">
-                    {item.dropdownItems.map((dropdownItem) => (
-                      <li key={dropdownItem.name}>
-                        <a
-                          href={dropdownItem.href}
-                          className="mobile-dropdown-link"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          {dropdownItem.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                {item.hasDropdown ? (
+                  <>
+                    <button
+                      className="mobile-nav-link"
+                      onClick={() => toggleMobileDropdown(item.name)}
+                      aria-expanded={activeMobileDropdown === item.name}
+                    >
+                      <span className="mobile-link-text">{item.name}</span>
+                      <ChevronDown
+                        size={20}
+                        className={`mobile-dropdown-icon ${activeMobileDropdown === item.name ? 'rotated' : ''}`}
+                      />
+                    </button>
+                    {activeMobileDropdown === item.name && (
+                      <ul className="mobile-dropdown-menu">
+                        {item.dropdownItems?.map((dropdownItem) => (
+                          <li key={dropdownItem.name}>
+                            <a
+                              href={dropdownItem.href}
+                              className="mobile-dropdown-link"
+                              onClick={handleMobileClose}
+                            >
+                              {dropdownItem.name}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                ) : (
+                  <a
+                    href={item.href}
+                    className="mobile-nav-link"
+                    onClick={handleMobileClose}
+                  >
+                    <span className="mobile-link-text">{item.name}</span>
+                    <span className="mobile-link-arrow">→</span>
+                  </a>
                 )}
               </li>
             ))}
@@ -151,7 +236,7 @@ const Navbar = () => {
               <span className="btn-shine"></span>
             </button>
             <div className="mobile-icons">
-              <button className="mobile-icon-btn" aria-label="Search">
+              <button className="mobile-icon-btn search-btn" aria-label="Search">
                 <Search size={20} />
               </button>
               <button className="mobile-icon-btn" aria-label="Favorites">
@@ -164,12 +249,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {isMobileMenuOpen && (
-        <div
-          className="mobile-overlay"
-          onClick={() => setIsMobileMenuOpen(false)}
-        ></div>
-      )}
     </>
   );
 };
