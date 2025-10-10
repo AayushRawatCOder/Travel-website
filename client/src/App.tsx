@@ -8,6 +8,7 @@ import Navbar from "./components/common/Navbar/navbar.tsx";
 import HomePage from "./components/Home/Main.tsx";
 import ContactUs from "./components/ContactUs/ContactUs.tsx";
 import Experiences from "./components/Experiences/Experiences.tsx";
+import AboutPage from "./components/About/About.tsx";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/packages" element={<Packages />} />
         <Route path="/contact" element={<ContactUs/>} />
         <Route path="/experiences" element={<Experiences/>} />
+        <Route path="/about" element={<AboutPage/>} />
       </Routes>
     </>
   );
