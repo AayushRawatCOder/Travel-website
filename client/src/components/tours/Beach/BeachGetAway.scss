@@ -38,26 +38,26 @@ $transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
 .beach-hero {
   position: relative;
-  height: 85vh;
-  min-height: 600px;
+  height: 100vh;
+  min-height: 750px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 
   @media (max-width: 1024px) {
-    height: 75vh;
-    min-height: 550px;
+    height: 100vh;
+    min-height: 700px;
   }
 
   @media (max-width: 768px) {
-    height: 70vh;
-    min-height: 500px;
+    height: 90vh;
+    min-height: 650px;
   }
 
   @media (max-width: 480px) {
-    height: 65vh;
-    min-height: 450px;
+    height: 80vh;
+    min-height: 600px;
   }
 
   .hero-background {
@@ -352,7 +352,6 @@ $transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     transform: scale(1.1);
   }
 }
-
 
 .tours-section {
   padding: 6rem 2.5rem;
