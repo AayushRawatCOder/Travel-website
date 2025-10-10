@@ -47,32 +47,14 @@
 
 
 import React from "react";
-import DestinationCard from "../components/DestinationCard";
-import { destinations } from "../data/destinations";
+// import DestinationCard from "../components/DestinationCard";
+import Destinations1 from "../components/Destination/Destination";
 
 const Destinations = () => {
   return (
-    <div className="container">
-      <h1>Explore Destinations 🌍</h1>
-
-      <section>
-        <h2>🗻 Kashmir Destinations</h2>
-        <div className="destination-grid">
-          {destinations.kashmir.map((place) => (
-            <DestinationCard key={place.name} {...place} />
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <h2>🌎 International Destinations</h2>
-        <div className="destination-grid">
-          {destinations.international.map((place) => (
-            <DestinationCard key={place.name} {...place} />
-          ))}
-        </div>
-      </section>
-    </div>
+   <>
+      <Destinations1/>
+   </>
   );
 };
 

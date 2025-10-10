@@ -1,0 +1,674 @@
+// Peach Color Theme
+$primary-peach: #FFB5A7;
+$secondary-peach: #FCD5CE;
+$light-peach: #FEE8E3;
+$dark-peach: #F08080;
+$accent-coral: #FF9B88;
+$text-dark: #4A4A4A;
+$text-light: #6B6B6B;
+$white: #FFFFFF;
+$border-color: #F0E6E3;
+$shadow: rgba(255, 181, 167, 0.2);
+
+.about-us-page {
+  min-height: 100vh;
+  background: $white;
+}
+
+// Container
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// Hero Section
+.hero-section {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  background: linear-gradient(135deg, $primary-peach 0%, $accent-coral 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>');
+    opacity: 0.3;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 181, 167, 0.3), rgba(255, 155, 136, 0.3));
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: $white;
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+
+      @media (max-width: 768px) {
+        font-size: 2.5rem;
+      }
+    }
+
+    p {
+      font-size: 1.5rem;
+      opacity: 0.95;
+
+      @media (max-width: 768px) {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+// Our Story Section
+.story-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, $light-peach 0%, $white 100%);
+
+  .story-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+
+    @media (max-width: 968px) {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  .story-text {
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: $text-dark;
+      margin-bottom: 30px;
+      background: linear-gradient(135deg, $primary-peach, $accent-coral);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+
+    .story-paragraphs {
+      p {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: $text-light;
+        margin-bottom: 20px;
+        text-align: justify;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .story-image {
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px $shadow;
+    }
+
+    .story-stats {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      width: 90%;
+
+      @media (max-width: 640px) {
+        flex-direction: column;
+        gap: 12px;
+        bottom: -160px;
+      }
+
+      .stat-item {
+        flex: 1;
+        background: $white;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 4px 20px $shadow;
+
+        .stat-number {
+          display: block;
+          font-size: 2rem;
+          font-weight: 700;
+          color: $primary-peach;
+          margin-bottom: 8px;
+        }
+
+        .stat-label {
+          display: block;
+          font-size: 0.9rem;
+          color: $text-light;
+        }
+      }
+    }
+  }
+}
+
+// Values Section
+.values-section {
+  padding: 100px 0;
+  background: $white;
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-dark;
+    text-align: center;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, $primary-peach, $accent-coral);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .values-intro {
+    text-align: center;
+    color: $text-light;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    line-height: 1.6;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .value-card {
+    background: linear-gradient(135deg, $light-peach, $secondary-peach);
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px $shadow;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 30px rgba(255, 181, 167, 0.3);
+    }
+
+    .value-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $text-dark;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: $text-light;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+// Team Section
+.team-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, $light-peach 0%, $white 100%);
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-dark;
+    text-align: center;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, $primary-peach, $accent-coral);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .team-intro {
+    text-align: center;
+    color: $text-light;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    line-height: 1.6;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .team-card {
+    background: $white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px $shadow;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 30px rgba(255, 181, 167, 0.3);
+    }
+
+    .team-image {
+      position: relative;
+      height: 320px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+
+      &:hover img {
+        transform: scale(1.05);
+      }
+
+      .team-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, rgba(255, 181, 167, 0.95), rgba(255, 155, 136, 0.95));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+        opacity: 0;
+        transition: opacity 0.3s;
+
+        &.active {
+          opacity: 1;
+        }
+
+        .team-bio {
+          color: $white;
+          font-size: 0.95rem;
+          line-height: 1.6;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        .team-social {
+          display: flex;
+          gap: 16px;
+
+          a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $white;
+            transition: all 0.3s;
+
+            &:hover {
+              background: $white;
+              color: $primary-peach;
+              transform: translateY(-3px);
+            }
+          }
+        }
+      }
+    }
+
+    .team-info {
+      padding: 24px;
+      text-align: center;
+
+      h3 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: $text-dark;
+        margin-bottom: 8px;
+      }
+
+      .team-role {
+        color: $primary-peach;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+    }
+  }
+}
+
+// Awards Section
+.awards-section {
+  padding: 100px 0;
+  background: $white;
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-dark;
+    text-align: center;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, $primary-peach, $accent-coral);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .awards-intro {
+    text-align: center;
+    color: $text-light;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    line-height: 1.6;
+  }
+
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .award-card {
+    background: linear-gradient(135deg, $light-peach, $secondary-peach);
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px $shadow;
+    border: 2px solid transparent;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 30px rgba(255, 181, 167, 0.3);
+      border-color: $primary-peach;
+    }
+
+    .award-icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: $text-dark;
+      margin-bottom: 12px;
+    }
+
+    .award-org {
+      color: $text-light;
+      font-size: 0.95rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .award-year {
+      display: inline-block;
+      background: $white;
+      color: $primary-peach;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// Partners Section
+.partners-section {
+  padding: 100px 0;
+  background: linear-gradient(135deg, $light-peach 0%, $white 100%);
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-dark;
+    text-align: center;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, $primary-peach, $accent-coral);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .partners-intro {
+    text-align: center;
+    color: $text-light;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 50px;
+    line-height: 1.6;
+  }
+
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .partner-card {
+    background: $white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px $shadow;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 30px rgba(255, 181, 167, 0.3);
+    }
+
+    .partner-logo {
+      font-size: 4rem;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: $text-dark;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: $text-light;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  }
+}
+
+// Call to Action Section
+.cta-section {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, $primary-peach, $accent-coral);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>');
+    opacity: 0.3;
+  }
+
+  .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: $white;
+      margin-bottom: 16px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: $white;
+      margin-bottom: 32px;
+      opacity: 0.95;
+
+      @media (max-width: 768px) {
+        font-size: 1rem;
+      }
+    }
+
+    .cta-button {
+      padding: 16px 48px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: $primary-peach;
+      background: $white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      &:active {
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.value-card,
+.team-card,
+.award-card,
+.partner-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+// Responsive adjustments
+@media (max-width: 968px) {
+  .story-section {
+    .story-content {
+      .story-image {
+        .story-stats {
+          position: static;
+          transform: none;
+          margin-top: 40px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// Scrollbar styling
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $light-peach;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary-peach;
+  border-radius: 5px;
+
+  &:hover {
+    background: $dark-peach;
+  }
+}
