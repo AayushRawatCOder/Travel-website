@@ -1,0 +1,639 @@
+// Variables for Peace Theme
+$peace-primary: #E3F2FD; // Soft sky blue for serenity
+$peace-secondary: #F5F5F5; // Gentle white-gray for calm backgrounds
+$peace-accent: #4A90E2; // Tranquil blue for highlights
+$peace-text: #2C3E50; // Deep navy for readability
+$peace-border: #BDC3C7; // Soft gray for subtle borders
+$peace-shadow: rgba(0, 0, 0, 0.05); // Light shadow for depth without harshness
+
+$container-max-width: 1200px;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 3rem;
+
+.destination-detail {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: $peace-text;
+  background-color: $peace-secondary;
+
+  .container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 $spacing-sm;
+  }
+
+  // Hero Banner
+  .hero-banner {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+    }
+
+    .hero-content {
+      position: absolute;
+      bottom: $spacing-lg;
+      left: $spacing-lg;
+      right: $spacing-lg;
+      color: white;
+      z-index: 2;
+
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        font-size: 0.9rem;
+        margin-bottom: $spacing-sm;
+        opacity: 0.9;
+
+        span:not(:last-child)::after {
+          content: '';
+          margin-left: 0.5rem;
+        }
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin: 0 0 $spacing-sm 0;
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+
+      .tagline {
+        font-size: 1.3rem;
+        margin: 0 0 $spacing-md 0;
+        font-style: italic;
+        opacity: 0.95;
+      }
+
+      .hero-meta {
+        .region {
+          font-size: 1rem;
+          padding: 0.5rem 1rem;
+          background: rgba(white, 0.2);
+          border-radius: 20px;
+          backdrop-filter: blur(10px);
+        }
+      }
+    }
+  }
+
+  // Overview Section
+  .overview-section {
+    padding: $spacing-lg 0;
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: $spacing-lg;
+      color: $peace-accent;
+      font-weight: 300;
+    }
+
+    .overview-content {
+      p {
+        font-size: 1.1rem;
+        margin-bottom: $spacing-md;
+        text-align: justify;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  // Attractions Section (Carousel)
+  .attractions-section {
+    padding: $spacing-lg 0;
+    background: linear-gradient(to bottom, $peace-secondary, $peace-primary);
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: $spacing-lg;
+      color: $peace-accent;
+      font-weight: 300;
+    }
+
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px $peace-shadow;
+      background: white;
+
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(white, 0.9);
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 3;
+        transition: background 0.3s ease;
+
+        &:hover {
+          background: white;
+        }
+
+        svg {
+          color: $peace-accent;
+        }
+
+        &.prev {
+          left: 10px;
+        }
+
+        &.next {
+          right: 10px;
+        }
+      }
+
+      .carousel-track {
+        display: flex;
+        transition: transform 0.5s ease;
+        height: 400px;
+
+        .attraction-card {
+          min-width: 100%;
+          flex-shrink: 0;
+          position: relative;
+          display: flex;
+          align-items: center;
+          padding: $spacing-md;
+
+          img {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: $spacing-md;
+          }
+
+          .attraction-content {
+            width: 50%;
+            padding: $spacing-md;
+
+            h3 {
+              font-size: 1.8rem;
+              margin-bottom: $spacing-sm;
+              color: $peace-accent;
+            }
+
+            p {
+              font-size: 1rem;
+              opacity: 0.9;
+            }
+          }
+        }
+      }
+
+      .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: $spacing-md;
+
+        .dot {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: $peace-border;
+          border: none;
+          cursor: pointer;
+          transition: background 0.3s ease;
+
+          &.active {
+            background: $peace-accent;
+          }
+        }
+      }
+    }
+  }
+
+  // Seasonal Section
+  .seasonal-section {
+    padding: $spacing-lg 0;
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: $spacing-lg;
+      color: $peace-accent;
+      font-weight: 300;
+    }
+
+    .seasonal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: $spacing-md;
+      margin-bottom: $spacing-lg;
+
+      .seasonal-card {
+        background: white;
+        padding: $spacing-md;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 20px $peace-shadow;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+        }
+
+        .season-icon {
+          font-size: 3rem;
+          margin-bottom: $spacing-sm;
+        }
+
+        h3 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+          color: $peace-accent;
+        }
+
+        .season-months,
+        .season-temp {
+          font-size: 0.9rem;
+          color: $peace-text;
+          margin-bottom: 0.5rem;
+          font-weight: 500;
+        }
+
+        p {
+          font-size: 0.95rem;
+          opacity: 0.8;
+        }
+      }
+    }
+
+    .recommendation {
+      text-align: center;
+      font-size: 1.1rem;
+      padding: $spacing-md;
+      background: $peace-primary;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
+  // Packages Section
+  .packages-section {
+    padding: $spacing-lg 0;
+    background: $peace-primary;
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: $spacing-lg;
+      color: $peace-accent;
+      font-weight: 300;
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: $spacing-lg;
+
+      .package-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px $peace-shadow;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: translateY(-10px);
+        }
+
+        .package-image {
+          position: relative;
+          height: 200px;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+
+          .package-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: $peace-accent;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+          }
+        }
+
+        .package-content {
+          padding: $spacing-md;
+
+          h3 {
+            font-size: 1.4rem;
+            margin-bottom: $spacing-sm;
+            color: $peace-text;
+          }
+
+          .package-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            margin-bottom: $spacing-md;
+
+            .highlight-tag {
+              font-size: 0.9rem;
+              color: $peace-accent;
+              font-weight: 500;
+            }
+          }
+
+          .package-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .package-price {
+              .price-label {
+                display: block;
+                font-size: 0.8rem;
+                opacity: 0.7;
+              }
+
+              .price-amount {
+                font-size: 1.8rem;
+                font-weight: bold;
+                color: $peace-accent;
+              }
+
+              .price-per {
+                font-size: 0.8rem;
+                opacity: 0.7;
+              }
+            }
+
+            .book-btn {
+              background: $peace-accent;
+              color: white;
+              border: none;
+              padding: 0.8rem 1.5rem;
+              border-radius: 25px;
+              cursor: pointer;
+              font-weight: 500;
+              transition: background 0.3s ease;
+
+              &:hover {
+                background: darken($peace-accent, 10%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Gallery Section
+  .gallery-section {
+    padding: $spacing-lg 0;
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: $spacing-lg;
+      color: $peace-accent;
+      font-weight: 300;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: $spacing-md;
+
+      .gallery-item {
+        position: relative;
+        cursor: pointer;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+
+        img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+        }
+
+        .gallery-overlay {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: rgba(white, 0.9);
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+
+          svg {
+            color: $peace-accent;
+          }
+        }
+
+        &:hover .gallery-overlay {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  // Lightbox
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 5px;
+    }
+  }
+
+  // Tips Section
+  .tips-section {
+    padding: $spacing-lg 0;
+    background: $peace-secondary;
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: $spacing-lg;
+      color: $peace-accent;
+      font-weight: 300;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: $spacing-lg;
+
+      .tips-card {
+        background: white;
+        padding: $spacing-md;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px $peace-shadow;
+
+        h3 {
+          font-size: 1.3rem;
+          margin-bottom: $spacing-sm;
+          color: $peace-accent;
+          text-align: center;
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+
+          li {
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            border-bottom: 1px solid $peace-border;
+            &:last-child {
+              border-bottom: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // CTA Section
+  .cta-section {
+    padding: $spacing-lg 0;
+    background: linear-gradient(to right, $peace-accent, darken($peace-accent, 10%));
+    text-align: center;
+    color: white;
+
+    .cta-content {
+      max-width: 600px;
+      margin: 0 auto;
+
+      h2 {
+        font-size: 2.5rem;
+        margin-bottom: $spacing-sm;
+        font-weight: 300;
+      }
+
+      p {
+        font-size: 1.2rem;
+        margin-bottom: $spacing-lg;
+        opacity: 0.95;
+      }
+
+      .cta-button {
+        background: white;
+        color: $peace-accent;
+        border: none;
+        padding: 1rem 2.5rem;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  // Responsive Adjustments
+  @media (max-width: 768px) {
+    .hero-banner {
+      height: 60vh;
+
+      .hero-content {
+        h1 {
+          font-size: 2.2rem;
+        }
+
+        .tagline {
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    .attractions-section .carousel-track .attraction-card {
+      flex-direction: column;
+      text-align: center;
+
+      img {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: $spacing-md;
+      }
+
+      .attraction-content {
+        width: 100%;
+      }
+    }
+
+    .packages-section .packages-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tips-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
