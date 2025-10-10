@@ -1,0 +1,512 @@
+// CulturalTours.scss
+// Peach Color Theme
+$primary-peach: #FFB5A7;
+$secondary-peach: #FCD5CE;
+$light-peach: #FEE8E3;
+$dark-peach: #F08080;
+$accent-coral: #FF9B88;
+$text-dark: #4A4A4A;
+$text-light: #6B6B6B;
+$white: #FFFFFF;
+$border-color: #F0E6E3;
+$shadow: rgba(255, 181, 167, 0.2);
+
+.cultural-tours-page {
+  min-height: 100vh;
+  background: $white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.hero-section {
+  position: relative;
+  height: 65vh;
+  min-height: 450px;
+  background: linear-gradient(135deg, $primary-peach 0%, $accent-coral 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="20" width="60" height="60" fill="rgba(255,255,255,0.05)" transform="rotate(45 50 50)"/></svg>');
+    opacity: 0.3;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(240, 128, 128, 0.2);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: $white;
+    padding: 0 20px;
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+
+      @media (max-width: 768px) {
+        font-size: 2.5rem;
+      }
+    }
+
+    p {
+      font-size: 1.4rem;
+      margin-bottom: 30px;
+      opacity: 0.95;
+
+      @media (max-width: 768px) {
+        font-size: 1.1rem;
+      }
+    }
+
+    .hero-badges {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+
+      .badge {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.intro-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, $light-peach 0%, $white 100%);
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-dark;
+    text-align: center;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, $primary-peach, $accent-coral);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: $text-light;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+.filters-section {
+  padding: 40px 0;
+  background: $white;
+  border-bottom: 2px solid $border-color;
+
+  .filters-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  .category-filters {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    .filter-label {
+      font-weight: 600;
+      color: $text-dark;
+      font-size: 0.95rem;
+    }
+
+    .filter-btn {
+      padding: 10px 24px;
+      background: $light-peach;
+      border: 2px solid transparent;
+      border-radius: 25px;
+      color: $text-dark;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+
+      &:hover {
+        background: $secondary-peach;
+      }
+
+      &.active {
+        background: linear-gradient(135deg, $primary-peach, $accent-coral);
+        color: $white;
+        border-color: $dark-peach;
+      }
+    }
+  }
+
+  .heritage-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    color: $text-dark;
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: $primary-peach;
+    }
+  }
+
+  .results-info {
+    color: $text-light;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+}
+
+.tours-section {
+  padding: 60px 0;
+  background: linear-gradient(135deg, $light-peach 0%, $white 100%);
+
+  .tours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .tour-card {
+    background: $white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px $shadow;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 30px rgba(255, 181, 167, 0.3);
+    }
+
+    .tour-image {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+      }
+
+      &:hover img {
+        transform: scale(1.1);
+      }
+
+      .tour-badges {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        display: flex;
+        gap: 8px;
+
+        .category-badge,
+        .heritage-badge {
+          padding: 6px 14px;
+          border-radius: 20px;
+          font-size: 0.85rem;
+          font-weight: 700;
+          color: $white;
+          backdrop-filter: blur(10px);
+        }
+
+        .category-badge {
+          background: rgba(255, 181, 167, 0.9);
+        }
+
+        .heritage-badge {
+          background: rgba(255, 215, 0, 0.9);
+          color: $text-dark;
+        }
+      }
+    }
+
+    .tour-content {
+      padding: 24px;
+
+      .tour-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 12px;
+        margin-bottom: 12px;
+
+        h3 {
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: $text-dark;
+          flex: 1;
+          line-height: 1.3;
+        }
+
+        .tour-rating {
+          flex-shrink: 0;
+          text-align: right;
+
+          .stars {
+            color: #FFD700;
+            font-weight: 700;
+            display: block;
+          }
+
+          .reviews {
+            color: $text-light;
+            font-size: 0.85rem;
+          }
+        }
+      }
+
+      .tour-location,
+      .tour-duration {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: $text-light;
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+
+        svg {
+          color: $primary-peach;
+          flex-shrink: 0;
+        }
+      }
+
+      .tour-highlights {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+
+        .highlight {
+          background: $light-peach;
+          color: $text-dark;
+          padding: 4px 10px;
+          border-radius: 12px;
+          font-size: 0.8rem;
+        }
+      }
+
+      .tour-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding-top: 20px;
+        border-top: 2px solid $border-color;
+
+        .tour-price {
+          .from {
+            display: block;
+            font-size: 0.85rem;
+            color: $text-light;
+            margin-bottom: 4px;
+          }
+
+          .amount {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: $primary-peach;
+          }
+        }
+
+        .book-btn {
+          padding: 12px 24px;
+          background: linear-gradient(135deg, $primary-peach, $accent-coral);
+          color: $white;
+          border: none;
+          border-radius: 25px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s;
+          white-space: nowrap;
+
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px $shadow;
+          }
+        }
+      }
+    }
+  }
+}
+
+.experiences-section {
+  padding: 80px 0;
+  background: $white;
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-dark;
+    text-align: center;
+    margin-bottom: 50px;
+    background: linear-gradient(135deg, $primary-peach, $accent-coral);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .experiences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+
+  .experience-card {
+    background: linear-gradient(135deg, $light-peach, $secondary-peach);
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 30px $shadow;
+    }
+
+    .exp-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: $text-dark;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: $text-light;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+.cta-section {
+  padding: 100px 20px;
+  background: linear-gradient(135deg, $primary-peach, $accent-coral);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>');
+    opacity: 0.3;
+  }
+
+  .cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: $white;
+      margin-bottom: 16px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
+      @media (max-width: 768px) {
+        font-size: 2rem;
+      }
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: $white;
+      margin-bottom: 32px;
+      opacity: 0.95;
+    }
+
+    .cta-button {
+      padding: 16px 48px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: $primary-peach;
+      background: $white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tour-card {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+
+  @for $i from 1 through 12 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.08}s;
+    }
+  }
+}

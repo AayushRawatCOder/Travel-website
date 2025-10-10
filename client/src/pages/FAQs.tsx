@@ -1,7 +1,7 @@
 import React from 'react'
 import FAQs from '../components/FAQ/FAQ'
 
-const FAOs = () => {
+const FAQ = () => {
   return (
     <>
     <FAQs/>
@@ -9,4 +9,4 @@ const FAOs = () => {
   )
 }
 
-export default FAOs
+export default FAQ

@@ -1,0 +1,587 @@
+// Peach Theme Variables
+$peach-primary: #FFDAB9; // Soft peach for backgrounds
+$peach-secondary: #FFF0F5; // Light peach for accents
+$peach-accent: #FFCCCB; // Deeper peach for highlights
+$peach-deep: #FF9999; // Coral-like for buttons and badges
+$peach-text: #D2691E; // Warm brown for headings
+$peach-light-text: #8B4513; // Softer brown for body text
+$peach-border: #FFE4E1; // Very light peach for borders
+$peach-shadow: rgba(255, 218, 185, 0.3); // Soft peach shadow
+
+$container-max-width: 1200px;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 3rem;
+
+.beach-getaways-page {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: $peach-light-text;
+  background-color: $peach-secondary;
+
+  .container {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 $spacing-sm;
+  }
+
+  // Hero Section
+  .hero-section {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+    background: linear-gradient(to bottom, rgba(255, 218, 185, 0.2), rgba(255, 99, 71, 0.1));
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="wave" patternUnits="userSpaceOnUse" width="100" height="50"><path d="M-40 50 Q0 0 40 50 T80 50" stroke="none" fill="%23FF9999" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23wave)"/></svg>') repeat-x bottom;
+      animation: wave 20s linear infinite;
+    }
+
+    @keyframes wave {
+      0% { background-position: 0 bottom; }
+      100% { background-position: 100px bottom; }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(255, 218, 185, 0.4), rgba(255, 99, 71, 0.2));
+    }
+
+    .hero-content {
+      position: absolute;
+      bottom: $spacing-lg;
+      left: $spacing-lg;
+      right: $spacing-lg;
+      color: white;
+      z-index: 2;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+      h1 {
+        font-size: 3.5rem;
+        margin: 0 0 $spacing-sm 0;
+        font-weight: 300;
+        color: white;
+      }
+
+      p {
+        font-size: 1.3rem;
+        margin: 0 0 $spacing-md 0;
+        opacity: 0.95;
+      }
+
+      .hero-features {
+        display: flex;
+        gap: $spacing-sm;
+        flex-wrap: wrap;
+        font-size: 1rem;
+        margin-top: $spacing-md;
+
+        span {
+          background: rgba(255, 255, 255, 0.2);
+          padding: 0.5rem 1rem;
+          border-radius: 20px;
+          backdrop-filter: blur(10px);
+        }
+      }
+    }
+  }
+
+  // Intro Section
+  .intro-section {
+    padding: $spacing-lg 0;
+    background: linear-gradient(to bottom, $peach-secondary, $peach-primary);
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: $spacing-md;
+      color: $peach-text;
+      font-weight: 300;
+    }
+
+    p {
+      font-size: 1.1rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+  }
+
+  // Controls Section
+  .controls-section {
+    padding: $spacing-md 0;
+    background: $peach-primary;
+
+    .controls-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: $spacing-sm;
+
+      .vibe-filters {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+
+        .filter-label {
+          font-weight: 600;
+          color: $peach-text;
+        }
+
+        .vibe-btn {
+          background: white;
+          border: 2px solid $peach-accent;
+          color: $peach-deep;
+          padding: 0.5rem 1rem;
+          border-radius: 25px;
+          cursor: pointer;
+          font-weight: 500;
+          transition: all 0.3s ease;
+
+          &.active {
+            background: $peach-accent;
+            color: white;
+          }
+
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px $peach-shadow;
+          }
+        }
+      }
+
+      .view-toggle {
+        display: flex;
+        gap: 0.5rem;
+
+        button {
+          background: white;
+          border: 2px solid $peach-accent;
+          color: $peach-deep;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &.active {
+            background: $peach-accent;
+            color: white;
+          }
+
+          &:hover {
+            transform: scale(1.1);
+          }
+
+          svg {
+            color: currentColor;
+          }
+        }
+      }
+    }
+  }
+
+  // Beaches Section
+  .beaches-section {
+    padding: $spacing-lg 0;
+
+    .beaches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: $spacing-md;
+    }
+
+    .beaches-list {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-md;
+    }
+
+    .beach-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px $peach-shadow;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-10px);
+      }
+
+      &.list-mode {
+        display: flex;
+        flex-direction: row;
+        padding: $spacing-md;
+
+        .beach-image {
+          width: 30%;
+          flex-shrink: 0;
+
+          img {
+            height: 150px;
+          }
+        }
+
+        .beach-content {
+          width: 70%;
+          padding-left: $spacing-md;
+        }
+      }
+
+      .beach-image {
+        position: relative;
+        height: 200px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .vibe-badge {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          background: $peach-deep;
+          color: white;
+          padding: 0.3rem 0.8rem;
+          border-radius: 15px;
+          font-size: 0.8rem;
+          font-weight: 600;
+        }
+      }
+
+      .beach-content {
+        padding: $spacing-md;
+
+        .beach-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: $spacing-sm;
+
+          h3 {
+            font-size: 1.4rem;
+            margin: 0;
+            color: $peach-text;
+            font-weight: 600;
+          }
+
+          .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.9rem;
+
+            .stars {
+              color: #FFD700;
+            }
+
+            .reviews {
+              color: $peach-light-text;
+            }
+          }
+        }
+
+        .beach-location,
+        .beach-duration {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          margin-bottom: 0.5rem;
+          font-size: 0.95rem;
+          color: $peach-light-text;
+
+          svg {
+            color: $peach-accent;
+          }
+        }
+
+        .beach-activities {
+          margin-bottom: $spacing-sm;
+          font-size: 0.9rem;
+
+          .activity-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-top: 0.3rem;
+
+            .activity-tag {
+              background: $peach-secondary;
+              color: $peach-deep;
+              padding: 0.2rem 0.5rem;
+              border-radius: 10px;
+              font-size: 0.8rem;
+            }
+          }
+        }
+
+        .beach-bestfor {
+          display: flex;
+          gap: 0.5rem;
+          margin-bottom: $spacing-sm;
+          font-size: 0.9rem;
+
+          .bestfor-tag {
+            background: $peach-accent;
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+          }
+        }
+
+        .beach-footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .beach-price {
+            .from {
+              display: block;
+              font-size: 0.8rem;
+              opacity: 0.7;
+            }
+
+            .amount {
+              font-size: 1.5rem;
+              font-weight: bold;
+              color: $peach-deep;
+            }
+
+            .per {
+              font-size: 0.8rem;
+              opacity: 0.7;
+            }
+          }
+
+          .book-btn {
+            background: $peach-deep;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+
+            &:hover {
+              background: darken($peach-deep, 10%);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Activities Section
+  .activities-section {
+    padding: $spacing-lg 0;
+    background: $peach-primary;
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: $spacing-lg;
+      color: $peach-text;
+      font-weight: 300;
+    }
+
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: $spacing-md;
+
+      .activity-card {
+        background: white;
+        padding: $spacing-md;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 15px $peach-shadow;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+        }
+
+        .activity-icon {
+          font-size: 3rem;
+          margin-bottom: $spacing-sm;
+        }
+
+        h3 {
+          font-size: 1.3rem;
+          margin-bottom: 0.5rem;
+          color: $peach-text;
+        }
+
+        p {
+          font-size: 0.95rem;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  // Included Section
+  .included-section {
+    padding: $spacing-lg 0;
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: $spacing-lg;
+      color: $peach-text;
+      font-weight: 300;
+    }
+
+    .included-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: $spacing-md;
+
+      .included-item {
+        display: flex;
+        align-items: flex-start;
+        gap: $spacing-sm;
+        background: white;
+        padding: $spacing-md;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px $peach-shadow;
+
+        .check-icon {
+          font-size: 1.5rem;
+          color: $peach-deep;
+          margin-top: 0.2rem;
+          flex-shrink: 0;
+        }
+
+        .included-text {
+          h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: $peach-text;
+          }
+
+          p {
+            margin: 0;
+            opacity: 0.8;
+          }
+        }
+      }
+    }
+  }
+
+  // CTA Section
+  .cta-section {
+    padding: $spacing-lg 0;
+    background: linear-gradient(to right, $peach-accent, $peach-deep);
+    text-align: center;
+    color: white;
+
+    .cta-content {
+      max-width: 600px;
+      margin: 0 auto;
+
+      h2 {
+        font-size: 2.5rem;
+        margin-bottom: $spacing-sm;
+        font-weight: 300;
+      }
+
+      p {
+        font-size: 1.2rem;
+        margin-bottom: $spacing-lg;
+        opacity: 0.95;
+      }
+
+      .cta-button {
+        background: white;
+        color: $peach-deep;
+        border: none;
+        padding: 1rem 2.5rem;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 768px) {
+    .hero-section {
+      height: 60vh;
+
+      .hero-content {
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        p {
+          font-size: 1.1rem;
+        }
+
+        .hero-features {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    }
+
+    .controls-wrapper {
+      flex-direction: column;
+      align-items: stretch;
+
+      .vibe-filters {
+        justify-content: center;
+      }
+    }
+
+    .beaches-list .beach-card {
+      flex-direction: column;
+
+      .beach-image {
+        width: 100%;
+
+        img {
+          height: 200px;
+        }
+      }
+
+      .beach-content {
+        width: 100%;
+        padding-left: 0;
+        padding-top: $spacing-md;
+      }
+    }
+
+    .activities-grid,
+    .included-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
