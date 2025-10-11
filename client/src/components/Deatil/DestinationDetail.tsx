@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './DestinationDetail.scss';
 
 interface Attraction {
@@ -31,7 +31,7 @@ interface DestinationData {
   tagline: string;
   region: string;
   hero: string;
-  overview: string[]; // Array of paragraphs for overview
+  overview: string[];
   attractions: Attraction[];
   packages: TravelPackage[];
   seasonalInfo: SeasonalInfo[];
@@ -44,13 +44,14 @@ interface DestinationData {
 }
 
 const DestinationDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // Extract id from URL params
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [currentAttractionIndex, setCurrentAttractionIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [destinationData, setDestinationData] = useState<DestinationData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Sample data mapping - in a real app, this could be fetched from an API based on id
-  const dataById: Record<string, DestinationData> = {
+ const dataById: Record<string, DestinationData> = {
   '1': {
     name: "Leh-Ladakh",
     tagline: "Land of High Passes",
@@ -982,41 +983,88 @@ const DestinationDetail: React.FC = () => {
 };
 
   useEffect(() => {
-    if (id) {
-      const data = dataById[id];
-      if (data) {
-        setDestinationData(data);
+    setIsLoading(true);
+    
+    // Simulate data loading
+    setTimeout(() => {
+      if (id && dataById[id]) {
+        setDestinationData(dataById[id]);
       } else {
-        // Handle invalid id, e.g., redirect or show 404
-        console.error('Destination not found');
+        // Redirect to 404 or destinations page
+        navigate('/destinations');
       }
-    }
-  }, [id]);
-
-  if (!destinationData) {
-    return <div>Loading...</div>; // Or a 404 component
-  }
-
-  const { name, tagline, region, hero, overview, attractions, packages, seasonalInfo, gallery, tips } = destinationData;
+      setIsLoading(false);
+    }, 500);
+  }, [id, navigate]);
 
   const nextAttraction = () => {
-    setCurrentAttractionIndex((prev) => (prev + 1) % attractions.length);
+    if (destinationData) {
+      setCurrentAttractionIndex((prev) => (prev + 1) % destinationData.attractions.length);
+    }
   };
 
   const prevAttraction = () => {
-    setCurrentAttractionIndex((prev) => (prev - 1 + attractions.length) % attractions.length);
+    if (destinationData) {
+      setCurrentAttractionIndex((prev) => 
+        (prev - 1 + destinationData.attractions.length) % destinationData.attractions.length
+      );
+    }
   };
+
+  const handleBookPackage = (packageId: number) => {
+    console.log('Booking package:', packageId);
+    // Add booking logic here
+  };
+
+  const handleBookTrip = () => {
+    console.log('Book trip to:', destinationData?.name);
+    // Add booking logic here
+  };
+
+  // Keyboard navigation for carousel
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        prevAttraction();
+      } else if (e.key === 'ArrowRight') {
+        nextAttraction();
+      } else if (e.key === 'Escape' && lightboxIndex !== null) {
+        setLightboxIndex(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxIndex, destinationData]);
+
+  if (isLoading) {
+    return (
+      <div className="destination-detail">
+        <div className="loading-spinner"></div>
+      </div>
+    );
+  }
+
+  if (!destinationData) {
+    return null;
+  }
+
+  const { name, tagline, region, hero, overview, attractions, packages, seasonalInfo, gallery, tips } = destinationData;
 
   return (
     <div className="destination-detail">
       {/* Hero Banner */}
       <section className="hero-banner">
         <div className="hero-overlay"></div>
-        <img src={hero} alt={name} />
+        <img src={hero} alt={name} loading="eager" />
         <div className="hero-content">
-          <div className="breadcrumb">
-            <span>Home</span> <span>/</span> <span>Destinations</span> <span>/</span> <span>{name}</span>
-          </div>
+          <nav className="breadcrumb" aria-label="Breadcrumb">
+            <span onClick={() => navigate('/')}>Home</span>
+            <span>/</span>
+            <span onClick={() => navigate('/destinations')}>Destinations</span>
+            <span>/</span>
+            <span>{name}</span>
+          </nav>
           <h1>{name}</h1>
           <p className="tagline">{tagline}</p>
           <div className="hero-meta">
@@ -1028,12 +1076,10 @@ const DestinationDetail: React.FC = () => {
       {/* Overview */}
       <section className="overview-section">
         <div className="container">
-          <h2>Discover the Magic of {name.split('-')[0]}</h2> {/* Adjust title dynamically */}
+          <h2>Discover the Magic of {name.split('-')[0]}</h2>
           <div className="overview-content">
             {overview.map((paragraph, index) => (
-              <p key={index}>
-                {paragraph}
-              </p>
+              <p key={index}>{paragraph}</p>
             ))}
           </div>
         </div>
@@ -1044,7 +1090,11 @@ const DestinationDetail: React.FC = () => {
         <div className="container">
           <h2>Top Attractions</h2>
           <div className="carousel-container">
-            <button className="carousel-btn prev" onClick={prevAttraction}>
+            <button 
+              className="carousel-btn prev" 
+              onClick={prevAttraction}
+              aria-label="Previous attraction"
+            >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M15 18l-6-6 6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
@@ -1057,7 +1107,7 @@ const DestinationDetail: React.FC = () => {
                   className={`attraction-card ${index === currentAttractionIndex ? 'active' : ''}`}
                   style={{ transform: `translateX(-${currentAttractionIndex * 100}%)` }}
                 >
-                  <img src={attraction.image} alt={attraction.name} />
+                  <img src={attraction.image} alt={attraction.name} loading="lazy" />
                   <div className="attraction-content">
                     <h3>{attraction.name}</h3>
                     <p>{attraction.description}</p>
@@ -1066,19 +1116,26 @@ const DestinationDetail: React.FC = () => {
               ))}
             </div>
 
-            <button className="carousel-btn next" onClick={nextAttraction}>
+            <button 
+              className="carousel-btn next" 
+              onClick={nextAttraction}
+              aria-label="Next attraction"
+            >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path d="M9 18l6-6-6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
           </div>
 
-          <div className="carousel-dots">
+          <div className="carousel-dots" role="tablist" aria-label="Attraction navigation">
             {attractions.map((_, index) => (
               <button
                 key={index}
                 className={`dot ${index === currentAttractionIndex ? 'active' : ''}`}
                 onClick={() => setCurrentAttractionIndex(index)}
+                aria-label={`View attraction ${index + 1}`}
+                role="tab"
+                aria-selected={index === currentAttractionIndex}
               />
             ))}
           </div>
@@ -1092,7 +1149,7 @@ const DestinationDetail: React.FC = () => {
           <div className="seasonal-grid">
             {seasonalInfo.map((season, index) => (
               <div key={index} className="seasonal-card">
-                <div className="season-icon">{season.icon}</div>
+                <div className="season-icon" aria-hidden="true">{season.icon}</div>
                 <h3>{season.season}</h3>
                 <div className="season-months">{season.months}</div>
                 <div className="season-temp">{season.temperature}</div>
@@ -1101,7 +1158,7 @@ const DestinationDetail: React.FC = () => {
             ))}
           </div>
           <div className="recommendation">
-            <strong>💡 Recommended:</strong> Visit between May and September for the best weather and accessibility.
+            <strong>💡 Recommended:</strong> {seasonalInfo[0]?.description || 'Plan your visit according to the season information above.'}
           </div>
         </div>
       </section>
@@ -1112,16 +1169,16 @@ const DestinationDetail: React.FC = () => {
           <h2>Travel Packages</h2>
           <div className="packages-grid">
             {packages.map((pkg) => (
-              <div key={pkg.id} className="package-card">
+              <article key={pkg.id} className="package-card">
                 <div className="package-image">
-                  <img src={pkg.image} alt={pkg.name} />
+                  <img src={pkg.image} alt={pkg.name} loading="lazy" />
                   <span className="package-badge">{pkg.duration}</span>
                 </div>
                 <div className="package-content">
                   <h3>{pkg.name}</h3>
                   <div className="package-highlights">
                     {pkg.highlights.map((highlight, index) => (
-                      <span key={index} className="highlight-tag">✓ {highlight}</span>
+                      <span key={index} className="highlight-tag">{highlight}</span>
                     ))}
                   </div>
                   <div className="package-footer">
@@ -1130,10 +1187,15 @@ const DestinationDetail: React.FC = () => {
                       <span className="price-amount">₹{pkg.price.toLocaleString()}</span>
                       <span className="price-per">per person</span>
                     </div>
-                    <button className="book-btn">Book Now</button>
+                    <button 
+                      className="book-btn"
+                      onClick={() => handleBookPackage(pkg.id)}
+                    >
+                      Book Now
+                    </button>
                   </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
@@ -1149,8 +1211,16 @@ const DestinationDetail: React.FC = () => {
                 key={index} 
                 className="gallery-item"
                 onClick={() => setLightboxIndex(index)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    setLightboxIndex(index);
+                  }
+                }}
+                aria-label={`View gallery image ${index + 1}`}
               >
-                <img src={image} alt={`Gallery ${index + 1}`} />
+                <img src={image} alt={`${name} Gallery ${index + 1}`} loading="lazy" />
                 <div className="gallery-overlay">
                   <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <circle cx="11" cy="11" r="8" strokeWidth="2"/>
@@ -1165,9 +1235,25 @@ const DestinationDetail: React.FC = () => {
 
       {/* Lightbox */}
       {lightboxIndex !== null && (
-        <div className="lightbox" onClick={() => setLightboxIndex(null)}>
-          <button className="lightbox-close">×</button>
-          <img src={gallery[lightboxIndex]} alt={`Gallery ${lightboxIndex + 1}`} />
+        <div 
+          className="lightbox" 
+          onClick={() => setLightboxIndex(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image gallery lightbox"
+        >
+          <button 
+            className="lightbox-close"
+            onClick={() => setLightboxIndex(null)}
+            aria-label="Close lightbox"
+          >
+            ×
+          </button>
+          <img 
+            src={gallery[lightboxIndex]} 
+            alt={`${name} Gallery ${lightboxIndex + 1}`}
+            onClick={(e) => e.stopPropagation()}
+          />
         </div>
       )}
 
@@ -1209,7 +1295,12 @@ const DestinationDetail: React.FC = () => {
         <div className="cta-content">
           <h2>Ready to Explore {name}?</h2>
           <p>Book your dream trip today and create memories that will last a lifetime</p>
-          <button className="cta-button">Book Your Trip to {name}</button>
+          <button 
+            className="cta-button"
+            onClick={handleBookTrip}
+          >
+            Book Your Trip to {name}
+          </button>
         </div>
       </section>
     </div>
