@@ -46,17 +46,17 @@ const HomePage = () => {
   const filteredPackages = selectedTheme ? packages.filter(pkg => pkg.theme === selectedTheme) : packages;
 
   const themes = [
-    { name: 'All', icon: <Sparkles size={32} />, color: 'gradient', alt: null, image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80' },
-    { name: 'Adventure', icon: <Mountain size={32} />, color: '#ff6b35', alt: 'Adventure experiences', image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80' },
-    { name: 'Spiritual', icon: <Compass size={32} />, color: '#a855f7', alt: 'Spiritual journeys', image: 'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=800&q=80' },
-    { name: 'Luxury', icon: <Award size={32} />, color: '#fbbf24', alt: 'Luxury getaways', image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80' },
-    { name: 'Honeymoon', icon: <Heart size={32} />, color: '#ec4899', alt: 'Romantic destinations', image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80' },
-    { name: 'Wildlife', icon: <Globe size={32} />, color: '#10b981', alt: 'Wildlife adventures', image: 'https://images.unsplash.com/photo-1549366021-9f761d450615?w=800&q=80' },
+    { name: 'All', icon: <Sparkles size={28} />, color: 'gradient', alt: null, image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80' },
+    { name: 'Adventure', icon: <Mountain size={28} />, color: '#ff6b35', alt: 'Adventure experiences', image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80' },
+    { name: 'Spiritual', icon: <Compass size={28} />, color: '#a855f7', alt: 'Spiritual journeys', image: 'https://images.unsplash.com/photo-1532274402911-5a369e4c4bb5?w=800&q=80' },
+    { name: 'Luxury', icon: <Award size={28} />, color: '#fbbf24', alt: 'Luxury getaways', image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80' },
+    { name: 'Honeymoon', icon: <Heart size={28} />, color: '#ec4899', alt: 'Romantic destinations', image: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800&q=80' },
+    { name: 'Wildlife', icon: <Globe size={28} />, color: '#10b981', alt: 'Wildlife adventures', image: 'https://images.unsplash.com/photo-1549366021-9f761d450615?w=800&q=80' },
   ];
 
   const whyItems = [
     { 
-      icon: <Headphones size={52} />, 
+      icon: <Headphones size={48} />, 
       title: '24/7 Support', 
       desc: 'Round-the-clock assistance for complete peace of mind throughout your journey.', 
       color: '#0ea5e9',
@@ -64,7 +64,7 @@ const HomePage = () => {
       image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&q=80'
     },
     { 
-      icon: <Shield size={52} />, 
+      icon: <Shield size={48} />, 
       title: 'Verified Hotels', 
       desc: 'Handpicked and verified accommodations ensuring quality and comfort.', 
       color: '#10b981',
@@ -72,7 +72,7 @@ const HomePage = () => {
       image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80'
     },
     { 
-      icon: <Users size={52} />, 
+      icon: <Users size={48} />, 
       title: 'Expert Guides', 
       desc: 'Professional local guides to enhance your travel experience.', 
       color: '#a855f7',
@@ -80,7 +80,7 @@ const HomePage = () => {
       image: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?w=600&q=80'
     },
     { 
-      icon: <CheckCircle size={52} />, 
+      icon: <CheckCircle size={48} />, 
       title: 'Easy Refunds', 
       desc: 'Hassle-free refund process for flexible and worry-free planning.', 
       color: '#f59e0b',
@@ -154,20 +154,16 @@ const HomePage = () => {
         </div>
 
         <div className="search-card" role="search">
-          <div className="search-header">
-            <h2>Find Your Perfect Journey</h2>
-            <p>Search destinations across India</p>
-          </div>
           <div className="search-form">
             <div className="form-row">
               <div className="input-group">
                 <label htmlFor="destination-input" className="sr-only">Destination</label>
                 <div className="input-wrapper">
-                  <MapPin className="input-icon" size={22} aria-hidden="true" />
+                  <MapPin className="input-icon" size={20} aria-hidden="true" />
                   <input
                     id="destination-input"
                     type="text"
-                    placeholder="Where do you want to go?"
+                    placeholder="Where to?"
                     aria-label="Destination"
                   />
                 </div>
@@ -175,7 +171,7 @@ const HomePage = () => {
               <div className="input-group">
                 <label htmlFor="date-input" className="sr-only">Date</label>
                 <div className="input-wrapper">
-                  <Calendar className="input-icon" size={22} aria-hidden="true" />
+                  <Calendar className="input-icon" size={20} aria-hidden="true" />
                   <input
                     id="date-input"
                     type="date"
@@ -184,7 +180,7 @@ const HomePage = () => {
                 </div>
               </div>
               <button className="search-btn" aria-label="Explore destinations">
-                Explore <ArrowRight size={22} aria-hidden="true" />
+                Explore <ArrowRight size={20} aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -208,19 +204,19 @@ const HomePage = () => {
                 <h3 className="card-title">{dest.name}</h3>
                 <div className="card-meta">
                   <div className="rating">
-                    <Star size={18} fill="currentColor" aria-hidden="true" />
+                    <Star size={16} fill="currentColor" aria-hidden="true" />
                     <span>{dest.rating}</span>
                     <span className="reviews">({dest.reviews})</span>
                   </div>
                 </div>
                 <div className="card-footer">
                   <div className="price-tag">
-                    <span className="price-label">Starting from</span>
+                    <span className="price-label">From</span>
                     <span className="price">{dest.price}</span>
                   </div>
                   <button className="view-btn" aria-label={`View packages for ${dest.name}`}>
                     <span>Explore</span>
-                    <ArrowRight size={20} aria-hidden="true" />
+                    <ArrowRight size={18} aria-hidden="true" />
                   </button>
                 </div>
               </div>
@@ -271,30 +267,30 @@ const HomePage = () => {
                 <h3 className="package-title">{pkg.title}</h3>
                 <div className="package-meta">
                   <div className="meta-item">
-                    <Clock size={18} aria-hidden="true" />
+                    <Clock size={16} aria-hidden="true" />
                     <span>{pkg.duration}</span>
                   </div>
                   <div className="meta-item rating">
-                    <Star size={18} fill="currentColor" aria-hidden="true" />
+                    <Star size={16} fill="currentColor" aria-hidden="true" />
                     <span>{pkg.rating}</span>
                   </div>
                 </div>
                 <ul className="package-highlights">
                   {pkg.highlights.map((highlight, i) => (
                     <li key={i}>
-                      <CheckCircle size={18} aria-hidden="true" />
+                      <CheckCircle size={16} aria-hidden="true" />
                       <span>{highlight}</span>
                     </li>
                   ))}
                 </ul>
                 <div className="package-footer">
                   <div className="price-section">
-                    <span className="price-label">Starting from</span>
+                    <span className="price-label">From</span>
                     <span className="package-price">{pkg.price}</span>
                   </div>
                   <button className="book-btn" aria-label={`Book ${pkg.title}`}>
                     <span>Book Now</span>
-                    <ArrowRight size={20} aria-hidden="true" />
+                    <ArrowRight size={18} aria-hidden="true" />
                   </button>
                 </div>
               </div>
@@ -346,7 +342,7 @@ const HomePage = () => {
               </div>
               <div className="testimonial-rating">
                 {[...Array(test.rating)].map((_, i) => (
-                  <Star key={i} size={16} fill="currentColor" />
+                  <Star key={i} size={14} fill="currentColor" />
                 ))}
               </div>
               <p className="testimonial-review">"{test.review}"</p>
@@ -374,7 +370,7 @@ const HomePage = () => {
                 <p className="blog-excerpt">{blog.excerpt}</p>
                 <button className="read-btn" aria-label={`Read more about ${blog.title}`}>
                   <span>Read More</span>
-                  <ArrowRight size={20} aria-hidden="true" />
+                  <ArrowRight size={18} aria-hidden="true" />
                 </button>
               </div>
             </div>
@@ -391,7 +387,7 @@ const HomePage = () => {
           </div>
           <form className="cta-form" onSubmit={handleSubmit}>
             <div className="input-group">
-              <User className="form-icon" size={20} />
+              <User className="form-icon" size={18} />
               <input 
                 type="text" 
                 placeholder="Your Name" 
@@ -402,7 +398,7 @@ const HomePage = () => {
               />
             </div>
             <div className="input-group">
-              <Mail className="form-icon" size={20} />
+              <Mail className="form-icon" size={18} />
               <input 
                 type="email" 
                 placeholder="Your Email" 
@@ -413,7 +409,7 @@ const HomePage = () => {
               />
             </div>
             <div className="input-group">
-              <MapPin className="form-icon" size={20} />
+              <MapPin className="form-icon" size={18} />
               <input 
                 type="text" 
                 placeholder="Destination Interest" 
@@ -425,7 +421,7 @@ const HomePage = () => {
             </div>
             <button type="submit" className="cta-btn" aria-label="Submit form">
               <span>Start Planning</span>
-              <ArrowRight size={20} />
+              <ArrowRight size={18} />
             </button>
           </form>
         </div>
@@ -435,15 +431,15 @@ const HomePage = () => {
         <div className="footer-content">
           <div className="footer-section brand">
             <div className="footer-logo">
-              <MapPin size={36} aria-hidden="true" />
+              <MapPin size={32} aria-hidden="true" />
               <span>IndiaWander</span>
             </div>
             <p>Your trusted companion for exploring the incredible beauty and diversity of India.</p>
             <div className="footer-social">
-              <a href="#" aria-label="Facebook"><Facebook size={20} /></a>
-              <a href="#" aria-label="Twitter"><Twitter size={20} /></a>
-              <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
-              <a href="#" aria-label="LinkedIn"><Linkedin size={20} /></a>
+              <a href="#" aria-label="Facebook"><Facebook size={18} /></a>
+              <a href="#" aria-label="Twitter"><Twitter size={18} /></a>
+              <a href="#" aria-label="Instagram"><Instagram size={18} /></a>
+              <a href="#" aria-label="LinkedIn"><Linkedin size={18} /></a>
             </div>
           </div>
           <div className="footer-section">
@@ -460,15 +456,15 @@ const HomePage = () => {
             <h4>Contact Info</h4>
             <ul className="contact-list">
               <li>
-                <Mail size={18} />
+                <Mail size={16} />
                 <span>info@indiawander.com</span>
               </li>
               <li>
-                <Phone size={18} />
+                <Phone size={16} />
                 <span>+91 123-456-7890</span>
               </li>
               <li>
-                <MapPin size={18} />
+                <MapPin size={16} />
                 <span>Mumbai, Maharashtra</span>
               </li>
             </ul>
@@ -479,7 +475,7 @@ const HomePage = () => {
             <div className="newsletter">
               <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
               <button aria-label="Subscribe to newsletter">
-                <ArrowRight size={20} />
+                <ArrowRight size={18} />
               </button>
             </div>
           </div>
