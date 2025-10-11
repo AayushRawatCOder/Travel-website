@@ -1,273 +1,253 @@
 import React, { useState } from 'react';
+import { Waves, MapPin, Users, Star, ArrowRight, Clock, Anchor, Sunrise, Umbrella, Heart, TrendingUp } from 'lucide-react';
 import './BeachGetaway.scss';
 
-interface Beach {
+interface BeachTour {
   id: number;
-  name: string;
+  title: string;
+  image: string;
   location: string;
   duration: string;
-  vibe: string;
-  price: number;
-  image: string;
+  type: string;
+  price: string;
   rating: number;
   reviews: number;
-  activities: string[];
-  bestFor: string[];
+  groupSize: string;
+  featured?: boolean;
+  activities?: string[];
 }
 
-const BeachGetaways: React.FC = () => {
-  const [filterVibe, setFilterVibe] = useState<string>('All');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+const BeachGetaway: React.FC = () => {
+  const [selectedType, setSelectedType] = useState<string>('All');
+  const [favorites, setFavorites] = useState<number[]>([]);
 
-  const beaches: Beach[] = [
+  const beachTours: BeachTour[] = [
     {
       id: 1,
-      name: "Tropical Paradise - Andaman",
-      location: "Havelock & Neil Island",
-      duration: "6 Days / 5 Nights",
-      vibe: "Adventure",
-      price: 48999,
-      image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop",
-      rating: 4.9,
-      reviews: 678,
-      activities: ["Scuba Diving", "Snorkeling", "Beach Hopping", "Water Sports"],
-      bestFor: ["Couples", "Adventure Seekers"]
+      title: 'Goa Beach Paradise',
+      image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80',
+      location: 'North & South Goa',
+      duration: '5 Days',
+      type: 'Luxury',
+      price: '₹28,000',
+      rating: 4.8,
+      reviews: 456,
+      groupSize: '8-12',
+      featured: true,
+      activities: ['Water Sports', 'Beach Parties', 'Nightlife']
     },
     {
       id: 2,
-      name: "Goa Beach Carnival",
-      location: "North & South Goa",
-      duration: "5 Days / 4 Nights",
-      vibe: "Party",
-      price: 28999,
-      image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&h=600&fit=crop",
-      rating: 4.7,
-      reviews: 892,
-      activities: ["Beach Parties", "Water Sports", "Nightlife", "Beach Shacks"],
-      bestFor: ["Groups", "Party Lovers"]
+      title: 'Andaman Island Escape',
+      image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80',
+      location: 'Havelock, Neil Island',
+      duration: '7 Days',
+      type: 'Adventure',
+      price: '₹42,000',
+      rating: 4.9,
+      reviews: 389,
+      groupSize: '6-10',
+      featured: true,
+      activities: ['Scuba Diving', 'Snorkeling', 'Island Hopping']
     },
     {
       id: 3,
-      name: "Serene Kerala Backwaters",
-      location: "Kovalam & Varkala",
-      duration: "5 Days / 4 Nights",
-      vibe: "Relaxation",
-      price: 35999,
-      image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&h=600&fit=crop",
-      rating: 4.8,
-      reviews: 445,
-      activities: ["Ayurveda Spa", "Yoga", "Beach Walks", "Houseboat"],
-      bestFor: ["Couples", "Wellness Seekers"]
+      title: 'Kerala Beaches',
+      image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80',
+      location: 'Kovalam, Varkala',
+      duration: '4 Days',
+      type: 'Relaxation',
+      price: '₹22,000',
+      rating: 4.7,
+      reviews: 312,
+      groupSize: '10-15',
+      activities: ['Ayurveda Spa', 'Yoga', 'Beach Walks']
     },
     {
       id: 4,
-      name: "Lakshadweep Crystal Waters",
-      location: "Agatti & Bangaram",
-      duration: "4 Days / 3 Nights",
-      vibe: "Luxury",
-      price: 62999,
-      image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop",
-      rating: 4.9,
-      reviews: 234,
-      activities: ["Snorkeling", "Kayaking", "Lagoon Walks", "Island Tours"],
-      bestFor: ["Honeymooners", "Luxury Travelers"]
+      title: 'Lakshadweep Paradise',
+      image: 'https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&q=80',
+      location: 'Agatti, Bangaram',
+      duration: '6 Days',
+      type: 'Luxury',
+      price: '₹65,000',
+      rating: 5.0,
+      reviews: 198,
+      groupSize: '6-8',
+      activities: ['Kayaking', 'Glass Boat', 'Beach Resort']
     },
     {
       id: 5,
-      name: "Pondicherry French Riviera",
-      location: "Pondicherry",
-      duration: "3 Days / 2 Nights",
-      vibe: "Relaxation",
-      price: 18999,
-      image: "https://images.unsplash.com/photo-1586016950994-b7e83e2b0f86?w=800&h=600&fit=crop",
+      title: 'Gokarna Beach Trek',
+      image: 'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?w=800&q=80',
+      location: 'Gokarna, Karnataka',
+      duration: '3 Days',
+      type: 'Adventure',
+      price: '₹15,000',
       rating: 4.6,
-      reviews: 567,
-      activities: ["Beach Cafes", "Cycling", "French Quarter Walk", "Auroville Visit"],
-      bestFor: ["Solo Travelers", "Couples"]
+      reviews: 267,
+      groupSize: '8-10',
+      activities: ['Beach Trekking', 'Camping', 'Cliff Jumping']
     },
     {
       id: 6,
-      name: "Gokarna Hippie Beaches",
-      location: "Gokarna, Karnataka",
-      duration: "4 Days / 3 Nights",
-      vibe: "Relaxation",
-      price: 22999,
-      image: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=600&fit=crop",
+      title: 'Pondicherry Coast',
+      image: 'https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?w=800&q=80',
+      location: 'Pondicherry, TN',
+      duration: '3 Days',
+      type: 'Relaxation',
+      price: '₹18,000',
       rating: 4.7,
-      reviews: 389,
-      activities: ["Beach Trekking", "Cliff Camping", "Sunset Views", "Beach Cafes"],
-      bestFor: ["Backpackers", "Nature Lovers"]
-    },
-    {
-      id: 7,
-      name: "Lakshadweep Adventure Week",
-      location: "Multiple Islands",
-      duration: "7 Days / 6 Nights",
-      vibe: "Adventure",
-      price: 72999,
-      image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop",
-      rating: 4.9,
-      reviews: 156,
-      activities: ["Scuba Diving", "Deep Sea Fishing", "Island Hopping", "Coral Viewing"],
-      bestFor: ["Adventure Groups", "Divers"]
-    },
-    {
-      id: 8,
-      name: "Mumbai Alibaug Weekend",
-      location: "Alibaug, Maharashtra",
-      duration: "2 Days / 1 Night",
-      vibe: "Party",
-      price: 14999,
-      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop",
-      rating: 4.5,
-      reviews: 423,
-      activities: ["Beach Resorts", "Water Sports", "Fort Visit", "Beachside Dining"],
-      bestFor: ["Weekenders", "Families"]
-    },
-    {
-      id: 9,
-      name: "Luxury Maldives Style Andaman",
-      location: "Radhanagar Beach",
-      duration: "5 Days / 4 Nights",
-      vibe: "Luxury",
-      price: 58999,
-      image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop",
-      rating: 4.9,
-      reviews: 312,
-      activities: ["Private Beach Access", "Spa Treatments", "Fine Dining", "Sunset Cruises"],
-      bestFor: ["Honeymooners", "Luxury Couples"]
+      reviews: 298,
+      groupSize: '8-12',
+      activities: ['Beach Cafes', 'French Quarter', 'Surfing']
     }
   ];
 
-  const filteredBeaches = beaches.filter(
-    beach => filterVibe === 'All' || beach.vibe === filterVibe
-  );
+  const types = ['All', 'Luxury', 'Adventure', 'Relaxation'];
+
+  const filteredTours = selectedType === 'All' 
+    ? beachTours 
+    : beachTours.filter(tour => tour.type === selectedType);
+
+  const toggleFavorite = (id: number) => {
+    setFavorites(prev => 
+      prev.includes(id) ? prev.filter(fav => fav !== id) : [...prev, id]
+    );
+  };
 
   return (
-    <div className="beach-getaways-page">
-      {/* Hero Section */}
-      <section className="hero-section">
+    <div className="beach-getaway-page">
+      <section className="beach-hero">
+        <div className="hero-background" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1920&q=80')" }}></div>
         <div className="hero-overlay"></div>
         <div className="hero-content">
-          <h1>Beach Getaways</h1>
-          <p>Escape to Sun, Sand & Sea - India's Most Beautiful Coastal Destinations</p>
+          <div className="hero-badge">
+            <Waves size={20} />
+            <span>BEACH GETAWAY</span>
+          </div>
+          <h1 className="hero-title">Tropical Beach Paradise</h1>
+          <p className="hero-subtitle">Relax on pristine beaches with crystal clear waters and golden sands</p>
           <div className="hero-features">
-            <span>🏖️ Pristine Beaches</span>
-            <span>🌊 Water Activities</span>
-            <span>☀️ Year-Round Sunshine</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Intro */}
-      <section className="intro-section">
-        <div className="container">
-          <h2>Where Blue Meets Paradise</h2>
-          <p>
-            India's coastline stretches over 7,500 kilometers, offering everything from vibrant party beaches 
-            to secluded tropical paradises. Whether you seek adventure in crystal-clear waters, relaxation on 
-            pristine sands, or luxury in beachfront resorts, our beach getaways promise the perfect escape 
-            from everyday life. Discover hidden coves, experience water sports, indulge in fresh seafood, and 
-            let the ocean waves wash your worries away.
-          </p>
-        </div>
-      </section>
-
-      {/* Filters & View Toggle */}
-      <section className="controls-section">
-        <div className="container">
-          <div className="controls-wrapper">
-            <div className="vibe-filters">
-              <span className="filter-label">Beach Vibe:</span>
-              {['All', 'Adventure', 'Relaxation', 'Party', 'Luxury'].map(vibe => (
-                <button
-                  key={vibe}
-                  className={`vibe-btn ${filterVibe === vibe ? 'active' : ''}`}
-                  onClick={() => setFilterVibe(vibe)}
-                >
-                  {vibe}
-                </button>
-              ))}
+            <div className="feature-item">
+              <Umbrella size={24} />
+              <span>Premium Resorts</span>
             </div>
-            <div className="view-toggle">
-              <button
-                className={viewMode === 'grid' ? 'active' : ''}
-                onClick={() => setViewMode('grid')}
-              >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                  <rect x="2" y="2" width="7" height="7" />
-                  <rect x="11" y="2" width="7" height="7" />
-                  <rect x="2" y="11" width="7" height="7" />
-                  <rect x="11" y="11" width="7" height="7" />
-                </svg>
-              </button>
-              <button
-                className={viewMode === 'list' ? 'active' : ''}
-                onClick={() => setViewMode('list')}
-              >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                  <rect x="2" y="3" width="16" height="2" />
-                  <rect x="2" y="9" width="16" height="2" />
-                  <rect x="2" y="15" width="16" height="2" />
-                </svg>
-              </button>
+            <div className="feature-item">
+              <Waves size={24} />
+              <span>Water Activities</span>
+            </div>
+            <div className="feature-item">
+              <Sunrise size={24} />
+              <span>Sunset Views</span>
             </div>
           </div>
         </div>
+        <div className="hero-scroll-indicator">
+          <div className="scroll-arrow"></div>
+        </div>
       </section>
 
-      {/* Beach Cards */}
-      <section className="beaches-section">
-        <div className="container">
-          <div className={`beaches-${viewMode}`}>
-            {filteredBeaches.map(beach => (
-              <div key={beach.id} className="beach-card">
-                <div className="beach-image">
-                  <img src={beach.image} alt={beach.name} />
-                  <span className="vibe-badge">{beach.vibe}</span>
+      <section className="tours-section">
+        <div className="tours-container">
+          <div className="section-header">
+            <div className="section-badge">
+              <Anchor size={16} />
+              <span>BEACH DESTINATIONS</span>
+            </div>
+            <h2 className="section-title">Your Perfect Beach Escape</h2>
+            <p className="section-subtitle">From secluded coves to vibrant beach towns, find your ideal coastal retreat with unforgettable experiences</p>
+          </div>
+
+          <div className="type-filter">
+            {types.map((type) => (
+              <button
+                key={type}
+                className={`filter-btn ${selectedType === type ? 'active' : ''}`}
+                onClick={() => setSelectedType(type)}
+              >
+                {type}
+              </button>
+            ))}
+          </div>
+
+          <div className="results-info">
+            <span className="results-count">
+              Showing <span className="count-number">{filteredTours.length}</span> beach destination{filteredTours.length !== 1 ? 's' : ''}
+            </span>
+          </div>
+
+          <div className="tours-grid">
+            {filteredTours.map((tour, index) => (
+              <div key={tour.id} className="tour-card" style={{ '--index': index } as React.CSSProperties}>
+                {tour.featured && (
+                  <div className="featured-badge">
+                    <TrendingUp size={14} />
+                    <span>Popular</span>
+                  </div>
+                )}
+                <div className="tour-image-wrapper">
+                  <div className="tour-image" style={{ backgroundImage: `url(${tour.image})` }}></div>
+                  <div className={`type-badge type-${tour.type.toLowerCase()}`}>{tour.type}</div>
+                  <button 
+                    className={`favorite-btn ${favorites.includes(tour.id) ? 'active' : ''}`}
+                    onClick={() => toggleFavorite(tour.id)}
+                    aria-label="Add to favorites"
+                  >
+                    <Heart size={18} fill={favorites.includes(tour.id) ? 'currentColor' : 'none'} />
+                  </button>
+                  <div className="tour-overlay">
+                    <button className="quick-view-btn">
+                      <span>View Details</span>
+                      <ArrowRight size={16} />
+                    </button>
+                  </div>
                 </div>
-                <div className="beach-content">
-                  <div className="beach-header">
-                    <h3>{beach.name}</h3>
-                    <div className="rating">
-                      <span className="stars">★ {beach.rating}</span>
-                      <span className="reviews">({beach.reviews})</span>
+                <div className="tour-content">
+                  <h3 className="tour-title">{tour.title}</h3>
+                  <div className="tour-location">
+                    <MapPin size={16} />
+                    <span>{tour.location}</span>
+                  </div>
+                  
+                  <div className="tour-meta">
+                    <div className="meta-item">
+                      <Clock size={15} />
+                      <span>{tour.duration}</span>
+                    </div>
+                    <div className="meta-item">
+                      <Users size={15} />
+                      <span>{tour.groupSize} people</span>
                     </div>
                   </div>
-                  <div className="beach-location">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                      <path d="M8 2C5.79 2 4 3.79 4 6c0 3 4 8 4 8s4-5 4-8c0-2.21-1.79-4-4-4zm0 5.5c-.83 0-1.5-.67-1.5-1.5S7.17 4.5 8 4.5 9.5 5.17 9.5 6 8.83 7.5 8 7.5z"/>
-                    </svg>
-                    {beach.location}
+
+                  <div className="tour-rating">
+                    <Star size={16} fill="currentColor" />
+                    <span className="rating-value">{tour.rating}</span>
+                    <span className="reviews">({tour.reviews} reviews)</span>
                   </div>
-                  <div className="beach-duration">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                      <circle cx="8" cy="8" r="6" stroke="currentColor" fill="none"/>
-                      <path d="M8 4v4l3 2" stroke="currentColor" fill="none"/>
-                    </svg>
-                    {beach.duration}
-                  </div>
-                  <div className="beach-activities">
-                    <strong>Activities:</strong>
-                    <div className="activity-tags">
-                      {beach.activities.map((activity, index) => (
-                        <span key={index} className="activity-tag">🌊 {activity}</span>
+
+                  {tour.activities && (
+                    <div className="tour-activities">
+                      {tour.activities.map((activity, idx) => (
+                        <span key={idx} className="activity-tag">
+                          <span className="dot"></span>
+                          {activity}
+                        </span>
                       ))}
                     </div>
-                  </div>
-                  <div className="beach-bestfor">
-                    <strong>Best For:</strong>
-                    {beach.bestFor.map((type, index) => (
-                      <span key={index} className="bestfor-tag">{type}</span>
-                    ))}
-                  </div>
-                  <div className="beach-footer">
-                    <div className="beach-price">
-                      <span className="from">From</span>
-                      <span className="amount">₹{beach.price.toLocaleString()}</span>
-                      <span className="per">per person</span>
+                  )}
+
+                  <div className="tour-footer">
+                    <div className="price-section">
+                      <span className="price-label">Starting from</span>
+                      <span className="price">{tour.price}</span>
+                      <span className="price-person">per person</span>
                     </div>
-                    <button className="book-btn">Book Now</button>
+                    <button className="book-btn">
+                      <span>Book Now</span>
+                      <ArrowRight size={18} />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -276,106 +256,24 @@ const BeachGetaways: React.FC = () => {
         </div>
       </section>
 
-      {/* Beach Activities */}
-      <section className="activities-section">
-        <div className="container">
-          <h2>Popular Beach Activities</h2>
-          <div className="activities-grid">
-            <div className="activity-card">
-              <div className="activity-icon">🤿</div>
-              <h3>Scuba Diving</h3>
-              <p>Explore vibrant coral reefs and marine life in crystal-clear waters</p>
-            </div>
-            <div className="activity-card">
-              <div className="activity-icon">🏄‍♂️</div>
-              <h3>Water Sports</h3>
-              <p>Jet skiing, parasailing, banana boat rides and more thrills</p>
-            </div>
-            <div className="activity-card">
-              <div className="activity-icon">🧘‍♀️</div>
-              <h3>Beach Yoga</h3>
-              <p>Practice mindfulness with sunrise yoga sessions on the sand</p>
-            </div>
-            <div className="activity-card">
-              <div className="activity-icon">🍹</div>
-              <h3>Beach Dining</h3>
-              <p>Fresh seafood, sunset cocktails, and beachside barbecues</p>
-            </div>
-            <div className="activity-card">
-              <div className="activity-icon">🚤</div>
-              <h3>Island Hopping</h3>
-              <p>Discover hidden beaches and untouched islands by boat</p>
-            </div>
-            <div className="activity-card">
-              <div className="activity-icon">💆‍♀️</div>
-              <h3>Spa & Wellness</h3>
-              <p>Beachfront massages and traditional healing therapies</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What's Included */}
-      <section className="included-section">
-        <div className="container">
-          <h2>What's Included in Our Beach Packages</h2>
-          <div className="included-grid">
-            <div className="included-item">
-              <div className="check-icon">✓</div>
-              <div className="included-text">
-                <h4>Beachfront Accommodation</h4>
-                <p>Handpicked resorts and hotels with ocean views</p>
-              </div>
-            </div>
-            <div className="included-item">
-              <div className="check-icon">✓</div>
-              <div className="included-text">
-                <h4>Meals & Beverages</h4>
-                <p>Breakfast included, seafood specialties available</p>
-              </div>
-            </div>
-            <div className="included-item">
-              <div className="check-icon">✓</div>
-              <div className="included-text">
-                <h4>Airport Transfers</h4>
-                <p>Comfortable pick-up and drop services</p>
-              </div>
-            </div>
-            <div className="included-item">
-              <div className="check-icon">✓</div>
-              <div className="included-text">
-                <h4>Water Activities</h4>
-                <p>Complimentary snorkeling, kayaking equipment</p>
-              </div>
-            </div>
-            <div className="included-item">
-              <div className="check-icon">✓</div>
-              <div className="included-text">
-                <h4>Island Tours</h4>
-                <p>Guided sightseeing and beach hopping excursions</p>
-              </div>
-            </div>
-            <div className="included-item">
-              <div className="check-icon">✓</div>
-              <div className="included-text">
-                <h4>24/7 Support</h4>
-                <p>Round-the-clock assistance during your stay</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
       <section className="cta-section">
+        <div className="cta-background">
+          <div className="wave-animation wave1"></div>
+          <div className="wave-animation wave2"></div>
+          <div className="wave-animation wave3"></div>
+        </div>
         <div className="cta-content">
-          <h2>Your Beach Paradise Awaits</h2>
-          <p>Pack your swimsuit and sunscreen - it's time for the ultimate beach escape</p>
-          <button className="cta-button">Find Your Perfect Beach</button>
+          <Waves size={48} className="cta-icon" />
+          <h2 className="cta-title">Ready to Dip Your Toes?</h2>
+          <p className="cta-subtitle">Discover more stunning beach destinations and create unforgettable memories by the sea</p>
+          <button className="cta-button">
+            <span>Explore All Beaches</span>
+            <ArrowRight size={20} />
+          </button>
         </div>
       </section>
     </div>
   );
 };
 
-export default BeachGetaways;
+export default BeachGetaway;

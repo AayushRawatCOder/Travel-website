@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Plane, Heart, User, Search, ChevronDown } from 'lucide-react';
+import { Menu, X, Plane, Heart, User, ChevronDown, Bell, MapPin } from 'lucide-react';
 import './navbar.style.scss';
 
 interface DropdownItem {
   name: string;
   href: string;
+  badge?: string;
 }
 
 interface NavItem {
@@ -31,9 +32,9 @@ const navItems: NavItem[] = [
     href: '/tours',
     hasDropdown: true,
     dropdownItems: [
-      { name: 'Adventure Tours', href: '/tours/adventure' },
+      { name: 'Adventure Tours', href: '/tours/adventuretours', badge: 'Hot' },
       { name: 'Cultural Tours', href: '/tours/cultural' },
-      { name: 'Beach Getaways', href: '/tours/beach' },
+      { name: 'Beach Getaways', href: '/tours/beach', badge: 'New' },
     ],
   },
   { name: 'Experiences', href: '/experiences', hasDropdown: false },
@@ -47,6 +48,7 @@ const Navbar: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [activeMobileDropdown, setActiveMobileDropdown] = useState<string | null>(null);
   const [isMobileView, setIsMobileView] = useState<boolean>(typeof window !== 'undefined' ? window.innerWidth <= 1024 : false);
+  const [notificationCount] = useState<number>(3);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -115,13 +117,14 @@ const Navbar: React.FC = () => {
         <div className="navbar-container">
           <div className="navbar-logo">
             <div className="logo-wrapper">
-              <Plane className="logo-icon" size={30} />
+              <Plane className="logo-icon" size={32} />
             </div>
             <div className="logo-content">
-              <span className="logo-text">Wanderlust</span>
+              <span className="logo-text">Curiosity Tour & Travels</span>
               <span className="logo-tagline">Explore the World</span>
             </div>
           </div>
+
           <ul className="navbar-menu">
             {navItems.map((item) => (
               <li
@@ -136,20 +139,25 @@ const Navbar: React.FC = () => {
                   onClick={(e) => handleNavClick(e, item)}
                   aria-expanded={item.hasDropdown ? activeDropdown === item.name : undefined}
                 >
-                  {item.name}
+                  <span className="nav-link-text">{item.name}</span>
                   {item.hasDropdown && (
                     <ChevronDown
                       size={16}
-                      className={`dropdown-icon ${activeDropdown === item.name || activeMobileDropdown === item.name ? 'rotated' : ''}`}
+                      className={`dropdown-icon ${activeDropdown === item.name ? 'rotated' : ''}`}
                     />
                   )}
                 </a>
                 {item.hasDropdown && (
-                  <ul className={`dropdown-menu ${activeDropdown === item.name || activeMobileDropdown === item.name ? 'open' : ''}`}>
+                  <ul className={`dropdown-menu ${activeDropdown === item.name ? 'open' : ''}`}>
                     {item.dropdownItems?.map((dropdownItem) => (
                       <li key={dropdownItem.name}>
                         <a href={dropdownItem.href} className="dropdown-link" onClick={isMobileView ? handleMobileClose : undefined}>
-                          {dropdownItem.name}
+                          <span className="dropdown-link-text">{dropdownItem.name}</span>
+                          {dropdownItem.badge && (
+                            <span className={`dropdown-badge ${dropdownItem.badge.toLowerCase()}`}>
+                              {dropdownItem.badge}
+                            </span>
+                          )}
                         </a>
                       </li>
                     ))}
@@ -158,9 +166,13 @@ const Navbar: React.FC = () => {
               </li>
             ))}
           </ul>
+
           <div className="navbar-actions">
-            <button className="icon-btn search-btn" aria-label="Search">
-              <Search size={20} />
+            <button className="icon-btn notification-btn" aria-label="Notifications">
+              <Bell size={20} />
+              {notificationCount > 0 && (
+                <span className="notification-badge">{notificationCount}</span>
+              )}
             </button>
             <button className="icon-btn" aria-label="Favorites">
               <Heart size={20} />
@@ -169,10 +181,11 @@ const Navbar: React.FC = () => {
               <User size={20} />
             </button>
             <button className="btn-primary">
+              <MapPin size={18} />
               <span className="btn-text">Book Now</span>
-              <span className="btn-shine"></span>
             </button>
           </div>
+
           <button
             className="mobile-menu-btn"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -182,8 +195,25 @@ const Navbar: React.FC = () => {
           </button>
         </div>
       </nav>
+
       <div className={`mobile-overlay ${isMobileMenuOpen ? 'open' : ''}`} onClick={handleMobileClose}></div>
+
       <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+        <div className="mobile-menu-header">
+          <div className="mobile-logo">
+            <div className="mobile-logo-wrapper">
+              <Plane className="mobile-logo-icon" size={28} />
+            </div>
+            <div className="mobile-logo-content">
+              <span className="mobile-logo-text">Curiosity</span>
+              <span className="mobile-logo-tagline">Tour & Travels</span>
+            </div>
+          </div>
+          <button className="mobile-close-btn" onClick={handleMobileClose} aria-label="Close menu">
+            <X size={24} />
+          </button>
+        </div>
+
         <div className="mobile-menu-content">
           <ul className="mobile-nav-list">
             {navItems.map((item) => (
@@ -210,7 +240,12 @@ const Navbar: React.FC = () => {
                               className="mobile-dropdown-link"
                               onClick={handleMobileClose}
                             >
-                              {dropdownItem.name}
+                              <span>{dropdownItem.name}</span>
+                              {dropdownItem.badge && (
+                                <span className={`mobile-badge ${dropdownItem.badge.toLowerCase()}`}>
+                                  {dropdownItem.badge}
+                                </span>
+                              )}
                             </a>
                           </li>
                         ))}
@@ -230,14 +265,18 @@ const Navbar: React.FC = () => {
               </li>
             ))}
           </ul>
+
           <div className="mobile-actions">
             <button className="btn-primary mobile-book">
+              <MapPin size={18} />
               <span className="btn-text">Book Now</span>
-              <span className="btn-shine"></span>
             </button>
             <div className="mobile-icons">
-              <button className="mobile-icon-btn search-btn" aria-label="Search">
-                <Search size={20} />
+              <button className="mobile-icon-btn notification-btn" aria-label="Notifications">
+                <Bell size={20} />
+                {notificationCount > 0 && (
+                  <span className="notification-badge">{notificationCount}</span>
+                )}
               </button>
               <button className="mobile-icon-btn" aria-label="Favorites">
                 <Heart size={20} />
