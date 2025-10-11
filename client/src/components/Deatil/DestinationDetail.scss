@@ -1,10 +1,10 @@
-// Variables for Peace Theme
-$peace-primary: #E3F2FD; // Soft sky blue for serenity
-$peace-secondary: #F5F5F5; // Gentle white-gray for calm backgrounds
-$peace-accent: #4A90E2; // Tranquil blue for highlights
-$peace-text: #2C3E50; // Deep navy for readability
-$peace-border: #BDC3C7; // Soft gray for subtle borders
-$peace-shadow: rgba(0, 0, 0, 0.05); // Light shadow for depth without harshness
+// Variables for Enhanced Peach/Coral Theme
+$coral-primary: #FFF3E0; // Soft peach for warmth
+$coral-secondary: #FAFAFA; // Gentle white for calm backgrounds
+$coral-accent: #FF6B35; // Vibrant coral for highlights
+$coral-text: #4A2C2A; // Warm dark brown for readability
+$coral-border: #FFB3A7; // Soft coral for subtle borders
+$coral-shadow: rgba(255, 107, 53, 0.1); // Light coral-tinted shadow for depth
 
 $container-max-width: 1200px;
 $spacing-sm: 1rem;
@@ -14,8 +14,8 @@ $spacing-lg: 3rem;
 .destination-detail {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: $peace-text;
-  background-color: $peace-secondary;
+  color: $coral-text;
+  background-color: $coral-secondary;
 
   .container {
     max-width: $container-max-width;
@@ -100,7 +100,7 @@ $spacing-lg: 3rem;
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: $spacing-lg;
-      color: $peace-accent;
+      color: $coral-accent;
       font-weight: 300;
     }
 
@@ -119,13 +119,13 @@ $spacing-lg: 3rem;
   // Attractions Section (Carousel)
   .attractions-section {
     padding: $spacing-lg 0;
-    background: linear-gradient(to bottom, $peace-secondary, $peace-primary);
+    background: linear-gradient(to bottom, $coral-secondary, $coral-primary);
 
     h2 {
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: $spacing-lg;
-      color: $peace-accent;
+      color: $coral-accent;
       font-weight: 300;
     }
 
@@ -133,7 +133,7 @@ $spacing-lg: 3rem;
       position: relative;
       overflow: hidden;
       border-radius: 15px;
-      box-shadow: 0 10px 30px $peace-shadow;
+      box-shadow: 0 10px 30px $coral-shadow;
       background: white;
 
       .carousel-btn {
@@ -154,7 +154,7 @@ $spacing-lg: 3rem;
         }
 
         svg {
-          color: $peace-accent;
+          color: $coral-accent;
         }
 
         &.prev {
@@ -194,7 +194,7 @@ $spacing-lg: 3rem;
             h3 {
               font-size: 1.8rem;
               margin-bottom: $spacing-sm;
-              color: $peace-accent;
+              color: $coral-accent;
             }
 
             p {
@@ -215,13 +215,13 @@ $spacing-lg: 3rem;
           width: 12px;
           height: 12px;
           border-radius: 50%;
-          background: $peace-border;
+          background: $coral-border;
           border: none;
           cursor: pointer;
           transition: background 0.3s ease;
 
           &.active {
-            background: $peace-accent;
+            background: $coral-accent;
           }
         }
       }
@@ -236,7 +236,7 @@ $spacing-lg: 3rem;
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: $spacing-lg;
-      color: $peace-accent;
+      color: $coral-accent;
       font-weight: 300;
     }
 
@@ -251,7 +251,7 @@ $spacing-lg: 3rem;
         padding: $spacing-md;
         border-radius: 15px;
         text-align: center;
-        box-shadow: 0 5px 20px $peace-shadow;
+        box-shadow: 0 5px 20px $coral-shadow;
         transition: transform 0.3s ease;
 
         &:hover {
@@ -266,13 +266,13 @@ $spacing-lg: 3rem;
         h3 {
           font-size: 1.5rem;
           margin-bottom: 0.5rem;
-          color: $peace-accent;
+          color: $coral-accent;
         }
 
         .season-months,
         .season-temp {
           font-size: 0.9rem;
-          color: $peace-text;
+          color: $coral-text;
           margin-bottom: 0.5rem;
           font-weight: 500;
         }
@@ -288,7 +288,7 @@ $spacing-lg: 3rem;
       text-align: center;
       font-size: 1.1rem;
       padding: $spacing-md;
-      background: $peace-primary;
+      background: $coral-primary;
       border-radius: 10px;
       max-width: 600px;
       margin: 0 auto;
@@ -298,13 +298,13 @@ $spacing-lg: 3rem;
   // Packages Section
   .packages-section {
     padding: $spacing-lg 0;
-    background: $peace-primary;
+    background: $coral-primary;
 
     h2 {
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: $spacing-lg;
-      color: $peace-accent;
+      color: $coral-accent;
       font-weight: 300;
     }
 
@@ -317,7 +317,7 @@ $spacing-lg: 3rem;
         background: white;
         border-radius: 15px;
         overflow: hidden;
-        box-shadow: 0 10px 30px $peace-shadow;
+        box-shadow: 0 10px 30px $coral-shadow;
         transition: transform 0.3s ease;
 
         &:hover {
@@ -339,7 +339,7 @@ $spacing-lg: 3rem;
             position: absolute;
             top: 10px;
             right: 10px;
-            background: $peace-accent;
+            background: $coral-accent;
             color: white;
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
@@ -354,7 +354,7 @@ $spacing-lg: 3rem;
           h3 {
             font-size: 1.4rem;
             margin-bottom: $spacing-sm;
-            color: $peace-text;
+            color: $coral-text;
           }
 
           .package-highlights {
@@ -365,7 +365,7 @@ $spacing-lg: 3rem;
 
             .highlight-tag {
               font-size: 0.9rem;
-              color: $peace-accent;
+              color: $coral-accent;
               font-weight: 500;
             }
           }
@@ -385,7 +385,7 @@ $spacing-lg: 3rem;
               .price-amount {
                 font-size: 1.8rem;
                 font-weight: bold;
-                color: $peace-accent;
+                color: $coral-accent;
               }
 
               .price-per {
@@ -395,7 +395,7 @@ $spacing-lg: 3rem;
             }
 
             .book-btn {
-              background: $peace-accent;
+              background: $coral-accent;
               color: white;
               border: none;
               padding: 0.8rem 1.5rem;
@@ -405,7 +405,7 @@ $spacing-lg: 3rem;
               transition: background 0.3s ease;
 
               &:hover {
-                background: darken($peace-accent, 10%);
+                background: darken($coral-accent, 10%);
               }
             }
           }
@@ -422,7 +422,7 @@ $spacing-lg: 3rem;
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: $spacing-lg;
-      color: $peace-accent;
+      color: $coral-accent;
       font-weight: 300;
     }
 
@@ -464,7 +464,7 @@ $spacing-lg: 3rem;
           transition: opacity 0.3s ease;
 
           svg {
-            color: $peace-accent;
+            color: $coral-accent;
           }
         }
 
@@ -510,13 +510,13 @@ $spacing-lg: 3rem;
   // Tips Section
   .tips-section {
     padding: $spacing-lg 0;
-    background: $peace-secondary;
+    background: $coral-secondary;
 
     h2 {
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: $spacing-lg;
-      color: $peace-accent;
+      color: $coral-accent;
       font-weight: 300;
     }
 
@@ -529,12 +529,12 @@ $spacing-lg: 3rem;
         background: white;
         padding: $spacing-md;
         border-radius: 15px;
-        box-shadow: 0 5px 20px $peace-shadow;
+        box-shadow: 0 5px 20px $coral-shadow;
 
         h3 {
           font-size: 1.3rem;
           margin-bottom: $spacing-sm;
-          color: $peace-accent;
+          color: $coral-accent;
           text-align: center;
         }
 
@@ -546,7 +546,7 @@ $spacing-lg: 3rem;
             padding: 0.5rem 0;
             font-size: 0.95rem;
             opacity: 0.9;
-            border-bottom: 1px solid $peace-border;
+            border-bottom: 1px solid $coral-border;
             &:last-child {
               border-bottom: none;
             }
@@ -559,7 +559,7 @@ $spacing-lg: 3rem;
   // CTA Section
   .cta-section {
     padding: $spacing-lg 0;
-    background: linear-gradient(to right, $peace-accent, darken($peace-accent, 10%));
+    background: linear-gradient(to right, $coral-accent, darken($coral-accent, 10%));
     text-align: center;
     color: white;
 
@@ -581,7 +581,7 @@ $spacing-lg: 3rem;
 
       .cta-button {
         background: white;
-        color: $peace-accent;
+        color: $coral-accent;
         border: none;
         padding: 1rem 2.5rem;
         border-radius: 30px;
@@ -599,10 +599,20 @@ $spacing-lg: 3rem;
 
   // Responsive Adjustments
   @media (max-width: 768px) {
+    .container {
+      padding: 0 $spacing-sm / 2; // Reduce padding on very small screens
+    }
+
     .hero-banner {
       height: 60vh;
+      min-height: 400px; // Slightly reduce min-height for mobile
 
       .hero-content {
+        bottom: $spacing-md;
+        left: $spacing-sm;
+        right: $spacing-sm;
+        padding: 0 $spacing-sm; // Add padding to prevent edge clipping
+
         h1 {
           font-size: 2.2rem;
         }
@@ -610,30 +620,110 @@ $spacing-lg: 3rem;
         .tagline {
           font-size: 1.1rem;
         }
+
+        .breadcrumb {
+          font-size: 0.85rem; // Slightly smaller for mobile
+        }
       }
     }
 
-    .attractions-section .carousel-track .attraction-card {
-      flex-direction: column;
-      text-align: center;
+    .overview-section,
+    .attractions-section,
+    .seasonal-section,
+    .packages-section,
+    .gallery-section,
+    .tips-section,
+    .cta-section {
+      padding: $spacing-md 0; // Reduce vertical padding on mobile
+    }
 
-      img {
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: $spacing-md;
-      }
+    .overview-content p {
+      font-size: 1rem; // Slightly smaller text
+      padding: 0 $spacing-sm; // Add horizontal padding for readability
+    }
 
-      .attraction-content {
-        width: 100%;
+    .attractions-section .carousel-track {
+      height: 300px; // Reduce carousel height on mobile
+
+      .attraction-card {
+        flex-direction: column;
+        text-align: center;
+        padding: $spacing-sm; // Reduce padding
+
+        img {
+          width: 100%;
+          margin-right: 0;
+          margin-bottom: $spacing-sm;
+          height: 200px; // Fixed height for mobile image
+        }
+
+        .attraction-content {
+          width: 100%;
+          padding: $spacing-sm;
+        }
       }
+    }
+
+    .carousel-btn {
+      width: 45px;
+      height: 45px; // Slightly smaller buttons for mobile
+    }
+
+    .seasonal-grid,
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); // Smaller min-width for tighter fit
+      gap: $spacing-sm;
     }
 
     .packages-section .packages-grid {
       grid-template-columns: 1fr;
+      gap: $spacing-md; // Reduce gap on mobile
+    }
+
+    .packages-grid .package-image {
+      height: 180px; // Slightly reduce image height
     }
 
     .tips-grid {
       grid-template-columns: 1fr;
+      gap: $spacing-md;
+    }
+
+    .cta-content {
+      padding: 0 $spacing-sm; // Add padding for centered content
+    }
+
+    .book-btn,
+    .cta-button {
+      min-width: 200px; // Ensure touch-friendly button size
+      padding: 0.9rem 1.8rem; // Adjust padding for mobile
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-banner {
+      height: 50vh;
+      min-height: 350px;
+
+      .hero-content h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-content .tagline {
+        font-size: 1rem;
+      }
+    }
+
+    h2 {
+      font-size: 2rem; // Smaller headings on very small screens
+    }
+
+    .gallery-grid .gallery-item img {
+      height: 150px; // Reduce gallery image height further
+    }
+
+    .seasonal-card .season-icon {
+      font-size: 2.5rem; // Smaller icons
     }
   }
 }

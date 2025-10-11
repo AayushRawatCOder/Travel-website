@@ -1,187 +1,462 @@
-// Color Theme - Peach
-$primary-peach: #FFB5A7;
-$secondary-peach: #FCD5CE;
-$light-peach: #FEE8E3;
-$dark-peach: #F08080;
-$accent-coral: #FF9B88;
-$text-dark: #4A4A4A;
-$text-light: #6B6B6B;
+// Color Theme - Enhanced Peach/Coral
+$primary-coral: #F87171;
+$secondary-coral: #FB923C;
+$light-peach: #FEF2F2;
+$medium-peach: #FEE2E2;
+$accent-orange: #FB923C;
+$text-dark: #1F2937;
+$text-medium: #4B5563;
+$text-light: #6B7280;
 $white: #FFFFFF;
-$border-color: #F0E6E3;
-$shadow: rgba(255, 181, 167, 0.2);
+$border-light: #F3F4F6;
+$shadow-sm: rgba(248, 113, 113, 0.1);
+$shadow-md: rgba(248, 113, 113, 0.15);
+$shadow-lg: rgba(248, 113, 113, 0.25);
 
+// Mixins
+@mixin gradient-primary {
+  background: linear-gradient(135deg, $primary-coral 0%, $secondary-coral 100%);
+}
+
+@mixin card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px $shadow-lg;
+  }
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: 640px) { @content; }
+  }
+  @if $breakpoint == tablet {
+    @media (max-width: 768px) { @content; }
+  }
+  @if $breakpoint == laptop {
+    @media (max-width: 1024px) { @content; }
+  }
+  @if $breakpoint == desktop {
+    @media (max-width: 1280px) { @content; }
+  }
+}
+
+// Base Styles
 .destinations-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, $light-peach 0%, $white 100%);
+  background: linear-gradient(135deg, $light-peach 0%, $white 50%, $medium-peach 100%);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 // Hero Section
 .hero-section {
-  background: linear-gradient(135deg, $primary-peach 0%, $accent-coral 100%);
+  position: relative;
+  @include gradient-primary;
   padding: 80px 20px;
   text-align: center;
-  position: relative;
   overflow: hidden;
+  
+  @include responsive(tablet) {
+    padding: 60px 16px;
+  }
+  
+  @include responsive(mobile) {
+    padding: 48px 16px;
+  }
 
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>');
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
     opacity: 0.3;
   }
 
   .hero-content {
-    max-width: 800px;
-    margin: 0 auto;
     position: relative;
     z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
 
     h1 {
-      font-size: 3rem;
+      font-size: clamp(2rem, 5vw, 3.5rem);
       font-weight: 700;
       color: $white;
       margin-bottom: 16px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-
-      @media (max-width: 768px) {
-        font-size: 2rem;
-      }
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+      line-height: 1.2;
     }
 
     p {
-      font-size: 1.25rem;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
       color: $white;
       opacity: 0.95;
-
-      @media (max-width: 768px) {
-        font-size: 1rem;
-      }
+      line-height: 1.6;
     }
   }
 }
 
 // Main Container
 .destinations-container {
-  max-width: 1400px;
+  max-width: 1536px;
   margin: 0 auto;
-  padding: 40px 20px;
-  display: flex;
-  gap: 30px;
+  padding: 32px 16px;
+  
+  @include responsive(tablet) {
+    padding: 24px 16px;
+  }
+}
 
-  @media (max-width: 1024px) {
+// Mobile Filter Controls
+.filter-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+  
+  @include responsive(mobile) {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mobile-filter-btn {
+    @include responsive(laptop) {
+      display: flex;
+    }
+    display: none;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: $white;
+    border: 2px solid $medium-peach;
+    border-radius: 12px;
+    font-weight: 600;
+    color: $text-dark;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 8px $shadow-sm;
+
+    &:hover {
+      border-color: $primary-coral;
+      box-shadow: 0 4px 12px $shadow-md;
+    }
+
+    .filter-badge {
+      @include gradient-primary;
+      color: $white;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+  }
+
+  .results-count {
+    color: $text-medium;
+    font-weight: 500;
+    font-size: 0.95rem;
+    
+    @include responsive(mobile) {
+      order: -1;
+    }
+  }
+}
+
+// View Toggle
+.view-toggle {
+  display: flex;
+  gap: 8px;
+  background: $white;
+  padding: 4px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px $shadow-sm;
+
+  button {
+    padding: 10px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: $text-medium;
+
+    &:hover {
+      background: $light-peach;
+      color: $primary-coral;
+    }
+
+    &.active {
+      @include gradient-primary;
+      color: $white;
+      box-shadow: 0 2px 8px $shadow-md;
+    }
+
+    svg {
+      display: block;
+    }
   }
 }
 
 // Filter Sidebar
 .filter-sidebar {
+  position: sticky;
+  top: 24px;
   width: 280px;
   background: $white;
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 4px 20px $shadow;
+  box-shadow: 0 8px 30px $shadow-md;
   height: fit-content;
-  position: sticky;
-  top: 20px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  
+  @include responsive(laptop) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &.open {
+      transform: translateX(0);
+    }
+  }
 
-  @media (max-width: 1024px) {
-    width: 100%;
-    position: static;
+  // Custom Scrollbar
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $light-peach;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $primary-coral;
+    border-radius: 3px;
+
+    &:hover {
+      background: darken($primary-coral, 10%);
+    }
+  }
+
+  .filter-header {
+    display: none;
+    
+    @include responsive(laptop) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid $medium-peach;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: $text-dark;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      svg {
+        color: $primary-coral;
+      }
+    }
+
+    .close-btn {
+      padding: 8px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.2s;
+
+      &:hover {
+        background: $light-peach;
+      }
+
+      svg {
+        color: $text-medium;
+      }
+    }
   }
 
   .filter-section {
     margin-bottom: 28px;
 
-    &:last-of-type {
-      margin-bottom: 20px;
-    }
-
     h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: $text-dark;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid $secondary-peach;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: $text-medium;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      svg {
+        color: $primary-coral;
+      }
     }
 
-    .filter-options {
+    // Chip Style Filters (for Region)
+    .filter-chips {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
 
-      .filter-option {
-        display: flex;
-        align-items: center;
+      .chip {
+        padding: 8px 16px;
+        border-radius: 24px;
+        font-size: 0.875rem;
+        font-weight: 600;
         cursor: pointer;
-        padding: 8px;
-        border-radius: 8px;
-        transition: background-color 0.2s;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: $light-peach;
+        color: $text-dark;
+        border: 2px solid transparent;
 
         &:hover {
-          background-color: $light-peach;
+          background: $medium-peach;
+          transform: scale(1.05);
+        }
+
+        &.active {
+          @include gradient-primary;
+          color: $white;
+          box-shadow: 0 4px 12px $shadow-md;
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    // Radio List Style Filters (for Type)
+    .filter-radio-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .radio-option {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+        background: $border-light;
+
+        &:hover {
+          background: $light-peach;
+        }
+
+        &.active {
+          @include gradient-primary;
+          color: $white;
+          box-shadow: 0 2px 8px $shadow-md;
         }
 
         input[type="radio"] {
-          appearance: none;
           width: 18px;
           height: 18px;
-          border: 2px solid $primary-peach;
-          border-radius: 50%;
-          margin-right: 10px;
+          accent-color: $primary-coral;
           cursor: pointer;
-          position: relative;
-          transition: all 0.2s;
-
-          &:checked {
-            background-color: $primary-peach;
-            border-color: $dark-peach;
-
-            &::after {
-              content: '';
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              width: 8px;
-              height: 8px;
-              background-color: $white;
-              border-radius: 50%;
-            }
-          }
         }
 
-        span {
-          color: $text-dark;
-          font-size: 0.95rem;
+        label {
+          margin-left: 12px;
+          font-weight: 500;
+          cursor: pointer;
+          flex: 1;
         }
+      }
+    }
+
+    // Select Dropdown (for Time)
+    .filter-select {
+      width: 100%;
+      padding: 12px 16px;
+      background: $border-light;
+      border: 2px solid $border-light;
+      border-radius: 12px;
+      font-weight: 500;
+      color: $text-dark;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        border-color: $medium-peach;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: $primary-coral;
+        background: $white;
+        box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.1);
       }
     }
   }
 
-  .reset-filters {
+  .reset-filters-btn {
     width: 100%;
-    padding: 12px;
-    background: linear-gradient(135deg, $primary-peach, $accent-coral);
+    padding: 14px;
+    @include gradient-primary;
     color: $white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     font-weight: 600;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s;
+    box-shadow: 0 4px 12px $shadow-md;
 
-    &:hover {
+    &:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px $shadow;
+      box-shadow: 0 6px 20px $shadow-lg;
     }
 
-    &:active {
+    &:active:not(:disabled) {
       transform: translateY(0);
+    }
+
+    &:disabled {
+      background: $border-light;
+      color: $text-light;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+  }
+}
+
+// Filter Overlay (Mobile)
+.filter-overlay {
+  display: none;
+  
+  @include responsive(laptop) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    
+    &.open {
+      opacity: 1;
+      pointer-events: auto;
     }
   }
 }
@@ -189,56 +464,7 @@ $shadow: rgba(255, 181, 167, 0.2);
 // Main Content Area
 .destinations-main {
   flex: 1;
-}
-
-// View Controls
-.view-controls {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-  background: $white;
-  padding: 16px 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px $shadow;
-
-  @media (max-width: 640px) {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .results-count {
-    span {
-      color: $text-light;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-  }
-
-  .view-toggle {
-    display: flex;
-    gap: 8px;
-
-    button {
-      padding: 8px 12px;
-      background: $light-peach;
-      border: 2px solid transparent;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s;
-      color: $text-dark;
-
-      &:hover {
-        background: $secondary-peach;
-      }
-
-      &.active {
-        background: $primary-peach;
-        border-color: $dark-peach;
-        color: $white;
-      }
-    }
-  }
+  min-width: 0;
 }
 
 // Grid View
@@ -246,8 +472,18 @@ $shadow: rgba(255, 181, 167, 0.2);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 24px;
-
-  @media (max-width: 640px) {
+  
+  @include responsive(laptop) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  @include responsive(tablet) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+  }
+  
+  @include responsive(mobile) {
     grid-template-columns: 1fr;
   }
 }
@@ -256,23 +492,34 @@ $shadow: rgba(255, 181, 167, 0.2);
 .destinations-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
+  
+  @include responsive(tablet) {
+    gap: 20px;
+  }
 
   .destination-card {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 20px;
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: row;
+    
+    @include responsive(tablet) {
+      flex-direction: column;
     }
 
     .card-image {
-      height: 220px;
-
-      @media (max-width: 768px) {
+      width: 320px;
+      height: 100%;
+      min-height: 240px;
+      
+      @include responsive(tablet) {
+        width: 100%;
         height: 250px;
+        min-height: 250px;
       }
+    }
+
+    .card-content {
+      flex: 1;
     }
   }
 }
@@ -280,27 +527,23 @@ $shadow: rgba(255, 181, 167, 0.2);
 // Destination Card
 .destination-card {
   background: $white;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 20px $shadow;
-  transition: all 0.3s;
-
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 30px rgba(255, 181, 167, 0.3);
-  }
+  box-shadow: 0 4px 20px $shadow-md;
+  @include card-hover;
 
   .card-image {
     position: relative;
     width: 100%;
-    height: 250px;
+    height: 240px;
     overflow: hidden;
+    background: $border-light;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.3s;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     &:hover img {
@@ -311,67 +554,79 @@ $shadow: rgba(255, 181, 167, 0.2);
       position: absolute;
       top: 16px;
       right: 16px;
-      background: rgba(255, 181, 167, 0.95);
+      @include gradient-primary;
       color: $white;
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 20px;
-      font-size: 0.85rem;
+      font-size: 0.875rem;
       font-weight: 600;
       backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px $shadow-lg;
     }
   }
 
   .card-content {
-    padding: 20px;
+    padding: 24px;
+    
+    @include responsive(mobile) {
+      padding: 20px;
+    }
 
     h3 {
       font-size: 1.5rem;
       font-weight: 700;
       color: $text-dark;
       margin-bottom: 12px;
+      line-height: 1.3;
+      
+      @include responsive(mobile) {
+        font-size: 1.25rem;
+      }
     }
 
     .card-meta {
       display: flex;
+      flex-wrap: wrap;
       gap: 16px;
       margin-bottom: 12px;
-      flex-wrap: wrap;
 
       .meta-item {
         display: flex;
         align-items: center;
         gap: 6px;
-        color: $text-light;
-        font-size: 0.9rem;
+        color: $text-medium;
+        font-size: 0.875rem;
 
         svg {
-          color: $primary-peach;
+          color: $primary-coral;
+          flex-shrink: 0;
         }
       }
     }
 
     p {
-      color: $text-light;
+      color: $text-medium;
       line-height: 1.6;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       font-size: 0.95rem;
     }
 
     .view-details-btn {
       width: 100%;
-      padding: 12px;
-      background: linear-gradient(135deg, $primary-peach, $accent-coral);
+      padding: 14px;
+      @include gradient-primary;
       color: $white;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s;
-      font-size: 1rem;
+      box-shadow: 0 4px 12px $shadow-md;
 
       &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px $shadow;
+        box-shadow: 0 6px 20px $shadow-lg;
       }
 
       &:active {
@@ -384,30 +639,47 @@ $shadow: rgba(255, 181, 167, 0.2);
 // Map View
 .map-view {
   background: $white;
-  border-radius: 16px;
+  border-radius: 20px;
   padding: 40px;
-  box-shadow: 0 4px 20px $shadow;
+  box-shadow: 0 4px 20px $shadow-md;
+  
+  @include responsive(tablet) {
+    padding: 24px;
+  }
+  
+  @include responsive(mobile) {
+    padding: 20px;
+  }
 
   .map-placeholder {
     text-align: center;
     padding: 60px 20px;
-    background: linear-gradient(135deg, $light-peach, $secondary-peach);
-    border-radius: 12px;
-    margin-bottom: 30px;
+    background: linear-gradient(135deg, $light-peach, $medium-peach);
+    border-radius: 16px;
+    margin-bottom: 32px;
+    
+    @include responsive(mobile) {
+      padding: 40px 16px;
+    }
 
     svg {
-      color: $primary-peach;
+      color: $primary-coral;
       margin-bottom: 16px;
     }
 
     h3 {
       color: $text-dark;
-      font-size: 1.5rem;
+      font-size: 1.75rem;
+      font-weight: 700;
       margin-bottom: 8px;
+      
+      @include responsive(mobile) {
+        font-size: 1.5rem;
+      }
     }
 
     p {
-      color: $text-light;
+      color: $text-medium;
       font-size: 1rem;
     }
   }
@@ -415,29 +687,41 @@ $shadow: rgba(255, 181, 167, 0.2);
   .map-pins {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 16px;
+    gap: 12px;
+    
+    @include responsive(tablet) {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    @include responsive(mobile) {
+      grid-template-columns: 1fr;
+    }
 
     .map-pin-item {
-      background: $light-peach;
-      padding: 16px;
-      border-radius: 12px;
       display: flex;
       align-items: center;
       gap: 12px;
+      padding: 16px;
+      background: $light-peach;
+      border-radius: 12px;
       transition: all 0.3s;
+      cursor: pointer;
 
       &:hover {
-        background: $secondary-peach;
+        background: $medium-peach;
         transform: translateX(4px);
+        box-shadow: 0 4px 12px $shadow-md;
       }
 
       .pin-icon {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
+        flex-shrink: 0;
       }
 
-      span:last-child {
+      span {
         color: $text-dark;
         font-weight: 500;
+        font-size: 0.95rem;
       }
     }
   }
@@ -447,34 +731,41 @@ $shadow: rgba(255, 181, 167, 0.2);
 .seo-section {
   background: $white;
   padding: 60px 20px;
-  margin-top: 40px;
+  margin-top: 48px;
+  
+  @include responsive(tablet) {
+    padding: 48px 16px;
+    margin-top: 32px;
+  }
 
   .seo-content {
     max-width: 1200px;
     margin: 0 auto;
 
     h2 {
-      font-size: 2.25rem;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
       font-weight: 700;
       color: $text-dark;
-      margin-bottom: 24px;
+      margin-bottom: 32px;
       text-align: center;
-      background: linear-gradient(135deg, $primary-peach, $accent-coral);
+      background: linear-gradient(135deg, $primary-coral, $secondary-coral);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-
-      @media (max-width: 768px) {
-        font-size: 1.75rem;
-      }
+      line-height: 1.3;
     }
 
     p {
-      color: $text-light;
+      color: $text-medium;
       line-height: 1.8;
       font-size: 1.05rem;
       margin-bottom: 20px;
       text-align: justify;
+      
+      @include responsive(mobile) {
+        font-size: 1rem;
+        text-align: left;
+      }
 
       &:last-child {
         margin-bottom: 0;
@@ -484,10 +775,10 @@ $shadow: rgba(255, 181, 167, 0.2);
 }
 
 // Animations
-@keyframes fadeIn {
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -495,27 +786,131 @@ $shadow: rgba(255, 181, 167, 0.2);
   }
 }
 
-.destination-card {
-  animation: fadeIn 0.6s ease-out;
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-// Scrollbar Styling
-.filter-sidebar {
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: $light-peach;
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: $primary-peach;
-    border-radius: 3px;
-
-    &:hover {
-      background: $dark-peach;
+.destination-card {
+  animation: fadeInUp 0.6s ease-out backwards;
+  
+  @for $i from 1 through 12 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
     }
+  }
+}
+
+.filter-sidebar {
+  @include responsive(laptop) {
+    animation: slideInRight 0.3s ease-out;
+  }
+}
+
+// Loading State
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+
+  &::after {
+    content: '';
+    width: 40px;
+    height: 40px;
+    border: 4px solid $light-peach;
+    border-top-color: $primary-coral;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Empty State
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  
+  @include responsive(mobile) {
+    padding: 60px 20px;
+  }
+
+  svg {
+    color: $primary-coral;
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $text-dark;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: $text-medium;
+    font-size: 1rem;
+  }
+}
+
+// Utility Classes
+.container {
+  max-width: 1536px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.section-spacing {
+  padding: 60px 0;
+  
+  @include responsive(tablet) {
+    padding: 40px 0;
+  }
+}
+
+// Accessibility
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Focus States
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid $primary-coral;
+  outline-offset: 2px;
+}
+
+// Print Styles
+@media print {
+  .filter-sidebar,
+  .view-toggle,
+  .filter-controls {
+    display: none;
+  }
+  
+  .destination-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 }
