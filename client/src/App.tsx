@@ -25,14 +25,11 @@ const App = () => {
        <Route path="/tours/cultural" element={<CulturalTours/>} /> 
        <Route path="/tours/beach" element={<BeachGetaways/>} />
         <Route path="/packages" element={<Packages />} />
-        {/* <Route path="/about" element={<AboutUs/>} /> */}
         <Route path="/FAQs" element={<FAQ/>} />
         <Route path="/contact" element={<ContactUs/>} />
         <Route path="/experiences" element={<Experiences/>} />
         <Route path="/about" element={<AboutPage/>} />
         <Route path="/tours/adventuretours" element={<AdventureTours/>} />
-        {/* <Route path="/tours/cultural" element={<CultureTours/>} />
-        <Route path="/tours/beach" element={<BeachGetaway/>} /> */}
       </Routes>
     </>
   );

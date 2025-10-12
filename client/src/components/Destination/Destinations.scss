@@ -13,6 +13,10 @@ $shadow-sm: rgba(248, 113, 113, 0.1);
 $shadow-md: rgba(248, 113, 113, 0.15);
 $shadow-lg: rgba(248, 113, 113, 0.25);
 
+// Import Sass modules for modern functions
+@use "sass:color";
+@use "sass:math";
+
 // Mixins
 @mixin gradient-primary {
   background: linear-gradient(135deg, $primary-coral 0%, $secondary-coral 100%);
@@ -245,7 +249,8 @@ $shadow-lg: rgba(248, 113, 113, 0.25);
     border-radius: 3px;
 
     &:hover {
-      background: darken($primary-coral, 10%);
+      // Fixed: Use color.adjust instead of darken
+      background: color.adjust($primary-coral, $lightness: -10%);
     }
   }
 
