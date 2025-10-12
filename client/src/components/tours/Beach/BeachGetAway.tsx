@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Waves, MapPin, Users, Star, ArrowRight, Clock, Anchor, Sunrise, Umbrella, Heart, TrendingUp } from 'lucide-react';
-import './BeachGetaway.scss';
+import './BeachGetAway.scss';
 
 interface BeachTour {
   id: number;
