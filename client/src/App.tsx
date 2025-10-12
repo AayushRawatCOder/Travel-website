@@ -9,7 +9,7 @@ import DestinationDetail from "./components/Deatil/DestinationDetail.tsx";
 import FAQ from "./pages/FAQs.tsx";
 import CulturalTours from "./components/tours/CulturalTours/CulturalTours.tsx";
 import BeachGetaways from "./components/tours/Beach/BeachGetAway.tsx";
-import AboutPage from "./components/about/AboutPage.tsx";
+// import AboutPage from "./components/about/AboutPage.tsx";
 import AdventureTours from "./components/tours/adventure/AdventureTours.tsx";
 
 const App = () => {
@@ -29,7 +29,7 @@ const App = () => {
         <Route path="/FAQs" element={<FAQ/>} />
         <Route path="/contact" element={<ContactUs/>} />
         <Route path="/experiences" element={<Experiences/>} />
-        <Route path="/about" element={<AboutPage/>} />
+        {/* <Route path="/about" element={<AboutPage/>} /> */}
         <Route path="/tours/adventuretours" element={<AdventureTours/>} />
         {/* <Route path="/tours/cultural" element={<CultureTours/>} />
         <Route path="/tours/beach" element={<BeachGetaway/>} /> */}
