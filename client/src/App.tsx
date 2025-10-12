@@ -1,21 +1,15 @@
-import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import Home from "./pages/Home";
+import { Routes, Route } from "react-router-dom";
 import Destinations from "./pages/Destinations.tsx";
 import Packages from "./pages/Packages.tsx";
-import Contact from "./pages/Contact.tsx";
 import Navbar from "./components/common/Navbar/navbar.tsx";
 import HomePage from "./components/Home/Main.tsx";
 import ContactUs from "./components/ContactUs/ContactUs.tsx";
 import Experiences from "./components/Experiences/Experiences.tsx";
 import DestinationDetail from "./components/Deatil/DestinationDetail.tsx";
-import AboutUs from "./components/about/AboutUs.tsx";
 import FAQ from "./pages/FAQs.tsx";
 import CulturalTours from "./components/tours/CulturalTours/CulturalTours.tsx";
 import BeachGetaways from "./components/tours/Beach/BeachGetAway.tsx";
-import AboutPage from "./components/About/About.tsx";
-import CultureTours from "./components/Tour/CultureTours.tsx";
-import BeachGetaway from "./components/Tour/BeachGetaway.tsx";
+import AboutPage from "./components/about/About";
 import AdventureTours from "./components/tours/adventure/AdventureTours.tsx";
 
 const App = () => {

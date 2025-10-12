@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './AboutUs.scss';
-import FAQs from '../FAQ/FAQ';
 
 interface TeamMember {
   id: number;

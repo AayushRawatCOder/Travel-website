@@ -1,4 +1,3 @@
-import React from 'react'
 import FAQs from '../components/FAQ/FAQ'
 
 const FAQ = () => {

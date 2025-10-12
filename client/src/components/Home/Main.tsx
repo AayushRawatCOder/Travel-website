@@ -4,7 +4,7 @@ import './Main.style.scss';
 
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [selectedTheme, setSelectedTheme] = useState(null);
+  const [selectedTheme, setSelectedTheme] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: '', email: '', interest: '' });
 
   useEffect(() => {
