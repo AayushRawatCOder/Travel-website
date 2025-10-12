@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Waves, MapPin, Users, Star, ArrowRight, Clock, Anchor, Sunrise } from 'lucide-react';
+import { Waves, MapPin, Users, Star, ArrowRight, Clock } from 'lucide-react';
 import './BeachGetaway.style.scss';
 
 const BeachGetaway = () => {

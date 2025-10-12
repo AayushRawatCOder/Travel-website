@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Compass, MapPin, Users, Star, ArrowRight, Clock, Sparkles } from 'lucide-react';
+import { MapPin, Users, Star, ArrowRight, Clock, Sparkles } from 'lucide-react';
 import './CultureTours.style.scss';
 
 const CultureTours = () => {

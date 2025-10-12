@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Target, Heart, Award, Users, Globe, TrendingUp, Star, CheckCircle, Phone, Mail, Linkedin, Twitter, Instagram, Facebook, Shield, Compass, Mountain, Sparkles, Calendar, ArrowRight, Camera, Map, Plane } from 'lucide-react';
+import { Target, Heart, Award, Users, Globe, TrendingUp, Star, CheckCircle, Phone, Mail, Linkedin, Twitter, Instagram, Shield,  Mountain, Sparkles, ArrowRight, Camera, Map, Plane } from 'lucide-react';
 import './About.style.scss';
 
 const AboutPage = () => {

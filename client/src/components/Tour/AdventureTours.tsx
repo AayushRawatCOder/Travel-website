@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mountain, Compass, TrendingUp, Users, Calendar, Star, ArrowRight, CheckCircle, MapPin, Clock, Award, Shield } from 'lucide-react';
+import { Mountain, Users, Star, ArrowRight, MapPin, Clock,} from 'lucide-react';
 import './AdventureTours.style.scss';
 
 const AdventureTours = () => {
@@ -86,12 +86,12 @@ const AdventureTours = () => {
     ? adventureTours 
     : adventureTours.filter(tour => tour.difficulty === selectedDifficulty);
 
-  const whyAdventure = [
-    { icon: <Shield size={32} />, title: 'Safety First', description: 'Certified guides and equipment' },
-    { icon: <Award size={32} />, title: 'Expert Team', description: 'Experienced professionals' },
-    { icon: <Mountain size={32} />, title: 'Best Routes', description: 'Carefully selected trails' },
-    { icon: <Users size={32} />, title: 'Small Groups', description: 'Personalized attention' }
-  ];
+  // const whyAdventure = [
+  //   { icon: <Shield size={32} />, title: 'Safety First', description: 'Certified guides and equipment' },
+  //   { icon: <Award size={32} />, title: 'Expert Team', description: 'Experienced professionals' },
+  //   { icon: <Mountain size={32} />, title: 'Best Routes', description: 'Carefully selected trails' },
+  //   { icon: <Users size={32} />, title: 'Small Groups', description: 'Personalized attention' }
+  // ];
 
   return (
     <div className="adventure-tours-page">

@@ -2,7 +2,50 @@ import React, { useState } from 'react';
 import { Mountain, Compass, Heart, Award, Globe, Camera, Waves, Sunrise, MapPin, Star, ArrowRight, Users, Clock, X, Quote, Calendar, TrendingUp, Sparkles } from 'lucide-react';
 import './Experiences.style.scss';
 
-const experiencesData = [
+// Define types for our data structures
+interface Experience {
+  id: number;
+  title: string;
+  icon: React.ReactElement;
+  image: string;
+  description: string;
+  category: string;
+  rating: number;
+  reviews: number;
+  duration: string;
+  groupSize: string;
+  price: string;
+  badge: string;
+  color: string;
+}
+
+interface GalleryImage {
+  id: number;
+  image: string;
+  title: string;
+  location: string;
+  category: string;
+}
+
+interface TravelerStory {
+  id: number;
+  name: string;
+  location: string;
+  image: string;
+  story: string;
+  trip: string;
+  date: string;
+  rating: number;
+  photos: string[];
+}
+
+interface LightboxImage {
+  image: string;
+  title: string;
+  location?: string;
+}
+
+const experiencesData: Experience[] = [
   {
     id: 1,
     title: 'Mountain Adventures',
@@ -125,7 +168,7 @@ const experiencesData = [
   },
 ];
 
-const galleryImages = [
+const galleryImages: GalleryImage[] = [
   { id: 1, image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80', title: 'Himalayan Heights', location: 'Ladakh, India', category: 'Mountains' },
   { id: 2, image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1200&q=80', title: 'Backwater Serenity', location: 'Kerala, India', category: 'Nature' },
   { id: 3, image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1200&q=80', title: 'Golden Beaches', location: 'Goa, India', category: 'Beach' },
@@ -137,7 +180,7 @@ const galleryImages = [
   { id: 9, image: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=80', title: 'Adventure Awaits', location: 'Himachal, India', category: 'Adventure' },
 ];
 
-const travelerStories = [
+const travelerStories: TravelerStory[] = [
   {
     id: 1,
     name: 'Priya & Rahul',
@@ -186,10 +229,10 @@ const travelerStories = [
 ];
 
 const Experiences = () => {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [hoveredCard, setHoveredCard] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [activeStory, setActiveStory] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [selectedImage, setSelectedImage] = useState<LightboxImage | null>(null);
+  const [activeStory, setActiveStory] = useState<number>(0);
 
   const categories = ['All', 'Adventure', 'Spiritual', 'Romance', 'Luxury', 'Wildlife', 'Photography', 'Beach', 'Cultural'];
 
@@ -323,7 +366,11 @@ const Experiences = () => {
                 key={item.id} 
                 className="gallery-item"
                 style={{ '--gallery-index': index } as React.CSSProperties}
-                onClick={() => setSelectedImage(item)}
+                onClick={() => setSelectedImage({
+                  image: item.image,
+                  title: item.title,
+                  location: item.location
+                })}
               >
                 <div className="gallery-image" style={{ backgroundImage: `url(${item.image})` }}></div>
                 <div className="gallery-overlay">
@@ -405,7 +452,11 @@ const Experiences = () => {
                         key={photoIndex} 
                         className="story-photo"
                         style={{ backgroundImage: `url(${photo})` }}
-                        onClick={() => setSelectedImage({ image: photo, title: story.trip, location: story.name })}
+                        onClick={() => setSelectedImage({ 
+                          image: photo, 
+                          title: story.trip, 
+                          location: story.name 
+                        })}
                       ></div>
                     ))}
                   </div>
