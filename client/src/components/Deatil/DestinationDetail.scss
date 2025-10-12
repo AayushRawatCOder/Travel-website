@@ -1,3 +1,7 @@
+// Import Sass modules for modern functions
+@use "sass:color";
+@use "sass:math";
+
 // Variables for Enhanced Peach/Coral Theme
 $coral-primary: #FFF3E0; // Soft peach for warmth
 $coral-secondary: #FAFAFA; // Gentle white for calm backgrounds
@@ -404,8 +408,9 @@ $spacing-lg: 3rem;
               font-weight: 500;
               transition: background 0.3s ease;
 
+              // Fixed: Use color.adjust instead of darken
               &:hover {
-                background: darken($coral-accent, 10%);
+                background: color.adjust($coral-accent, $lightness: -10%);
               }
             }
           }
@@ -559,7 +564,8 @@ $spacing-lg: 3rem;
   // CTA Section
   .cta-section {
     padding: $spacing-lg 0;
-    background: linear-gradient(to right, $coral-accent, darken($coral-accent, 10%));
+    // Fixed: Use color.adjust instead of darken
+    background: linear-gradient(to right, $coral-accent, color.adjust($coral-accent, $lightness: -10%));
     text-align: center;
     color: white;
 
@@ -600,7 +606,8 @@ $spacing-lg: 3rem;
   // Responsive Adjustments
   @media (max-width: 768px) {
     .container {
-      padding: 0 $spacing-sm / 2; // Reduce padding on very small screens
+      // Fixed: Use calc() instead of division
+      padding: 0 calc(#{$spacing-sm} / 2); // Reduce padding on very small screens
     }
 
     .hero-banner {
