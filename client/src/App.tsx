@@ -9,7 +9,7 @@ import DestinationDetail from "./components/Deatil/DestinationDetail.tsx";
 import FAQ from "./pages/FAQs.tsx";
 import CulturalTours from "./components/tours/CulturalTours/CulturalTours.tsx";
 import BeachGetaways from "./components/tours/Beach/BeachGetAway.tsx";
-import AboutPage from "./components/About/AboutPage.tsx";
+import AboutPage from "./components/About-tmp/AboutPage.tsx";
 import AdventureTours from "./components/tours/adventure/AdventureTours.tsx";
 
 const App = () => {
