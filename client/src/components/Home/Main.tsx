@@ -385,7 +385,7 @@ const HomePage = () => {
             <h2 className="section-title">Ready for Your Dream Adventure?</h2>
             <p className="section-subtitle">Share your details and let our experts craft the perfect journey for you</p>
           </div>
-          <form className="cta-form" onSubmit={handleSubmit}>
+          <div className="cta-form" onClick={handleSubmit}>
             <div className="input-group">
               <User className="form-icon" size={18} />
               <input 
@@ -423,7 +423,7 @@ const HomePage = () => {
               <span>Start Planning</span>
               <ArrowRight size={18} />
             </button>
-          </form>
+          </div>
         </div>
       </section>
 
