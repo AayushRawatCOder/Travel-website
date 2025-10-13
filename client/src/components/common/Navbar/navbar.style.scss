@@ -125,7 +125,8 @@ body {
   gap: 0.125rem !important;
 
   @media (max-width: 640px) {
-    display: none !important;
+    display: flex !important; /* Keep visible */
+    gap: 0.1rem !important;
   }
 }
 
@@ -142,6 +143,9 @@ body {
   @media (max-width: 1024px) {
     font-size: 1.375rem !important;
   }
+  @media (max-width: 640px) {
+    font-size: 1.125rem !important; /* Smaller font for small screens */
+  }
 }
 
 .logo-tagline {
@@ -150,6 +154,23 @@ body {
   color: $gray !important;
   letter-spacing: 0.5px !important;
   text-transform: uppercase !important;
+
+  @media (max-width: 640px) {
+    font-size: 0.625rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar-logo {
+    gap: 0.5rem !important;
+  }
+  .logo-wrapper {
+    padding: 0.4rem !important;
+  }
+  .logo-icon {
+    width: 24px !important;
+    height: 24px !important;
+  }
 }
 
 .navbar-menu {
