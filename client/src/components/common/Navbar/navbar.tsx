@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Plane, Heart, User, ChevronDown, Bell, MapPin } from 'lucide-react';
+import { Menu, X, Plane, Heart, ChevronDown, Bell, MapPin } from 'lucide-react';
 import './navbar.style.scss';
 
 interface DropdownItem {
