@@ -1,100 +1,136 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Calendar, Users, MapPin, Check, Plus, Minus, Camera, Plane, Car, Utensils, Mountain, Home, Phone, Mail, CreditCard, X } from 'lucide-react';
-import { packageData } from '../../data'; // Import the modularized full package data
-import { dataById } from '../../data'; // Import destinations to link region
+import { packageData } from '../../data';
+import { dataById } from '../../data';
 import './BookingPage.scss';
 
-const addOnsData = [
+// Define interfaces
+interface AddOn {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+// interface PackageData {
+//   id: number;
+//   name: string;
+//   duration: string;
+//   basePrice: number;
+//   image: string;
+//   highlights: string[];
+//   itinerary: { day: number; title: string; activities: string[] }[];
+//   inclusions: string[];
+//   exclusions: string[];
+// }
+
+interface DestinationData {
+  name: string;
+  region: string;
+  packages: { id: number; name: string; duration: string; price: number; image: string; highlights: string[] }[];
+}
+
+// Define add-ons data
+const addOnsData: AddOn[] = [
   {
     id: 'photographer',
     name: 'Personal Photographer',
     description: 'Professional photographer for entire trip',
     price: 15000,
-    icon: Camera
+    icon: Camera,
   },
   {
     id: 'airport-pickup',
     name: 'Airport Pickup & Drop',
     description: 'Private car for airport transfers',
     price: 3000,
-    icon: Plane
+    icon: Plane,
   },
   {
     id: 'vehicle-upgrade',
     name: 'Vehicle Upgrade',
     description: 'Upgrade to luxury SUV',
     price: 8000,
-    icon: Car
+    icon: Car,
   },
   {
     id: 'meal-upgrade',
     name: 'Full Meal Plan',
     description: 'Add lunch for all days',
     price: 5000,
-    icon: Utensils
+    icon: Utensils,
   },
   {
     id: 'adventure-package',
     name: 'Adventure Package',
     description: 'River rafting, paragliding, trekking',
     price: 12000,
-    icon: Mountain
+    icon: Mountain,
   },
   {
     id: 'homestay',
     name: 'Homestay Experience',
     description: 'Stay with local families (2 nights)',
     price: 4000,
-    icon: Home
-  }
+    icon: Home,
+  },
 ];
 
 // Helper function to find the package key by its ID
 const findPackageKeyById = (id: number): string | undefined => {
-  // Iterate over the keys of packageData
   for (const key in packageData) {
-    // Use a type guard to ensure we are accessing a valid key
     if (Object.prototype.hasOwnProperty.call(packageData, key)) {
-      // Check if the current package's id matches the input id
       if (packageData[key as keyof typeof packageData].id === id) {
-        return key; // Return the slug key (e.g., 'complete-ladakh-experience')
+        return key;
       }
     }
   }
-  return undefined; // Return undefined if no match is found
+  return undefined;
 };
 
-const BookingPage = () => {
-  // 1. Get packageId from URL (it will be a string like "2" or "leh-ladakh-adventure")
+const BookingPage: React.FC = () => {
   const { packageId } = useParams<{ packageId: string }>();
 
   // Determine the actual key (slug) to use for data lookup
   let initialPackageKey: string | undefined;
-
-  // Check if the packageId is a numerical ID
   const idAsNumber = parseInt(packageId || '', 10);
   if (!isNaN(idAsNumber)) {
-    // If it's a number, find the corresponding slug key
     initialPackageKey = findPackageKeyById(idAsNumber);
   } else {
-    // If it's not a number (i.e., it's a slug/string ID), use it directly
     initialPackageKey = packageId;
   }
 
-  // Default to 'leh-ladakh-adventure' if no valid ID/slug is found in the URL
   const defaultPackageKey = 'leh-ladakh-adventure';
 
-  // 2. Initialize state with the determined key or a default
-  const [selectedPackage, setSelectedPackage] = useState(initialPackageKey || defaultPackageKey);
-  const [currentDestination, setCurrentDestination] = useState(null);
-  
+  // Initialize state
+  const [selectedPackage, setSelectedPackage] = useState<string>(initialPackageKey || defaultPackageKey);
+  const [currentDestination, setCurrentDestination] = useState<DestinationData | null>(null);
+  const [travelers, setTravelers] = useState<number>(2);
+  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
+  const [showItinerary, setShowItinerary] = useState<boolean>(false);
+  const [showPaymentModal, setShowPaymentModal] = useState<boolean>(false);
+  const [bookingDetails, setBookingDetails] = useState<{
+    name: string;
+    email: string;
+    phone: string;
+    date: string;
+    specialRequests: string;
+  }>({
+    name: '',
+    email: '',
+    phone: '',
+    date: '',
+    specialRequests: '',
+  });
+
   // Find the destination for the current package
   useEffect(() => {
     const pkgName = packageData[selectedPackage]?.name;
     if (pkgName) {
-      for (const [destId, dest] of Object.entries(dataById)) {
-        const matchingPkg = dest.packages.find(p => p.name === pkgName);
+      for (const [, dest] of Object.entries(dataById)) {
+        const matchingPkg = dest.packages.find((p) => p.name === pkgName);
         if (matchingPkg) {
           setCurrentDestination(dest);
           break;
@@ -110,28 +146,14 @@ const BookingPage = () => {
     if (!isNaN(newIdAsNumber)) {
       newKey = findPackageKeyById(newIdAsNumber) || defaultPackageKey;
     }
-
     if (newKey !== selectedPackage) {
       setSelectedPackage(newKey);
     }
   }, [packageId, selectedPackage]);
 
-  const [travelers, setTravelers] = useState(2);
-  const [selectedAddOns, setSelectedAddOns] = useState([]);
-  const [showItinerary, setShowItinerary] = useState(false);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [bookingDetails, setBookingDetails] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    date: '',
-    specialRequests: ''
-  });
-
-  // Access the current package data based on the selectedPackage state
   const currentPackage = packageData[selectedPackage];
 
-  // Handle invalid package ID (This check now correctly catches both bad IDs and bad slugs)
+  // Handle invalid package ID
   if (!currentPackage) {
     return (
       <div className="booking-page p-10 text-center">
@@ -142,17 +164,15 @@ const BookingPage = () => {
   }
 
   const toggleAddOn = (addOnId: string) => {
-    setSelectedAddOns(prev =>
-      prev.includes(addOnId)
-        ? prev.filter(id => id !== addOnId)
-        : [...prev, addOnId]
+    setSelectedAddOns((prev) =>
+      prev.includes(addOnId) ? prev.filter((id) => id !== addOnId) : [...prev, addOnId]
     );
   };
 
   const calculateTotal = () => {
     let total = currentPackage.basePrice * travelers;
-    selectedAddOns.forEach(addOnId => {
-      const addOn = addOnsData.find(a => a.id === addOnId);
+    selectedAddOns.forEach((addOnId) => {
+      const addOn = addOnsData.find((a) => a.id === addOnId);
       if (addOn) {
         total += addOn.price;
       }
@@ -167,12 +187,11 @@ const BookingPage = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setBookingDetails({
       ...bookingDetails,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleBooking = () => {
-    // Validation
     if (!bookingDetails.name || !bookingDetails.email || !bookingDetails.phone || !bookingDetails.date) {
       alert('Please fill in all required fields');
       return;
@@ -184,25 +203,25 @@ const BookingPage = () => {
     const bookingData = {
       package: currentPackage.name,
       travelers,
-      addOns: selectedAddOns.map(id => {
-        const addOn = addOnsData.find(a => a.id === id);
+      addOns: selectedAddOns.map((id) => {
+        const addOn = addOnsData.find((a) => a.id === id);
         return addOn ? addOn.name : id;
       }),
       total: calculateTotal(),
       advance: calculateAdvance(),
       paymentMethod: method,
-      ...bookingDetails
+      ...bookingDetails,
     };
     console.log('Booking Data:', bookingData);
-    
-    // Simulate payment processing
-    alert(`Processing ${method} payment of ₹${calculateAdvance().toLocaleString()} (25% advance)\n\nBooking confirmed! You will receive a confirmation email at ${bookingDetails.email}`);
+
+    alert(
+      `Processing ${method} payment of ₹${calculateAdvance().toLocaleString()} (25% advance)\n\nBooking confirmed! You will receive a confirmation email at ${bookingDetails.email}`
+    );
     setShowPaymentModal(false);
   };
 
   return (
     <div className="booking-page">
-      {/* Header */}
       <div className="booking-page__header">
         <div className="header-content">
           <h1>Complete Your Booking</h1>
@@ -212,15 +231,9 @@ const BookingPage = () => {
 
       <div className="booking-page__container">
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Package Details */}
             <div className="package-details">
-              <img
-                src={currentPackage.image}
-                alt={currentPackage.name}
-                className="package-details__image"
-              />
+              <img src={currentPackage.image} alt={currentPackage.name} className="package-details__image" />
               <div className="package-details__content">
                 <h2 className="package-details__title">{currentPackage.name}</h2>
                 <div className="package-details__meta">
@@ -234,7 +247,6 @@ const BookingPage = () => {
                   </div>
                 </div>
 
-                {/* Highlights */}
                 <div className="package-details__highlights">
                   <h3>Package Highlights</h3>
                   <div className="highlights-grid">
@@ -247,7 +259,6 @@ const BookingPage = () => {
                   </div>
                 </div>
 
-                {/* Itinerary Toggle */}
                 <button
                   onClick={() => setShowItinerary(!showItinerary)}
                   className="package-details__itinerary-toggle"
@@ -270,7 +281,6 @@ const BookingPage = () => {
                   </div>
                 )}
 
-                {/* Inclusions & Exclusions */}
                 <div className="package-details__info-grid">
                   <div className="info-section info-section--inclusions">
                     <h3>
@@ -295,7 +305,6 @@ const BookingPage = () => {
               </div>
             </div>
 
-            {/* Add-ons */}
             <div className="addons-section">
               <h2 className="addons-section__title">Enhance Your Experience</h2>
               <p className="addons-section__description">Add these optional services to make your trip even more special</p>
@@ -307,9 +316,7 @@ const BookingPage = () => {
                     <button
                       key={addOn.id}
                       onClick={() => toggleAddOn(addOn.id)}
-                      className={`addons-section__card ${
-                        isSelected ? 'addons-section__card--selected' : ''
-                      }`}
+                      className={`addons-section__card ${isSelected ? 'addons-section__card--selected' : ''}`}
                     >
                       <div className="addons-section__card-header">
                         <Icon className="w-6 h-6 addons-section__card-icon" />
@@ -324,7 +331,6 @@ const BookingPage = () => {
               </div>
             </div>
 
-            {/* Booking Form */}
             <div className="booking-form">
               <h2 className="booking-form__title">Traveler Details</h2>
               <div className="booking-form__field">
@@ -381,12 +387,10 @@ const BookingPage = () => {
             </div>
           </div>
 
-          {/* Sidebar - Booking Summary */}
           <div className="lg:col-span-1">
             <div className="booking-summary">
               <h2 className="booking-summary__title">Booking Summary</h2>
 
-              {/* Number of Travelers */}
               <div className="booking-summary__travelers">
                 <label>Number of Travelers</label>
                 <div className="travelers-control">
@@ -403,14 +407,13 @@ const BookingPage = () => {
                 </div>
               </div>
 
-              {/* Price Breakdown */}
               <div className="booking-summary__breakdown">
                 <div className="breakdown-item">
                   <span>Package ({travelers} {travelers === 1 ? 'person' : 'people'})</span>
                   <span>₹{(currentPackage.basePrice * travelers).toLocaleString()}</span>
                 </div>
-                {selectedAddOns.map(addOnId => {
-                  const addOn = addOnsData.find(a => a.id === addOnId);
+                {selectedAddOns.map((addOnId) => {
+                  const addOn = addOnsData.find((a) => a.id === addOnId);
                   return (
                     <div key={addOnId} className="breakdown-item breakdown-item--addon">
                       <span>{addOn?.name}</span>
@@ -420,7 +423,6 @@ const BookingPage = () => {
                 })}
               </div>
 
-              {/* Total */}
               <div className="booking-summary__total">
                 <div className="total-row">
                   <span className="total-label">Total Amount</span>
@@ -429,12 +431,10 @@ const BookingPage = () => {
                 <p className="total-note">Inclusive of all taxes</p>
               </div>
 
-              {/* Book Button */}
               <button onClick={handleBooking} className="booking-summary__book-btn">
                 Confirm Booking
               </button>
 
-              {/* Payment Info */}
               <div className="booking-summary__payment-info">
                 <div className="payment-content">
                   <CreditCard className="w-5 h-5" />
@@ -445,7 +445,6 @@ const BookingPage = () => {
                 </div>
               </div>
 
-              {/* Contact Info */}
               <div className="booking-summary__contact">
                 <p className="contact-title">Need Help?</p>
                 <div className="contact-item">
@@ -462,7 +461,6 @@ const BookingPage = () => {
         </div>
       </div>
 
-      {/* Payment Modal */}
       {showPaymentModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-2xl max-w-md w-full p-6 relative">

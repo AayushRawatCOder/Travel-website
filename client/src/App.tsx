@@ -11,6 +11,7 @@ import BeachGetaways from "./components/tours/Beach/BeachGetAway.tsx";
 import AboutPage from "./components/About-tmp/AboutPage.tsx";
 import AdventureTours from "./components/tours/adventure/AdventureTours.tsx";
 import BookingPage from "./components/BookNow/BookingPage.tsx";
+import DestinationDetail from "./components/Destination/[destinationId]/DestinationDetail.tsx";
 
 const App = () => {
   return (
@@ -20,7 +21,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage/>} />
         <Route path="/destinations" element={<Destinations />} />
-        <Route path="/destination/:id" element={<DestinationDetail />} />
+        <Route path="/destination/:destinationId" element={<DestinationDetail />} />
         <Route path="/booking/:packageId" element={<BookingPage />} />
         <Route path="/tours/adventure" element={<AdventureTours/>} />
        <Route path="/tours/cultural" element={<CulturalTours/>} /> 

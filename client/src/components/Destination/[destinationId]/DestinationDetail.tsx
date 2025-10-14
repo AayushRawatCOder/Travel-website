@@ -78,10 +78,6 @@ const DestinationDetail: React.FC = () => {
     }
   };
 
-  const handleBookPackage = (packageId: number) => {
-    console.log('Booking package:', packageId);
-  };
-
   const handleBookTrip = () => {
     console.log('Book trip to:', destinationData?.name);
   };
@@ -100,6 +96,24 @@ const DestinationDetail: React.FC = () => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [lightboxIndex, destinationData]);
+
+  const generateSlug = (name: string): string => {
+    return name
+      .toLowerCase()
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/[^a-z0-9-]/g, '') // Remove any non-alphanumeric except hyphens
+      .replace(/^-|-$/g, ''); // Trim leading/trailing hyphens
+  };
+
+  const handleBookPackage = (pkg: TravelPackage) => {
+    const packageSlug = generateSlug(pkg.name);
+    navigate(`/booking/${packageSlug}`);
+    console.log('Navigating to booking for package:', packageSlug);
+  };
+
+  if (destinationData?.packages.length === 0) {
+    return null; // Don't render the section if there are no packages
+  }
 
   if (isLoading) {
     return (
@@ -132,19 +146,19 @@ const DestinationDetail: React.FC = () => {
           <div className="hero-meta">
             <div className="meta-item">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
               </svg>
               Location
             </div>
             <div className="meta-item">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
               </svg>
               {attractions.length} Attractions
             </div>
             <div className="meta-item">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" />
               </svg>
               All Seasons
             </div>
@@ -200,7 +214,7 @@ const DestinationDetail: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                  <button className="book-now-btn" onClick={() => handleBookPackage(pkg.id)}>
+                  <button className="book-now-btn" onClick={() => handleBookPackage(pkg)}>
                     Book Now
                   </button>
                 </div>
@@ -325,8 +339,16 @@ const DestinationDetail: React.FC = () => {
       </div>
 
       {lightboxIndex !== null && (
-        <div className="lightbox" onClick={() => setLightboxIndex(null)} role="dialog" aria-modal="true" aria-label="Image gallery lightbox">
-          <button className="lightbox-close" onClick={() => setLightboxIndex(null)} aria-label="Close lightbox">×</button>
+        <div
+          className="lightbox"
+          onClick={() => setLightboxIndex(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image gallery lightbox"
+        >
+          <button className="lightbox-close" onClick={() => setLightboxIndex(null)} aria-label="Close lightbox">
+            ×
+          </button>
           <img src={gallery[lightboxIndex]} alt={`Gallery ${lightboxIndex + 1}`} onClick={(e) => e.stopPropagation()} />
         </div>
       )}
