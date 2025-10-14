@@ -11,6 +11,7 @@ import CulturalTours from "./components/tours/CulturalTours/CulturalTours.tsx";
 import BeachGetaways from "./components/tours/Beach/BeachGetAway.tsx";
 import AboutPage from "./components/About-tmp/AboutPage.tsx";
 import AdventureTours from "./components/tours/adventure/AdventureTours.tsx";
+import BookingPage from "./components/BookNow/BookingPage.tsx";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/" element={<HomePage/>} />
         <Route path="/destinations" element={<Destinations />} />
         <Route path="/destination/:id" element={<DestinationDetail />} />
+        <Route path="/booking/:packageId" element={<BookingPage />} />
         <Route path="/tours/adventure" element={<AdventureTours/>} />
        <Route path="/tours/cultural" element={<CulturalTours/>} /> 
        <Route path="/tours/beach" element={<BeachGetaways/>} />
