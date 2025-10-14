@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, Calendar, ArrowRight, Star, Clock, ChevronLeft, ChevronRight, CheckCircle, Phone, User, Shield, Heart, Mountain, Compass, Sparkles, Award, Facebook, Twitter, Instagram, Linkedin, Mail, Users, Headphones, Globe } from 'lucide-react';
 import './Main.style.scss';
+import { destinations } from '../../data/destinations';
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedTheme, setSelectedTheme] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: '', email: '', interest: '' });
+
+  const navigate = useNavigate();
+
+  const handleExploreClick = (destinationId: string) => {
+    navigate(`/destination/${destinationId}`);
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -21,16 +29,22 @@ const HomePage = () => {
     { url: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1920&q=80', title: 'Goa Beach Paradise', subtitle: 'Relax on golden shores with breathtaking sunsets', alt: 'Goa beach sunset' },
   ];
 
-  const destinations = [
-    { name: 'Rajasthan', image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&q=80', price: '₹15,000', rating: 4.8, reviews: 342, alt: 'Rajasthan desert fort' },
-    { name: 'Kashmir', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', price: '₹20,000', rating: 4.9, reviews: 486, alt: 'Kashmir valley mountains' },
-    { name: 'Goa', image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&q=80', price: '₹10,000', rating: 4.7, reviews: 521, alt: 'Goa beach palm trees' },
-    { name: 'Sikkim', image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=600&q=80', price: '₹18,000', rating: 4.8, reviews: 298, alt: 'Sikkim mountain peaks' },
-    { name: 'Kerala', image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80', price: '₹12,000', rating: 4.9, reviews: 412, alt: 'Kerala houseboat backwaters' },
-    { name: 'Ladakh', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', price: '₹25,000', rating: 5.0, reviews: 654, alt: 'Ladakh mountain landscape' },
-    { name: 'Andaman', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80', price: '₹22,000', rating: 4.7, reviews: 387, alt: 'Andaman crystal clear beach' },
-    { name: 'Varanasi', image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=600&q=80', price: '₹8,000', rating: 4.6, reviews: 276, alt: 'Varanasi river ghats evening' },
-  ].map((dest, index) => ({ ...dest, index }));
+//  const destinations = [
+//   { name: 'Dal Lake', image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80', category: 'Kashmir', price: '₹20,000', duration: '4 Days', rating: 4.9, reviews: 956, alt: 'Dal Lake houseboats', description: 'Iconic lake with floating gardens and traditional houseboats' },
+//   { name: 'Gulmarg', image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=600&q=80', category: 'Kashmir', price: '₹22,000', duration: '5 Days', rating: 5.0, reviews: 812, alt: 'Gulmarg skiing paradise', description: 'Asia\'s premier skiing destination with scenic gondola rides' },
+//   { name: 'Pahalgam', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', category: 'Kashmir', price: '₹18,000', duration: '4 Days', rating: 4.8, reviews: 674, alt: 'Pahalgam valley streams', description: 'Picturesque valley with lush meadows and pine forests' },
+//   { name: 'Sonamarg', image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&q=80', category: 'Kashmir', price: '₹19,000', duration: '3 Days', rating: 4.9, reviews: 598, alt: 'Sonamarg golden meadow', description: 'Meadow of gold with magnificent glacier views' },
+//   { name: 'Doodhpathri', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', category: 'Kashmir', price: '₹16,000', duration: '3 Days', rating: 4.7, reviews: 385, alt: 'Doodhpathri meadows', description: 'Valley of milk with pristine meadows and streams' },
+//   { name: 'Aru Valley', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80', category: 'Kashmir', price: '₹17,000', duration: '3 Days', rating: 4.7, reviews: 423, alt: 'Aru Valley pristine nature', description: 'Untouched meadows perfect for trekking adventures' },
+//   { name: 'Betaab Valley', image: 'https://images.unsplash.com/photo-1548013146-13a21f08d0f7?w=600&q=80', category: 'Kashmir', price: '₹16,500', duration: '2 Days', rating: 4.8, reviews: 531, alt: 'Betaab Valley scenic beauty', description: 'Crystal clear streams surrounded by snow-capped peaks' },
+//   { name: 'Leh', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', category: 'Ladakh', price: '₹25,000', duration: '6 Days', rating: 5.0, reviews: 654, alt: 'Leh Ladakh monastery', description: 'Ancient Buddhist monasteries and vibrant local culture' },
+//   { name: 'Pangong Lake', image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=600&q=80', category: 'Ladakh', price: '₹32,000', duration: '7 Days', rating: 5.0, reviews: 892, alt: 'Pangong Lake crystal waters', description: 'Mesmerizing high-altitude lake with changing colors' },
+//   { name: 'Nubra Valley', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80', category: 'Ladakh', price: '₹30,000', duration: '6 Days', rating: 4.9, reviews: 521, alt: 'Nubra Valley sand dunes', description: 'Cold desert with unique Bactrian camel safaris' },
+//   { name: 'Kargil', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80', category: 'Ladakh', price: '₹28,000', duration: '5 Days', rating: 4.8, reviews: 287, alt: 'Kargil mountain valley', description: 'Historic town gateway with war memorial sites' },
+//   { name: 'Zanskar Valley', image: 'https://images.unsplash.com/photo-1626621341261-1a7d48f75a6f?w=600&q=80', category: 'Ladakh', price: '₹35,000', duration: '8 Days', rating: 4.9, reviews: 412, alt: 'Zanskar Valley frozen river', description: 'Remote valley famous for frozen river Chadar trek' },
+//   { name: 'Tsomoriri Lake', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', category: 'Ladakh', price: '₹33,000', duration: '7 Days', rating: 4.8, reviews: 364, alt: 'Tsomoriri Lake serene waters', description: 'Serene high-altitude lake in Changthang plateau' },
+// ].map((dest, index) => ({ ...dest, index }));
+
 
   const packages = [
     { title: 'Ladakh Adventure', image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=600&q=80', price: '₹25,000', duration: '7 Days', highlights: ['Mountain bike expeditions', 'Ancient Buddhist monasteries', 'High altitude passes'], theme: 'adventure', rating: 5.0, badge: 'Bestseller', alt: 'Ladakh adventure biking' },
@@ -191,38 +205,46 @@ const HomePage = () => {
         <div className="section-header">
           <div className="section-badge">DESTINATIONS</div>
           <h2 className="section-title">Explore Top Destinations</h2>
-          <p className="section-subtitle">Discover India's most captivating and breathtaking places to visit</p>
+          <p className="section-subtitle">Discover the majestic mountains of Ladakh and the paradise valleys of Kashmir</p>
         </div>
-        <div className="destinations-grid">
-          {destinations.map((dest) => (
-            <div key={dest.index} className="destination-card" style={{ '--index': dest.index } as React.CSSProperties}>
-              <div className="card-image-wrapper">
-                <div className="card-image" style={{ backgroundImage: `url(${dest.image})` }} role="img" aria-label={dest.alt}></div>
-                <div className="card-overlay"></div>
-              </div>
-              <div className="card-content">
-                <h3 className="card-title">{dest.name}</h3>
-                <div className="card-meta">
-                  <div className="rating">
-                    <Star size={16} fill="currentColor" aria-hidden="true" />
-                    <span>{dest.rating}</span>
-                    <span className="reviews">({dest.reviews})</span>
-                  </div>
-                </div>
-                <div className="card-footer">
-                  <div className="price-tag">
-                    <span className="price-label">From</span>
-                    <span className="price">{dest.price}</span>
-                  </div>
-                  <button className="view-btn" aria-label={`View packages for ${dest.name}`}>
-                    <span>Explore</span>
-                    <ArrowRight size={18} aria-hidden="true" />
+<div className="destinations-grid">
+  {destinations.map((dest) => (
+    <div key={dest.index} className="destination-card" style={{ '--index': dest.index } as React.CSSProperties}>
+      <div className="card-image-container">
+        <div className="card-image" style={{ backgroundImage: `url(${dest.image})` }} role="img" aria-label={dest.alt}></div>
+        <div className="image-gradient"></div>
+        <div className="category-badge">{dest.category}</div>
+        <div className="duration-badge">
+          <Clock size={14} />
+          {dest.duration}
+        </div>
+      </div>
+      <div className="card-body">
+        <h3 className="destination-name">{dest.name}</h3>
+        <p className="destination-desc">{dest.description}</p>
+        <div className="card-stats">
+          <div className="stat-rating">
+            <Star size={14} fill="currentColor" />
+            <span>{dest.rating}</span>
+            <span className="review-count">({dest.reviews})</span>
+          </div>
+        </div>
+        <div className="card-actions">
+          <div className="price-info">
+            <span className="from-text">From</span>
+            <span className="price-amount">{dest.price}</span>
+          </div>
+          <button className="explore-btn" onClick={() => handleExploreClick(dest.id)}>
+                    Explore
+                    <ArrowRight size={16} />
                   </button>
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+
       </section>
 
       <section className="themes-section" aria-label="Experience themes">
