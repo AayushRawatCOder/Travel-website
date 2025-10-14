@@ -66,14 +66,14 @@ const DestinationDetail: React.FC = () => {
 
   const nextAttraction = () => {
     if (destinationData) {
-      setCurrentAttractionIndex((prev) => (prev + 1) % destinationData.attractions.length);
+      setCurrentAttractionIndex((prev) => (prev + 1) % destinationData.gallery.length);
     }
   };
 
   const prevAttraction = () => {
     if (destinationData) {
       setCurrentAttractionIndex((prev) =>
-        (prev - 1 + destinationData.attractions.length) % destinationData.attractions.length
+        (prev - 1 + destinationData.gallery.length) % destinationData.gallery.length
       );
     }
   };
@@ -232,13 +232,13 @@ const DestinationDetail: React.FC = () => {
         <section className="gallery-section">
           <h2 className="section-heading">Photo Gallery</h2>
           <div className="gallery-viewer">
-            <div className="main-image" style={{ backgroundImage: `url(${gallery[0]})` }}>
-              <button className="gallery-nav prev" onClick={prevAttraction}>
+            <div className="main-image" style={{ backgroundImage: `url(${gallery[currentAttractionIndex]})` }}>
+              <button className="gallery-nav prev" onClick={prevAttraction} aria-label="Previous image">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path d="M15 18l-6-6 6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
-              <button className="gallery-nav next" onClick={nextAttraction}>
+              <button className="gallery-nav next" onClick={nextAttraction} aria-label="Next image">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path d="M9 18l6-6-6-6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -248,9 +248,17 @@ const DestinationDetail: React.FC = () => {
               {gallery.slice(0, 6).map((image, index) => (
                 <div
                   key={index}
-                  className={`thumbnail ${index === 0 ? 'active' : ''}`}
+                  className={`thumbnail ${index === currentAttractionIndex ? 'active' : ''}`}
                   style={{ backgroundImage: `url(${image})` }}
-                  onClick={() => setLightboxIndex(index)}
+                  onClick={() => setCurrentAttractionIndex(index)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      setCurrentAttractionIndex(index);
+                    }
+                  }}
+                  aria-label={`View gallery image ${index + 1}`}
                 ></div>
               ))}
             </div>
@@ -317,8 +325,8 @@ const DestinationDetail: React.FC = () => {
       </div>
 
       {lightboxIndex !== null && (
-        <div className="lightbox" onClick={() => setLightboxIndex(null)}>
-          <button className="lightbox-close" onClick={() => setLightboxIndex(null)}>×</button>
+        <div className="lightbox" onClick={() => setLightboxIndex(null)} role="dialog" aria-modal="true" aria-label="Image gallery lightbox">
+          <button className="lightbox-close" onClick={() => setLightboxIndex(null)} aria-label="Close lightbox">×</button>
           <img src={gallery[lightboxIndex]} alt={`Gallery ${lightboxIndex + 1}`} onClick={(e) => e.stopPropagation()} />
         </div>
       )}

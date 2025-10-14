@@ -3,22 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './Destinations.scss';
 import { destinations } from '../../data/destinations';
 
-interface Destination {
-  id: string;
-  name: string;
-  image: string;
-  description: string;
-  region: string;
-  category: string;
-  duration: string;
-  seasonalInfo: Array<{
-    season: string;
-    months: string;
-    temperature: string;
-    description: string;
-    icon: string;
-  }>;
-}
 
 const Destinations1: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<string>('All');

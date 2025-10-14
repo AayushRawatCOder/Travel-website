@@ -4,6 +4,7 @@ import './Main.style.scss';
 import { destinations } from '../../data/destinations';
 import { useNavigate } from 'react-router-dom';
 
+
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedTheme, setSelectedTheme] = useState<string | null>(null);
@@ -29,23 +30,6 @@ const HomePage = () => {
     { url: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1920&q=80', title: 'Goa Beach Paradise', subtitle: 'Relax on golden shores with breathtaking sunsets', alt: 'Goa beach sunset' },
   ];
 
-//  const destinations = [
-//   { name: 'Dal Lake', image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80', category: 'Kashmir', price: '₹20,000', duration: '4 Days', rating: 4.9, reviews: 956, alt: 'Dal Lake houseboats', description: 'Iconic lake with floating gardens and traditional houseboats' },
-//   { name: 'Gulmarg', image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=600&q=80', category: 'Kashmir', price: '₹22,000', duration: '5 Days', rating: 5.0, reviews: 812, alt: 'Gulmarg skiing paradise', description: 'Asia\'s premier skiing destination with scenic gondola rides' },
-//   { name: 'Pahalgam', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', category: 'Kashmir', price: '₹18,000', duration: '4 Days', rating: 4.8, reviews: 674, alt: 'Pahalgam valley streams', description: 'Picturesque valley with lush meadows and pine forests' },
-//   { name: 'Sonamarg', image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&q=80', category: 'Kashmir', price: '₹19,000', duration: '3 Days', rating: 4.9, reviews: 598, alt: 'Sonamarg golden meadow', description: 'Meadow of gold with magnificent glacier views' },
-//   { name: 'Doodhpathri', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', category: 'Kashmir', price: '₹16,000', duration: '3 Days', rating: 4.7, reviews: 385, alt: 'Doodhpathri meadows', description: 'Valley of milk with pristine meadows and streams' },
-//   { name: 'Aru Valley', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80', category: 'Kashmir', price: '₹17,000', duration: '3 Days', rating: 4.7, reviews: 423, alt: 'Aru Valley pristine nature', description: 'Untouched meadows perfect for trekking adventures' },
-//   { name: 'Betaab Valley', image: 'https://images.unsplash.com/photo-1548013146-13a21f08d0f7?w=600&q=80', category: 'Kashmir', price: '₹16,500', duration: '2 Days', rating: 4.8, reviews: 531, alt: 'Betaab Valley scenic beauty', description: 'Crystal clear streams surrounded by snow-capped peaks' },
-//   { name: 'Leh', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', category: 'Ladakh', price: '₹25,000', duration: '6 Days', rating: 5.0, reviews: 654, alt: 'Leh Ladakh monastery', description: 'Ancient Buddhist monasteries and vibrant local culture' },
-//   { name: 'Pangong Lake', image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=600&q=80', category: 'Ladakh', price: '₹32,000', duration: '7 Days', rating: 5.0, reviews: 892, alt: 'Pangong Lake crystal waters', description: 'Mesmerizing high-altitude lake with changing colors' },
-//   { name: 'Nubra Valley', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80', category: 'Ladakh', price: '₹30,000', duration: '6 Days', rating: 4.9, reviews: 521, alt: 'Nubra Valley sand dunes', description: 'Cold desert with unique Bactrian camel safaris' },
-//   { name: 'Kargil', image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80', category: 'Ladakh', price: '₹28,000', duration: '5 Days', rating: 4.8, reviews: 287, alt: 'Kargil mountain valley', description: 'Historic town gateway with war memorial sites' },
-//   { name: 'Zanskar Valley', image: 'https://images.unsplash.com/photo-1626621341261-1a7d48f75a6f?w=600&q=80', category: 'Ladakh', price: '₹35,000', duration: '8 Days', rating: 4.9, reviews: 412, alt: 'Zanskar Valley frozen river', description: 'Remote valley famous for frozen river Chadar trek' },
-//   { name: 'Tsomoriri Lake', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', category: 'Ladakh', price: '₹33,000', duration: '7 Days', rating: 4.8, reviews: 364, alt: 'Tsomoriri Lake serene waters', description: 'Serene high-altitude lake in Changthang plateau' },
-// ].map((dest, index) => ({ ...dest, index }));
-
-
   const packages = [
     { title: 'Ladakh Adventure', image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=600&q=80', price: '₹25,000', duration: '7 Days', highlights: ['Mountain bike expeditions', 'Ancient Buddhist monasteries', 'High altitude passes'], theme: 'adventure', rating: 5.0, badge: 'Bestseller', alt: 'Ladakh adventure biking' },
     { title: 'Kerala Romance', image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80', price: '₹15,000', duration: '5 Days', highlights: ['Luxury houseboat stay', 'Traditional Ayurvedic spa', 'Beach resort relaxation'], theme: 'honeymoon', rating: 4.9, badge: 'Premium', alt: 'Kerala romantic houseboat' },
@@ -69,38 +53,10 @@ const HomePage = () => {
   ];
 
   const whyItems = [
-    { 
-      icon: <Headphones size={48} />, 
-      title: '24/7 Support', 
-      desc: 'Round-the-clock assistance for complete peace of mind throughout your journey.', 
-      color: '#0ea5e9',
-      stat: '98% Satisfaction',
-      image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&q=80'
-    },
-    { 
-      icon: <Shield size={48} />, 
-      title: 'Verified Hotels', 
-      desc: 'Handpicked and verified accommodations ensuring quality and comfort.', 
-      color: '#10b981',
-      stat: '500+ Properties',
-      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80'
-    },
-    { 
-      icon: <Users size={48} />, 
-      title: 'Expert Guides', 
-      desc: 'Professional local guides to enhance your travel experience.', 
-      color: '#a855f7',
-      stat: '200+ Experts',
-      image: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?w=600&q=80'
-    },
-    { 
-      icon: <CheckCircle size={48} />, 
-      title: 'Easy Refunds', 
-      desc: 'Hassle-free refund process for flexible and worry-free planning.', 
-      color: '#f59e0b',
-      stat: '100% Guarantee',
-      image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80'
-    },
+    { icon: <Headphones size={48} />, title: '24/7 Support', desc: 'Round-the-clock assistance for complete peace of mind throughout your journey.', color: '#0ea5e9', stat: '98% Satisfaction', image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&q=80' },
+    { icon: <Shield size={48} />, title: 'Verified Hotels', desc: 'Handpicked and verified accommodations ensuring quality and comfort.', color: '#10b981', stat: '500+ Properties', image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80' },
+    { icon: <Users size={48} />, title: 'Expert Guides', desc: 'Professional local guides to enhance your travel experience.', color: '#a855f7', stat: '200+ Experts', image: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?w=600&q=80' },
+    { icon: <CheckCircle size={48} />, title: 'Easy Refunds', desc: 'Hassle-free refund process for flexible and worry-free planning.', color: '#f59e0b', stat: '100% Guarantee', image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80' },
   ].map((item, index) => ({ ...item, index }));
 
   const testimonials = [
@@ -114,6 +70,9 @@ const HomePage = () => {
     { title: 'Kerala Backwaters Guide', image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80', excerpt: 'Everything you need to know for planning the perfect backwater journey in Kerala.', date: 'March 12, 2025', category: 'Travel Tips', alt: 'Kerala backwaters complete guide' },
     { title: 'Ladakh Adventures', image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=600&q=80', excerpt: 'From mountain biking to high-altitude trekking, explore the thrills that Ladakh offers.', date: 'March 10, 2025', category: 'Adventure', alt: 'Ladakh adventure activities' },
   ].map((blog, index) => ({ ...blog, index }));
+
+  // Map destinations to include index
+  const indexedDestinations = destinations.map((dest, index) => ({ ...dest, index }));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -207,44 +166,42 @@ const HomePage = () => {
           <h2 className="section-title">Explore Top Destinations</h2>
           <p className="section-subtitle">Discover the majestic mountains of Ladakh and the paradise valleys of Kashmir</p>
         </div>
-<div className="destinations-grid">
-  {destinations.map((dest) => (
-    <div key={dest.index} className="destination-card" style={{ '--index': dest.index } as React.CSSProperties}>
-      <div className="card-image-container">
-        <div className="card-image" style={{ backgroundImage: `url(${dest.image})` }} role="img" aria-label={dest.alt}></div>
-        <div className="image-gradient"></div>
-        <div className="category-badge">{dest.category}</div>
-        <div className="duration-badge">
-          <Clock size={14} />
-          {dest.duration}
-        </div>
-      </div>
-      <div className="card-body">
-        <h3 className="destination-name">{dest.name}</h3>
-        <p className="destination-desc">{dest.description}</p>
-        <div className="card-stats">
-          <div className="stat-rating">
-            <Star size={14} fill="currentColor" />
-            <span>{dest.rating}</span>
-            <span className="review-count">({dest.reviews})</span>
-          </div>
-        </div>
-        <div className="card-actions">
-          <div className="price-info">
-            <span className="from-text">From</span>
-            <span className="price-amount">{dest.price}</span>
-          </div>
-          <button className="explore-btn" onClick={() => handleExploreClick(dest.id)}>
+        <div className="destinations-grid">
+          {indexedDestinations.map((dest) => (
+            <div key={dest.index} className="destination-card" style={{ '--index': dest.index } as React.CSSProperties}>
+              <div className="card-image-container">
+                <div className="card-image" style={{ backgroundImage: `url(${dest.image || dest.hero})` }} role="img" aria-label={dest.alt || `Image of ${dest.name}`}></div>
+                <div className="image-gradient"></div>
+                <div className="category-badge">{dest.category || dest.region}</div>
+                <div className="duration-badge">
+                  <Clock size={14} />
+                  {dest.duration || 'Varies'}
+                </div>
+              </div>
+              <div className="card-body">
+                <h3 className="destination-name">{dest.name}</h3>
+                <p className="destination-desc">{dest.description || dest.tagline}</p>
+                <div className="card-stats">
+                  <div className="stat-rating">
+                    <Star size={14} fill="currentColor" />
+                    <span>{dest.rating || 'N/A'}</span>
+                    <span className="review-count">({dest.reviews || 0})</span>
+                  </div>
+                </div>
+                <div className="card-actions">
+                  <div className="price-info">
+                    <span className="from-text">From</span>
+                    <span className="price-amount">{dest.price || 'Contact for pricing'}</span>
+                  </div>
+                  <button className="explore-btn" onClick={() => handleExploreClick(dest.id)}>
                     Explore
                     <ArrowRight size={16} />
                   </button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    </div>
-  ))}
-</div>
-
-
       </section>
 
       <section className="themes-section" aria-label="Experience themes">
