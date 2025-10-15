@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, Calendar, ArrowRight, Star, Clock, ChevronLeft, ChevronRight, CheckCircle, Phone, User, Shield, Heart, Mountain, Compass, Sparkles, Award, Facebook, Twitter, Instagram, Linkedin, Mail, Users, Headphones, Globe } from 'lucide-react';
 import './Main.style.scss';
+import { destinations } from '../../data/destinations';
+import { useNavigate } from 'react-router-dom';
+
 
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedTheme, setSelectedTheme] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: '', email: '', interest: '' });
+
+  const navigate = useNavigate();
+
+  const handleExploreClick = (destinationId: string) => {
+    navigate(`/destination/${destinationId}`);
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -20,17 +29,6 @@ const HomePage = () => {
     { url: 'https://images.unsplash.com/photo-1477587458883-47145ed94245?w=1920&q=80', title: 'Royal Rajasthan Heritage', subtitle: 'Experience magnificent palaces and vibrant culture', alt: 'Rajasthan palace' },
     { url: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1920&q=80', title: 'Goa Beach Paradise', subtitle: 'Relax on golden shores with breathtaking sunsets', alt: 'Goa beach sunset' },
   ];
-
-  const destinations = [
-    { name: 'Rajasthan', image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&q=80', price: '₹15,000', rating: 4.8, reviews: 342, alt: 'Rajasthan desert fort' },
-    { name: 'Kashmir', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', price: '₹20,000', rating: 4.9, reviews: 486, alt: 'Kashmir valley mountains' },
-    { name: 'Goa', image: 'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&q=80', price: '₹10,000', rating: 4.7, reviews: 521, alt: 'Goa beach palm trees' },
-    { name: 'Sikkim', image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=600&q=80', price: '₹18,000', rating: 4.8, reviews: 298, alt: 'Sikkim mountain peaks' },
-    { name: 'Kerala', image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80', price: '₹12,000', rating: 4.9, reviews: 412, alt: 'Kerala houseboat backwaters' },
-    { name: 'Ladakh', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', price: '₹25,000', rating: 5.0, reviews: 654, alt: 'Ladakh mountain landscape' },
-    { name: 'Andaman', image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80', price: '₹22,000', rating: 4.7, reviews: 387, alt: 'Andaman crystal clear beach' },
-    { name: 'Varanasi', image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=600&q=80', price: '₹8,000', rating: 4.6, reviews: 276, alt: 'Varanasi river ghats evening' },
-  ].map((dest, index) => ({ ...dest, index }));
 
   const packages = [
     { title: 'Ladakh Adventure', image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=600&q=80', price: '₹25,000', duration: '7 Days', highlights: ['Mountain bike expeditions', 'Ancient Buddhist monasteries', 'High altitude passes'], theme: 'adventure', rating: 5.0, badge: 'Bestseller', alt: 'Ladakh adventure biking' },
@@ -55,38 +53,10 @@ const HomePage = () => {
   ];
 
   const whyItems = [
-    { 
-      icon: <Headphones size={48} />, 
-      title: '24/7 Support', 
-      desc: 'Round-the-clock assistance for complete peace of mind throughout your journey.', 
-      color: '#0ea5e9',
-      stat: '98% Satisfaction',
-      image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&q=80'
-    },
-    { 
-      icon: <Shield size={48} />, 
-      title: 'Verified Hotels', 
-      desc: 'Handpicked and verified accommodations ensuring quality and comfort.', 
-      color: '#10b981',
-      stat: '500+ Properties',
-      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80'
-    },
-    { 
-      icon: <Users size={48} />, 
-      title: 'Expert Guides', 
-      desc: 'Professional local guides to enhance your travel experience.', 
-      color: '#a855f7',
-      stat: '200+ Experts',
-      image: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?w=600&q=80'
-    },
-    { 
-      icon: <CheckCircle size={48} />, 
-      title: 'Easy Refunds', 
-      desc: 'Hassle-free refund process for flexible and worry-free planning.', 
-      color: '#f59e0b',
-      stat: '100% Guarantee',
-      image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80'
-    },
+    { icon: <Headphones size={48} />, title: '24/7 Support', desc: 'Round-the-clock assistance for complete peace of mind throughout your journey.', color: '#0ea5e9', stat: '98% Satisfaction', image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600&q=80' },
+    { icon: <Shield size={48} />, title: 'Verified Hotels', desc: 'Handpicked and verified accommodations ensuring quality and comfort.', color: '#10b981', stat: '500+ Properties', image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80' },
+    { icon: <Users size={48} />, title: 'Expert Guides', desc: 'Professional local guides to enhance your travel experience.', color: '#a855f7', stat: '200+ Experts', image: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?w=600&q=80' },
+    { icon: <CheckCircle size={48} />, title: 'Easy Refunds', desc: 'Hassle-free refund process for flexible and worry-free planning.', color: '#f59e0b', stat: '100% Guarantee', image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80' },
   ].map((item, index) => ({ ...item, index }));
 
   const testimonials = [
@@ -100,6 +70,9 @@ const HomePage = () => {
     { title: 'Kerala Backwaters Guide', image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80', excerpt: 'Everything you need to know for planning the perfect backwater journey in Kerala.', date: 'March 12, 2025', category: 'Travel Tips', alt: 'Kerala backwaters complete guide' },
     { title: 'Ladakh Adventures', image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=600&q=80', excerpt: 'From mountain biking to high-altitude trekking, explore the thrills that Ladakh offers.', date: 'March 10, 2025', category: 'Adventure', alt: 'Ladakh adventure activities' },
   ].map((blog, index) => ({ ...blog, index }));
+
+  // Map destinations to include index
+  const indexedDestinations = destinations.map((dest, index) => ({ ...dest, index }));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -191,32 +164,38 @@ const HomePage = () => {
         <div className="section-header">
           <div className="section-badge">DESTINATIONS</div>
           <h2 className="section-title">Explore Top Destinations</h2>
-          <p className="section-subtitle">Discover India's most captivating and breathtaking places to visit</p>
+          <p className="section-subtitle">Discover the majestic mountains of Ladakh and the paradise valleys of Kashmir</p>
         </div>
         <div className="destinations-grid">
-          {destinations.map((dest) => (
+          {indexedDestinations.map((dest) => (
             <div key={dest.index} className="destination-card" style={{ '--index': dest.index } as React.CSSProperties}>
-              <div className="card-image-wrapper">
-                <div className="card-image" style={{ backgroundImage: `url(${dest.image})` }} role="img" aria-label={dest.alt}></div>
-                <div className="card-overlay"></div>
+              <div className="card-image-container">
+                <div className="card-image" style={{ backgroundImage: `url(${dest.image || dest.hero})` }} role="img" aria-label={dest.alt || `Image of ${dest.name}`}></div>
+                <div className="image-gradient"></div>
+                <div className="category-badge">{dest.category || dest.region}</div>
+                <div className="duration-badge">
+                  <Clock size={14} />
+                  {dest.duration || 'Varies'}
+                </div>
               </div>
-              <div className="card-content">
-                <h3 className="card-title">{dest.name}</h3>
-                <div className="card-meta">
-                  <div className="rating">
-                    <Star size={16} fill="currentColor" aria-hidden="true" />
-                    <span>{dest.rating}</span>
-                    <span className="reviews">({dest.reviews})</span>
+              <div className="card-body">
+                <h3 className="destination-name">{dest.name}</h3>
+                <p className="destination-desc">{dest.description || dest.tagline}</p>
+                <div className="card-stats">
+                  <div className="stat-rating">
+                    <Star size={14} fill="currentColor" />
+                    <span>{dest.rating || 'N/A'}</span>
+                    <span className="review-count">({dest.reviews || 0})</span>
                   </div>
                 </div>
-                <div className="card-footer">
-                  <div className="price-tag">
-                    <span className="price-label">From</span>
-                    <span className="price">{dest.price}</span>
+                <div className="card-actions">
+                  <div className="price-info">
+                    <span className="from-text">From</span>
+                    <span className="price-amount">{dest.price || 'Contact for pricing'}</span>
                   </div>
-                  <button className="view-btn" aria-label={`View packages for ${dest.name}`}>
-                    <span>Explore</span>
-                    <ArrowRight size={18} aria-hidden="true" />
+                  <button className="explore-btn" onClick={() => handleExploreClick(dest.id)}>
+                    Explore
+                    <ArrowRight size={16} />
                   </button>
                 </div>
               </div>
@@ -385,7 +364,7 @@ const HomePage = () => {
             <h2 className="section-title">Ready for Your Dream Adventure?</h2>
             <p className="section-subtitle">Share your details and let our experts craft the perfect journey for you</p>
           </div>
-          <form className="cta-form" onSubmit={handleSubmit}>
+          <div className="cta-form" onClick={handleSubmit}>
             <div className="input-group">
               <User className="form-icon" size={18} />
               <input 
@@ -423,7 +402,7 @@ const HomePage = () => {
               <span>Start Planning</span>
               <ArrowRight size={18} />
             </button>
-          </form>
+          </div>
         </div>
       </section>
 

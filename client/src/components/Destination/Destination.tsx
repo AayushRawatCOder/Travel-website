@@ -1,129 +1,53 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Destinations.scss';
+import { destinations } from '../../data/destinations';
 
-interface Destination {
-  id: number;
-  name: string;
-  image: string;
-  description: string;
-  region: string;
-  type: string;
-  bestTime: string;
-  coordinates: { lat: number; lng: number };
-}
-
-const destinations: Destination[] = [
-  {
-    id: 1,
-    name: "Leh-Ladakh",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-    description: "Experience the breathtaking landscapes of the Himalayas with pristine monasteries and serene valleys.",
-    region: "North",
-    type: "Mountains",
-    bestTime: "May-September",
-    coordinates: { lat: 34.1526, lng: 77.5771 }
-  },
-  {
-    id: 2,
-    name: "Goa",
-    image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&h=600&fit=crop",
-    description: "Tropical paradise with golden beaches, vibrant nightlife, and Portuguese heritage.",
-    region: "West",
-    type: "Beaches",
-    bestTime: "November-February",
-    coordinates: { lat: 15.2993, lng: 74.1240 }
-  },
-  {
-    id: 3,
-    name: "Jaipur",
-    image: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=800&h=600&fit=crop",
-    description: "The Pink City showcasing royal palaces, magnificent forts, and vibrant culture.",
-    region: "North",
-    type: "Heritage",
-    bestTime: "October-March",
-    coordinates: { lat: 26.9124, lng: 75.7873 }
-  },
-  {
-    id: 4,
-    name: "Kerala Backwaters",
-    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&h=600&fit=crop",
-    description: "Tranquil waterways, lush greenery, and traditional houseboat experiences.",
-    region: "South",
-    type: "Beaches",
-    bestTime: "September-March",
-    coordinates: { lat: 9.9312, lng: 76.2673 }
-  },
-  {
-    id: 5,
-    name: "Ranthambore",
-    image: "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?w=800&h=600&fit=crop",
-    description: "Premier wildlife sanctuary home to majestic Bengal tigers and diverse fauna.",
-    region: "North",
-    type: "Wildlife",
-    bestTime: "October-April",
-    coordinates: { lat: 26.0173, lng: 76.5026 }
-  },
-  {
-    id: 6,
-    name: "Varanasi",
-    image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=800&h=600&fit=crop",
-    description: "Ancient spiritual city on the Ganges, rich in traditions and sacred rituals.",
-    region: "North",
-    type: "Spiritual",
-    bestTime: "October-March",
-    coordinates: { lat: 25.3176, lng: 82.9739 }
-  },
-  {
-    id: 7,
-    name: "Darjeeling",
-    image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&h=600&fit=crop",
-    description: "Hill station famous for tea gardens, toy train, and stunning Himalayan views.",
-    region: "East",
-    type: "Mountains",
-    bestTime: "March-May, September-November",
-    coordinates: { lat: 27.0410, lng: 88.2663 }
-  },
-  {
-    id: 8,
-    name: "Hampi",
-    image: "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&h=600&fit=crop",
-    description: "UNESCO World Heritage Site with ancient ruins and remarkable temple architecture.",
-    region: "South",
-    type: "Heritage",
-    bestTime: "October-February",
-    coordinates: { lat: 15.3350, lng: 76.4600 }
-  }
-];
 
 const Destinations1: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<string>('All');
-  const [selectedType, setSelectedType] = useState<string>('All');
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [selectedTime, setSelectedTime] = useState<string>('All');
   const [viewMode, setViewMode] = useState<'grid' | 'list' | 'map'>('grid');
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const navigate = useNavigate();
 
+  const uniqueRegions = useMemo(() => {
+    const regions = destinations.map(dest => dest.region);
+    return ['All', ...Array.from(new Set(regions))];
+  }, []);
+
+  const uniqueCategories = useMemo(() => {
+    const categories = destinations.map(dest => dest.category);
+    return ['All', ...Array.from(new Set(categories))];
+  }, []);
+
   const filteredDestinations = useMemo(() => {
     return destinations.filter(dest => {
       const regionMatch = selectedRegion === 'All' || dest.region === selectedRegion;
-      const typeMatch = selectedType === 'All' || dest.type === selectedType;
-      const timeMatch = selectedTime === 'All' || dest.bestTime.includes(selectedTime);
-      return regionMatch && typeMatch && timeMatch;
+      const categoryMatch = selectedCategory === 'All' || dest.category === selectedCategory;
+      
+      let timeMatch = selectedTime === 'All';
+      if (!timeMatch && dest.seasonalInfo) {
+        timeMatch = dest.seasonalInfo.some(season => 
+          season.months.toLowerCase().includes(selectedTime.toLowerCase())
+        );
+      }
+      
+      return regionMatch && categoryMatch && timeMatch;
     });
-  }, [selectedRegion, selectedType, selectedTime]);
+  }, [selectedRegion, selectedCategory, selectedTime]);
 
   const resetFilters = () => {
     setSelectedRegion('All');
-    setSelectedType('All');
+    setSelectedCategory('All');
     setSelectedTime('All');
   };
 
-  const hasActiveFilters = selectedRegion !== 'All' || selectedType !== 'All' || selectedTime !== 'All';
+  const hasActiveFilters = selectedRegion !== 'All' || selectedCategory !== 'All' || selectedTime !== 'All';
 
   return (
     <div className="destinations-page">
-      {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
           <h1>Explore India's Incredible Destinations</h1>
@@ -132,7 +56,6 @@ const Destinations1: React.FC = () => {
       </section>
 
       <div className="destinations-container">
-        {/* Mobile Filter Toggle & View Controls */}
         <div className="filter-controls">
           <button
             className="mobile-filter-btn"
@@ -142,11 +65,11 @@ const Destinations1: React.FC = () => {
               <path d="M3 4h14M6 8h8M8 12h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
             </svg>
             Filters
-            {hasActiveFilters && <span className="filter-badge">Active</span>}
+            {hasActiveFilters && <span className="filter-badge">{[selectedRegion, selectedCategory, selectedTime].filter(f => f !== 'All').length}</span>}
           </button>
 
           <span className="results-count">
-            {filteredDestinations.length} destinations found
+            <strong>{filteredDestinations.length}</strong> {filteredDestinations.length === 1 ? 'destination' : 'destinations'} found
           </span>
 
           <div className="view-toggle">
@@ -185,7 +108,6 @@ const Destinations1: React.FC = () => {
           </div>
         </div>
 
-        {/* Filter Overlay for Mobile */}
         {isFilterOpen && (
           <div 
             className={`filter-overlay ${isFilterOpen ? 'open' : ''}`}
@@ -194,7 +116,6 @@ const Destinations1: React.FC = () => {
         )}
 
         <div style={{ display: 'flex', gap: '24px' }}>
-          {/* Filter Sidebar */}
           <aside className={`filter-sidebar ${isFilterOpen ? 'open' : ''}`}>
             <div className="filter-header">
               <h2>
@@ -210,7 +131,6 @@ const Destinations1: React.FC = () => {
               </button>
             </div>
 
-            {/* Region Filter */}
             <div className="filter-section">
               <h3>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
@@ -219,7 +139,7 @@ const Destinations1: React.FC = () => {
                 Region
               </h3>
               <div className="filter-chips">
-                {['All', 'North', 'South', 'East', 'West', 'Central'].map(region => (
+                {uniqueRegions.map(region => (
                   <button
                     key={region}
                     className={`chip ${selectedRegion === region ? 'active' : ''}`}
@@ -231,29 +151,32 @@ const Destinations1: React.FC = () => {
               </div>
             </div>
 
-            {/* Type Filter */}
             <div className="filter-section">
-              <h3>Type</h3>
+              <h3>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12zm0-3.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                Category
+              </h3>
               <div className="filter-radio-list">
-                {['All', 'Mountains', 'Beaches', 'Heritage', 'Wildlife', 'Spiritual'].map(type => (
+                {uniqueCategories.map(category => (
                   <label
-                    key={type}
-                    className={`radio-option ${selectedType === type ? 'active' : ''}`}
+                    key={category}
+                    className={`radio-option ${selectedCategory === category ? 'active' : ''}`}
                   >
                     <input
                       type="radio"
-                      name="type"
-                      value={type}
-                      checked={selectedType === type}
-                      onChange={(e) => setSelectedType(e.target.value)}
+                      name="category"
+                      value={category}
+                      checked={selectedCategory === category}
+                      onChange={(e) => setSelectedCategory(e.target.value)}
                     />
-                    <label>{type}</label>
+                    <label>{category}</label>
                   </label>
                 ))}
               </div>
             </div>
 
-            {/* Time Filter */}
             <div className="filter-section">
               <h3>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
@@ -274,7 +197,6 @@ const Destinations1: React.FC = () => {
               </select>
             </div>
 
-            {/* Reset Button */}
             <button
               className="reset-filters-btn"
               onClick={() => {
@@ -287,7 +209,6 @@ const Destinations1: React.FC = () => {
             </button>
           </aside>
 
-          {/* Main Content */}
           <main className="destinations-main">
             {viewMode === 'map' ? (
               <div className="map-view">
@@ -300,7 +221,7 @@ const Destinations1: React.FC = () => {
                 </div>
                 <div className="map-pins">
                   {filteredDestinations.map(dest => (
-                    <div key={dest.id} className="map-pin-item">
+                    <div key={dest.id} className="map-pin-item" onClick={() => navigate(`/destination/${dest.id}`)}>
                       <span className="pin-icon">📍</span>
                       <span>{dest.name}</span>
                     </div>
@@ -309,46 +230,58 @@ const Destinations1: React.FC = () => {
               </div>
             ) : (
               <div className={`destinations-${viewMode}`}>
-                {filteredDestinations.map(destination => (
-                  <article key={destination.id} className="destination-card">
-                    <div className="card-image">
-                      <img src={destination.image} alt={destination.name} />
-                      <span className="card-badge">{destination.type}</span>
-                    </div>
-                    <div className="card-content">
-                      <h3>{destination.name}</h3>
-                      <div className="card-meta">
-                        <span className="meta-item">
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 2C5.79 2 4 3.79 4 6c0 3 4 8 4 8s4-5 4-8c0-2.21-1.79-4-4-4zm0 5.5c-.83 0-1.5-.67-1.5-1.5S7.17 4.5 8 4.5 9.5 5.17 9.5 6 8.83 7.5 8 7.5z"/>
-                          </svg>
-                          {destination.region}
-                        </span>
-                        <span className="meta-item">
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12zm1-9H7v5h2V5z"/>
-                            <circle cx="8" cy="8" r="1"/>
-                          </svg>
-                          {destination.bestTime}
-                        </span>
+                {filteredDestinations.length === 0 ? (
+                  <div className="empty-state">
+                    <svg width="80" height="80" viewBox="0 0 100 100" fill="currentColor">
+                      <path d="M50 10C36.19 10 25 21.19 25 35c0 18.75 25 45 25 45s25-26.25 25-45c0-13.81-11.19-25-25-25zm0 35c-5.52 0-10-4.48-10-10s4.48-10 10-10 10 4.48 10 10-4.48 10-10 10z"/>
+                    </svg>
+                    <h3>No destinations found</h3>
+                    <p>Try adjusting your filters to see more results</p>
+                  </div>
+                ) : (
+                  filteredDestinations.map(destination => (
+                    <article key={destination.id} className="destination-card">
+                      <div className="card-image">
+                        <img src={destination.image} alt={destination.name} loading="lazy" />
+                        <span className="card-badge">{destination.category}</span>
                       </div>
-                      <p>{destination.description}</p>
-                      <button
-                        className="view-details-btn"
-                        onClick={() => navigate(`/destination/${destination.id}`)}
-                      >
-                        View Details
-                      </button>
-                    </div>
-                  </article>
-                ))}
+                      <div className="card-content">
+                        <h3>{destination.name}</h3>
+                        <div className="card-meta">
+                          <span className="meta-item">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                              <path d="M8 2C5.79 2 4 3.79 4 6c0 3 4 8 4 8s4-5 4-8c0-2.21-1.79-4-4-4zm0 5.5c-.83 0-1.5-.67-1.5-1.5S7.17 4.5 8 4.5 9.5 5.17 9.5 6 8.83 7.5 8 7.5z"/>
+                            </svg>
+                            {destination.region}
+                          </span>
+                          <span className="meta-item">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                              <path d="M8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12zm1-9H7v5h2V5z"/>
+                              <circle cx="8" cy="8" r="1"/>
+                            </svg>
+                            {destination.duration}
+                          </span>
+                        </div>
+                        <p>{destination.description}</p>
+                        <button
+                          className="view-details-btn"
+                          onClick={() => navigate(`/destination/${destination.id}`)}
+                        >
+                          Explore Destination
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+                            <path d="M6 12l4-4-4-4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </article>
+                  ))
+                )}
               </div>
             )}
           </main>
         </div>
       </div>
 
-      {/* SEO Section */}
       <section className="seo-section">
         <div className="seo-content">
           <h2>Discover India: A Land of Endless Wonders</h2>

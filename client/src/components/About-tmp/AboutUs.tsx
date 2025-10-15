@@ -209,7 +209,6 @@ const AboutUs: React.FC = () => {
 
   return (
     <div className="about-us-page">
-      {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-overlay"></div>
         <div className="hero-content">
@@ -218,7 +217,6 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* Our Story */}
       <section className="story-section">
         <div className="container">
           <div className="story-content">
@@ -266,7 +264,6 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* Mission & Values */}
       <section className="values-section">
         <div className="container">
           <h2>Our Mission & Values</h2>
@@ -286,7 +283,6 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* Meet Our Team */}
       <section className="team-section">
         <div className="container">
           <h2>Meet Our Team</h2>
@@ -341,7 +337,6 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* Awards & Certifications */}
       <section className="awards-section">
         <div className="container">
           <h2>Awards & Certifications</h2>
@@ -361,7 +356,6 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* Partners & Collaborations */}
       <section className="partners-section">
         <div className="container">
           <h2>Our Partners & Collaborations</h2>
@@ -380,7 +374,6 @@ const AboutUs: React.FC = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
       <section className="cta-section">
         <div className="cta-content">
           <h2>Ready to Start Your Journey?</h2>
