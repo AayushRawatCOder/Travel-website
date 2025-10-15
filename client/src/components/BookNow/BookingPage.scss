@@ -1,261 +1,186 @@
-// Variables
-$primary-orange: #f97316;
-$primary-orange-dark: #ea580c;
-$primary-orange-light: #fed7aa;
-$secondary-amber: #fef3c7;
-$text-dark: #1f2937;
-$text-gray: #6b7280;
-$text-light: #9ca3af;
-$border-gray: #e5e7eb;
-$success-green: #10b981;
-$error-red: #ef4444;
-$bg-light: #fffbeb;
-
-// Mixins
-@mixin transition-smooth {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@mixin card-shadow {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-@mixin card-hover {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-// Main Container
 .booking-page {
-  min-height: 100vh;
-  background: linear-gradient(135deg, $secondary-amber 0%, $bg-light 100%);
-  
-  // Header
-  &__header {
-    background: white;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+  &--error {
+    padding: 40px 20px;
+    text-align: center;
     
-    .header-content {
-      max-width: 1280px;
+    .booking-page__error-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #dc2626;
+      margin-bottom: 16px;
+    }
+    
+    .booking-page__error-message {
+      font-size: 1.125rem;
+      color: #374151;
+    }
+  }
+
+  &__header {
+    background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    
+    &-content {
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 1.5rem 1rem;
       
       h1 {
-        font-size: 2rem;
-        font-weight: 700;
-        color: $text-dark;
-        margin: 0;
-        
-        @media (max-width: 768px) {
-          font-size: 1.5rem;
-        }
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 16px;
       }
       
       p {
-        color: $text-gray;
-        margin-top: 0.25rem;
-        font-size: 0.95rem;
+        font-size: 1.25rem;
+        opacity: 0.9;
       }
     }
   }
-  
-  // Main Content Container
-  &__container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-}
 
-// Package Selection
-.package-selection {
-  background: white;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  @include card-shadow;
-  margin-bottom: 1.5rem;
-  
-  &__title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: $text-dark;
-    margin-bottom: 1rem;
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
   }
-  
+
   &__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-  }
-  
-  &__card {
-    padding: 1.25rem;
-    border-radius: 0.75rem;
-    border: 2px solid $border-gray;
-    background: white;
-    cursor: pointer;
-    @include transition-smooth;
+    grid-template-columns: 1fr;
+    gap: 32px;
     
-    &:hover {
-      border-color: $primary-orange-light;
-      transform: translateY(-2px);
-    }
-    
-    &--selected {
-      border-color: $primary-orange;
-      background: rgba($primary-orange, 0.05);
-      
-      .package-selection__price {
-        color: $primary-orange-dark;
-      }
-    }
-    
-    h3 {
-      font-weight: 700;
-      color: $text-dark;
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
-    }
-    
-    p {
-      font-size: 0.875rem;
-      color: $text-gray;
-      margin-bottom: 0.75rem;
+    @media (min-width: 1024px) {
+      grid-template-columns: 2fr 1fr;
     }
   }
-  
-  &__price {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: $primary-orange;
+
+  &__main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__sidebar {
+    position: sticky;
+    top: 32px;
+    height: fit-content;
   }
 }
 
-// Package Details
+// Package Details Styles
 .package-details {
   background: white;
-  border-radius: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   overflow: hidden;
-  @include card-shadow;
-  margin-bottom: 1.5rem;
   
   &__image {
     width: 100%;
     height: 300px;
     object-fit: cover;
-    
-    @media (max-width: 768px) {
-      height: 200px;
-    }
   }
   
   &__content {
-    padding: 1.5rem;
+    padding: 32px;
   }
   
   &__title {
-    font-size: 1.75rem;
+    font-size: 2rem;
     font-weight: 700;
-    color: $text-dark;
-    margin-bottom: 1rem;
+    color: #1f2937;
+    margin-bottom: 16px;
   }
   
   &__meta {
     display: flex;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 24px;
     
-    .meta-item {
+    &-item {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      color: $text-gray;
-      
-      svg {
-        width: 1.25rem;
-        height: 1.25rem;
-      }
+      gap: 8px;
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+    
+    &-icon {
+      width: 20px;
+      height: 20px;
     }
   }
   
   &__highlights {
-    margin-bottom: 1.5rem;
+    margin-bottom: 24px;
     
     h3 {
-      font-weight: 700;
-      color: $text-dark;
-      margin-bottom: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 16px;
     }
     
-    .highlights-grid {
+    &-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 0.5rem;
-      
-      .highlight-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        
-        svg {
-          color: $success-green;
-          flex-shrink: 0;
-        }
-      }
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+    }
+    
+    &-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #059669;
+      font-size: 0.875rem;
+    }
+    
+    &-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
     }
   }
   
   &__itinerary-toggle {
-    width: 100%;
-    background: rgba($primary-orange, 0.1);
-    color: $primary-orange-dark;
-    padding: 0.875rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
+    background: #3b82f6;
+    color: white;
     border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
     cursor: pointer;
-    @include transition-smooth;
+    transition: background-color 0.2s;
+    margin-bottom: 24px;
     
     &:hover {
-      background: rgba($primary-orange, 0.2);
+      background: #2563eb;
     }
   }
   
   &__itinerary {
-    margin-top: 1.5rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
     
-    .itinerary-day {
-      border-left: 4px solid $primary-orange;
-      padding-left: 1rem;
-      margin-bottom: 1rem;
+    &-day {
+      margin-bottom: 20px;
       
       h4 {
-        font-weight: 700;
-        color: $text-dark;
-        margin-bottom: 0.5rem;
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 8px;
       }
       
       ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+        list-style-type: disc;
+        margin-left: 20px;
+        color: #6b7280;
         
         li {
-          font-size: 0.875rem;
-          color: $text-gray;
-          display: flex;
-          gap: 0.5rem;
-          margin-bottom: 0.25rem;
-          
-          &::before {
-            content: "•";
-            color: $primary-orange;
-            font-weight: bold;
-          }
+          margin-bottom: 4px;
         }
       }
     }
@@ -263,186 +188,213 @@ $bg-light: #fffbeb;
   
   &__info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 24px;
     
-    .info-section {
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  &__info-section {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 20px;
+    
+    h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 12px;
+    }
+    
+    &--inclusions {
       h3 {
-        font-weight: 700;
-        color: $text-dark;
-        margin-bottom: 0.75rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        
-        svg {
-          color: $success-green;
-        }
+        color: #059669;
       }
       
       ul {
-        list-style: none;
-        padding: 0;
+        list-style-type: none;
         
         li {
-          font-size: 0.875rem;
-          color: $text-dark;
-          margin-bottom: 0.5rem;
-          display: flex;
-          align-items: flex-start;
-          gap: 0.5rem;
+          position: relative;
+          padding-left: 24px;
+          margin-bottom: 8px;
+          color: #374151;
           
           &::before {
-            margin-top: 0.25rem;
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #059669;
+            font-weight: bold;
           }
         }
       }
-      
-      &--inclusions li::before {
-        content: "✓";
-        color: $success-green;
-        font-weight: bold;
+    }
+    
+    &--exclusions {
+      ul {
+        list-style-type: none;
+        
+        li {
+          position: relative;
+          padding-left: 24px;
+          margin-bottom: 8px;
+          color: #374151;
+          
+          &::before {
+            content: '✕';
+            position: absolute;
+            left: 0;
+            color: #dc2626;
+            font-weight: bold;
+          }
+        }
       }
-      
-      &--exclusions li::before {
-        content: "✗";
-        color: $error-red;
-        font-weight: bold;
-      }
+    }
+    
+    &-icon {
+      width: 20px;
+      height: 20px;
     }
   }
 }
 
-// Add-ons Section
+// Add-ons Section Styles
 .addons-section {
   background: white;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  @include card-shadow;
-  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 32px;
   
   &__title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: $text-dark;
-    margin-bottom: 0.5rem;
+    color: #1f2937;
+    margin-bottom: 8px;
   }
   
   &__description {
-    color: $text-gray;
-    margin-bottom: 1.5rem;
+    color: #6b7280;
+    margin-bottom: 24px;
   }
   
   &__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1rem;
+    gap: 16px;
   }
   
   &__card {
-    padding: 1.25rem;
-    border-radius: 0.75rem;
-    border: 2px solid $border-gray;
     background: white;
-    cursor: pointer;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
     text-align: left;
-    @include transition-smooth;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
     
     &:hover {
-      border-color: $primary-orange-light;
+      border-color: #3b82f6;
       transform: translateY(-2px);
     }
     
     &--selected {
-      border-color: $primary-orange;
-      background: rgba($primary-orange, 0.05);
-      
-      .addons-section__card-icon {
-        color: $primary-orange;
-      }
+      border-color: #3b82f6;
+      background: #eff6ff;
     }
     
     &-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 0.75rem;
+      margin-bottom: 12px;
     }
     
     &-icon {
-      color: $text-light;
-      @include transition-smooth;
+      width: 24px;
+      height: 24px;
+      color: #3b82f6;
     }
     
     &-check {
-      color: $primary-orange;
+      width: 20px;
+      height: 20px;
+      color: #059669;
     }
     
     h3 {
-      font-weight: 700;
-      color: $text-dark;
-      margin-bottom: 0.5rem;
-      font-size: 1.05rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 8px;
     }
     
     p {
+      color: #6b7280;
       font-size: 0.875rem;
-      color: $text-gray;
-      margin-bottom: 0.75rem;
+      margin-bottom: 12px;
+      line-height: 1.4;
     }
     
     &-price {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: $primary-orange;
+      font-weight: 600;
+      color: #059669;
+      font-size: 1rem;
     }
   }
 }
 
-// Booking Form
+// Booking Form Styles
 .booking-form {
   background: white;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  @include card-shadow;
-  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 32px;
   
   &__title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: $text-dark;
-    margin-bottom: 1rem;
+    color: #1f2937;
+    margin-bottom: 24px;
+  }
+  
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    
+    @media (min-width: 640px) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
   
   &__field {
-    margin-bottom: 1.25rem;
+    margin-bottom: 20px;
     
     label {
       display: block;
-      color: $text-dark;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      font-size: 0.95rem;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 8px;
     }
     
-    input,
-    textarea {
+    input, textarea {
       width: 100%;
-      padding: 0.875rem 1rem;
-      border-radius: 0.5rem;
-      border: 1px solid $border-gray;
-      outline: none;
-      @include transition-smooth;
-      font-family: inherit;
+      padding: 12px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
       
       &:focus {
-        border-color: $primary-orange;
-        box-shadow: 0 0 0 3px rgba($primary-orange, 0.1);
-      }
-      
-      &::placeholder {
-        color: $text-light;
+        outline: none;
+        border-color: #3b82f6;
       }
     }
     
@@ -451,304 +403,420 @@ $bg-light: #fffbeb;
       min-height: 100px;
     }
   }
-  
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-  }
 }
 
-// Booking Summary Sidebar
+// Booking Summary Styles
 .booking-summary {
   background: white;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  @include card-shadow;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 24px;
   position: sticky;
-  top: 6rem;
+  top: 32px;
   
   &__title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: $text-dark;
-    margin-bottom: 1.5rem;
+    color: #1f2937;
+    margin-bottom: 24px;
+    text-align: center;
   }
   
   &__travelers {
-    margin-bottom: 1.5rem;
+    margin-bottom: 24px;
     
     label {
       display: block;
-      color: $text-dark;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 12px;
     }
     
-    .travelers-control {
+    &-control {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: #f9fafb;
-      border-radius: 0.5rem;
-      padding: 1rem;
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 8px;
+    }
+    
+    &-btn {
+      background: white;
+      border: 2px solid #e5e7eb;
+      border-radius: 6px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
       
-      button {
-        width: 2.5rem;
-        height: 2.5rem;
-        border-radius: 50%;
-        background: $primary-orange;
-        color: white;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        @include transition-smooth;
-        
-        &:hover {
-          background: $primary-orange-dark;
-        }
-        
-        &:active {
-          transform: scale(0.95);
-        }
+      &:hover {
+        border-color: #3b82f6;
+        background: #eff6ff;
       }
-      
-      .travelers-display {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        
-        svg {
-          color: $text-gray;
-        }
-        
-        span {
-          font-size: 1.75rem;
-          font-weight: 700;
-          color: $text-dark;
-        }
-      }
+    }
+    
+    &-display {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      color: #1f2937;
+      padding: 0 16px;
+    }
+    
+    &-icon {
+      width: 20px;
+      height: 20px;
     }
   }
   
   &__breakdown {
-    padding-bottom: 1.5rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid $border-gray;
+    margin-bottom: 24px;
     
-    .breakdown-item {
+    &-item {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 0.75rem;
-      color: $text-dark;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #e5e7eb;
       
       &:last-child {
-        margin-bottom: 0;
-      }
-      
-      span:first-child {
-        color: $text-gray;
-      }
-      
-      span:last-child {
-        font-weight: 600;
+        border-bottom: none;
       }
       
       &--addon {
+        color: #059669;
         font-size: 0.875rem;
       }
     }
   }
   
   &__total {
-    margin-bottom: 1.5rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
     
-    .total-row {
+    &-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.5rem;
-      
-      .total-label {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: $text-dark;
-      }
-      
-      .total-amount {
-        font-size: 2rem;
-        font-weight: 700;
-        color: $primary-orange;
-      }
+      margin-bottom: 8px;
     }
     
-    .total-note {
+    &-label {
+      font-weight: 600;
+      color: #1f2937;
+      font-size: 1.125rem;
+    }
+    
+    &-amount {
+      font-weight: 700;
+      color: #059669;
+      font-size: 1.5rem;
+    }
+    
+    &-note {
+      color: #6b7280;
       font-size: 0.875rem;
-      color: $text-gray;
+      text-align: center;
     }
   }
   
   &__book-btn {
     width: 100%;
-    background: linear-gradient(135deg, $primary-orange 0%, $primary-orange-dark 100%);
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
     color: white;
-    padding: 1rem;
-    border-radius: 0.75rem;
-    font-weight: 700;
-    font-size: 1.125rem;
     border: none;
+    padding: 16px 24px;
+    border-radius: 8px;
+    font-size: 1.125rem;
+    font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 10px 15px -3px rgba($primary-orange, 0.3);
-    @include transition-smooth;
+    transition: all 0.2s;
+    margin-bottom: 24px;
     
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 20px 25px -5px rgba($primary-orange, 0.4);
-    }
-    
-    &:active {
-      transform: translateY(0);
+      box-shadow: 0 8px 15px rgba(5, 150, 105, 0.3);
     }
   }
   
   &__payment-info {
-    margin-top: 1.5rem;
-    padding: 1rem;
     background: #eff6ff;
-    border-radius: 0.5rem;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
     
-    .payment-content {
+    &-content {
       display: flex;
-      gap: 0.75rem;
-      
-      svg {
-        color: #3b82f6;
-        flex-shrink: 0;
-        margin-top: 0.125rem;
-      }
-      
-      div {
-        flex: 1;
-      }
-      
-      p:first-child {
-        font-weight: 600;
-        color: $text-dark;
-        font-size: 0.875rem;
-        margin-bottom: 0.25rem;
-      }
-      
-      p:last-child {
-        font-size: 0.75rem;
-        color: $text-gray;
-        line-height: 1.5;
-      }
+      align-items: flex-start;
+      gap: 12px;
+    }
+    
+    &-icon {
+      width: 20px;
+      height: 20px;
+      color: #3b82f6;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    p:first-child {
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 4px;
+    }
+    
+    p:last-child {
+      color: #6b7280;
+      font-size: 0.875rem;
+      line-height: 1.4;
     }
   }
   
   &__contact {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid $border-gray;
-    
-    .contact-title {
+    &-title {
       font-weight: 600;
-      color: $text-dark;
-      margin-bottom: 0.75rem;
+      color: #1f2937;
+      margin-bottom: 12px;
     }
     
-    .contact-item {
+    &-item {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.75rem;
+      gap: 8px;
+      color: #6b7280;
       font-size: 0.875rem;
-      color: $text-gray;
+      margin-bottom: 8px;
+    }
+    
+    &-icon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+// Payment Modal Styles
+.payment-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 16px;
+  
+  &__overlay {
+    position: absolute;
+    inset: 0;
+  }
+  
+  &__content {
+    background: white;
+    border-radius: 16px;
+    max-width: 28rem;
+    width: 100%;
+    padding: 24px;
+    position: relative;
+  }
+  
+  &__close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: #9ca3af;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    
+    &:hover {
+      color: #6b7280;
+    }
+  }
+  
+  &__close-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 8px;
+  }
+  
+  &__description {
+    color: #6b7280;
+    margin-bottom: 24px;
+  }
+  
+  &__methods {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  
+  &__method-btn {
+    width: 100%;
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    
+    &--card {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: white;
+      
+      &:hover {
+        background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+        transform: translateY(-2px);
+      }
+    }
+    
+    &--upi {
+      background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+      color: white;
+      
+      &:hover {
+        background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+        transform: translateY(-2px);
+      }
+    }
+    
+    &--netbanking {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      
+      &:hover {
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        transform: translateY(-2px);
+      }
+    }
+    
+    &--wallet {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: white;
+      
+      &:hover {
+        background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+        transform: translateY(-2px);
+      }
+    }
+  }
+  
+  &__method-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  &__breakdown {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #e5e7eb;
+    
+    &-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
       
       &:last-child {
         margin-bottom: 0;
       }
-      
-      svg {
-        width: 1rem;
-        height: 1rem;
-        flex-shrink: 0;
-      }
+    }
+    
+    &-label {
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+    
+    &-value {
+      font-weight: 600;
     }
   }
-}
-
-// Animations
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+  
+  &__security-note {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    text-align: center;
+    margin-top: 16px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  animation: slideIn 0.5s ease-out;
 }
 
 // Responsive Design
-@media (max-width: 1024px) {
-  .booking-summary {
-    position: relative;
-    top: 0;
-    margin-top: 2rem;
-  }
-}
-
 @media (max-width: 768px) {
   .booking-page {
+    &__header {
+      padding: 40px 20px;
+      
+      &-content {
+        h1 {
+          font-size: 2rem;
+        }
+        
+        p {
+          font-size: 1.125rem;
+        }
+      }
+    }
+    
     &__container {
-      padding: 1rem 0.5rem;
+      padding: 20px 16px;
     }
   }
   
-  .package-selection,
-  .package-details,
-  .addons-section,
-  .booking-form,
-  .booking-summary {
-    padding: 1rem;
-  }
-  
   .package-details {
+    &__content {
+      padding: 24px;
+    }
+    
     &__title {
       font-size: 1.5rem;
     }
     
-    &__meta {
-      flex-direction: column;
-      gap: 0.75rem;
+    &__info-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .addons-section {
+    padding: 24px;
+    
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .booking-form {
+    padding: 24px;
+    
+    &__row {
+      grid-template-columns: 1fr;
     }
   }
   
   .booking-summary {
+    padding: 20px;
+    
     &__total {
-      .total-amount {
-        font-size: 1.75rem;
+      &-amount {
+        font-size: 1.25rem;
       }
     }
-  }
-}
-
-// Print Styles
-@media print {
-  .booking-page__header,
-  .booking-summary__book-btn {
-    display: none;
-  }
-  
-  .booking-summary {
-    position: relative;
-    page-break-inside: avoid;
   }
 }
