@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Hotel, Camera, Car, Users, Star, MapPin, X, Quote, Calendar, Image as ImageIcon, Heart, CheckCircle, Phone, Mail, ArrowRight, Sparkles } from 'lucide-react';
+import { Hotel, Camera, Car, Users, Star, MapPin, X, Quote, Calendar, Image as ImageIcon, Heart, CheckCircle, Sparkles } from 'lucide-react';
 import './Experiences.style.scss'
 import customer1Img from "../../assets/Images/customer1.jpg"
 import customer2Img from "../../assets/Images/customer2.jpg"

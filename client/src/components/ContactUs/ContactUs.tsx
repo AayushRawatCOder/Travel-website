@@ -13,6 +13,23 @@ const ContactUs = () => {
     message: '',
   });
   const [status, setStatus] = useState('');
+const [isLoading, setIsLoading] = useState(false);
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsLoading(true);
+  try {
+    const res = await axios.post('http://localhost:5000/api/contacts', formData);
+    if (res.data.success) {
+      setStatus('✅ Message sent successfully!');
+      setFormData({ name: '', email: '', inquiryType: 'general', travelDate: '', destination: '', message: '' });
+    }
+  } catch (err) {
+    setStatus('❌ Failed to send message. Please try again.');
+  } finally {
+    setIsLoading(false);
+  }
+}
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -20,25 +37,7 @@ const ContactUs = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post('http://localhost:5000/api/contact', formData);
-      if (res.data.success) {
-        setStatus('✅ Message sent successfully!');
-        setFormData({
-          name: '',
-          email: '',
-          inquiryType: 'general',
-          travelDate: '',
-          destination: '',
-          message: '',
-        });
-      }
-    } catch (err) {
-      setStatus('❌ Failed to send message. Please try again.');
-    }
-  };
+  
 
   const faqs = [
     {
@@ -252,10 +251,10 @@ const ContactUs = () => {
                   </div>
                 </div>
 
-                <button type="submit" className="submit-btn" aria-label="Send Message">
-                  <Send size={20} aria-hidden="true" />
-                  <span>Send Message</span>
-                </button>
+                <button type="submit" className="submit-btn" aria-label="Send Message" disabled={isLoading}>
+  <Send size={20} aria-hidden="true" />
+  <span>{isLoading ? 'Sending...' : 'Send Message'}</span>
+</button>
 
                 {status && (
                   <div className={`status-message ${status.includes('successfully') ? 'success' : 'error'}`}>
