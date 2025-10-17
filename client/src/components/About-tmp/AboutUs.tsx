@@ -247,15 +247,15 @@ const AboutUs: React.FC = () => {
               <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&h=800&fit=crop" alt="Our Journey" />
               <div className="story-stats">
                 <div className="stat-item">
-                  <span className="stat-number">14+</span>
+                  <span className="stat-number">12+</span>
                   <span className="stat-label">Years Experience</span>
                 </div>
                 <div className="stat-item">
-                  <span className="stat-number">10,000+</span>
+                  <span className="stat-number">50,000+</span>
                   <span className="stat-label">Happy Travelers</span>
                 </div>
                 <div className="stat-item">
-                  <span className="stat-number">150+</span>
+                  <span className="stat-number">50+</span>
                   <span className="stat-label">Destinations</span>
                 </div>
               </div>
