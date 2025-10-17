@@ -86,8 +86,17 @@ const findPackageKeyById = (id: number): string | undefined => {
 
 // Helper function to find package by slug/packageId
 const findPackageBySlug = (slug: string): PackageData | undefined => {
-  return allPackages[slug as keyof typeof allPackages];
+  const normalizedSlug = slug.toLowerCase().replace(/\s+/g, '-');
+  for (const [key, packageData] of Object.entries(allPackages)) {
+    const generatedSlug = key
+      .replace(/([A-Z])/g, '-$1')
+      .toLowerCase()
+      .replace(/^-/, '');
+    if (generatedSlug === normalizedSlug) return packageData;
+  }
+  return undefined;
 };
+
 
 const BookingPage: React.FC = () => {
   const { packageId } = useParams<{ packageId: string }>();

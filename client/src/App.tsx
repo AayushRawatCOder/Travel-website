@@ -4,7 +4,7 @@ import Packages from "./pages/Packages.tsx";
 import Navbar from "./components/common/Navbar/navbar.tsx";
 import HomePage from "./components/Home/Main.tsx";
 import ContactUs from "./components/ContactUs/ContactUs.tsx";
-import Experiences from "./components/Experiences/Experiences.tsx";
+import Experiences from "./components/Experiences-customer/Experiences.tsx";
 import FAQ from "./pages/FAQs.tsx";
 import CulturalTours from "./components/tours/CulturalTours/CulturalTours.tsx";
 import BeachGetaways from "./components/tours/Beach/BeachGetAway.tsx";
