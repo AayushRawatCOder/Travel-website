@@ -1,15 +1,29 @@
-import React, { useState } from 'react';
-import { Target, Heart, Award, Users, Globe, TrendingUp, Star, CheckCircle, Phone, Mail, Linkedin, Twitter, Instagram, Shield,  Mountain, Sparkles, ArrowRight, Camera, Map, Plane } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Target, Heart, Award, Users, Globe, TrendingUp, Star, CheckCircle, Phone, Mail, Linkedin, Twitter, Instagram, Shield, Mountain, Sparkles, ArrowRight, Camera, Map, Plane } from 'lucide-react';
 import './About.style.scss';
 
 const AboutPage = () => {
   const [activeValue, setActiveValue] = useState(0);
 
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://static.elfsight.com/platform/platform.js';
+    script.async = true;
+    script.setAttribute('data-use-service-core', '');
+    document.body.appendChild(script);
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
+
   const stats = [
-    { icon: <Users size={40} />, number: '50,000+', label: 'Happy Travelers', color: '#0891b2' },
-    { icon: <Globe size={40} />, number: '150+', label: 'Destinations Covered', color: '#f97316' },
-    { icon: <Award size={40} />, number: '25+', label: 'Years of Excellence', color: '#f43f5e' },
-    { icon: <Star size={40} />, number: '4.9/5', label: 'Customer Rating', color: '#f59e0b' },
+    { icon: <Users size={40} />, number: '50,00+', label: 'Happy Travelers', color: '#0891b2' },
+    { icon: <Globe size={40} />, number: '50+', label: 'Destinations Covered', color: '#f97316' },
+    { icon: <Award size={40} />, number: '12+', label: 'Years of Excellence', color: '#f43f5e' },
+    { icon: <Star size={40} />, number: '4.8/5', label: 'Customer Rating', color: '#f59e0b' },
   ];
 
   const values = [
@@ -54,7 +68,7 @@ const AboutPage = () => {
     {
       name: 'Priya Sharma',
       role: 'Head of Operations',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1494790778202-cad84cf45f1d?w=600&q=80',
       bio: 'Exceptional organizational skills ensuring smooth journeys.',
       social: { linkedin: '#', twitter: '#', instagram: '#' }
     },
@@ -95,33 +109,6 @@ const AboutPage = () => {
     { year: '2015', title: 'Digital Transformation', description: 'Launched comprehensive online platform making travel planning seamless.', icon: <Globe size={28} /> },
     { year: '2020', title: 'Sustainable Travel', description: 'Introduced eco-friendly packages and partnered with conservation projects.', icon: <Mountain size={28} /> },
     { year: '2025', title: 'Industry Leadership', description: 'Serving 50,000+ travelers annually with innovative experiences.', icon: <TrendingUp size={28} /> },
-  ];
-
-  const testimonials = [
-    {
-      name: 'Rajesh Kapoor',
-      location: 'Delhi',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80',
-      text: 'IndiaWander transformed our family vacation into a magical journey. Every detail was perfectly planned. The team went above and beyond.',
-      rating: 5,
-      trip: 'Rajasthan Heritage Tour'
-    },
-    {
-      name: 'Neha Desai',
-      location: 'Bangalore',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&q=80',
-      text: 'As a solo female traveler, I felt completely safe and supported. The guides were knowledgeable, and the itinerary was perfect.',
-      rating: 5,
-      trip: 'Kerala Backwaters Experience'
-    },
-    {
-      name: 'Amit Patel',
-      location: 'Ahmedabad',
-      image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=200&q=80',
-      text: 'The Ladakh adventure exceeded all expectations. Professional team, stunning locations, and seamless execution.',
-      rating: 5,
-      trip: 'Ladakh Adventure Expedition'
-    },
   ];
 
   const achievements = [
@@ -285,31 +272,17 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="testimonials-section">
+      <section className="reviews-section">
         <div className="section-header">
-          <div className="section-badge">TESTIMONIALS</div>
-          <h2 className="section-title">Stories From Our Travelers</h2>
-          <p className="section-subtitle">Real experiences from people who traveled with us</p>
+          <div className="section-badge">GOOGLE REVIEWS</div>
+          <h2 className="section-title">What Our Travelers Say</h2>
+          <p className="section-subtitle">Authentic reviews from our happy customers</p>
         </div>
-        <div className="testimonials-grid">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="testimonial-card" style={{ '--testimonial-index': index } as React.CSSProperties}>
-              <div className="testimonial-header">
-                <img src={testimonial.image} alt={testimonial.name} className="testimonial-image" />
-                <div className="testimonial-info">
-                  <h4 className="testimonial-name">{testimonial.name}</h4>
-                  <p className="testimonial-location">{testimonial.location}</p>
-                </div>
-              </div>
-              <div className="testimonial-rating">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} size={14} fill="currentColor" />
-                ))}
-              </div>
-              <p className="testimonial-text">"{testimonial.text}"</p>
-              <div className="testimonial-trip">{testimonial.trip}</div>
-            </div>
-          ))}
+        <div className="reviews-container">
+          <div 
+            className="elfsight-app-c99f0272-00e3-41ef-8033-3d7f6155d682" 
+            data-elfsight-app-lazy
+          ></div>
         </div>
       </section>
 
