@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Plane, Heart, ChevronDown, Bell, MapPin } from 'lucide-react';
+import { Menu, X, Heart, ChevronDown, Bell, MapPin } from 'lucide-react';
 import './navbar.style.scss';
+import logo from '../../../assets/Images/Logo travelweb.png';
 
 interface DropdownItem {
   name: string;
@@ -112,7 +113,7 @@ const Navbar: React.FC = () => {
     }
   };
 
-    const handleBookNowClick = () => {
+  const handleBookNowClick = () => {
     window.location.href = '/contact';
     if (isMobileView) {
       handleMobileClose();
@@ -131,7 +132,7 @@ const Navbar: React.FC = () => {
         <div className="navbar-container">
           <a href="/" className="navbar-logo" onClick={handleLogoClick} aria-label="Go to homepage">
             <div className="logo-wrapper">
-              <Plane className="logo-icon" size={32} />
+              <img src={logo} alt="Curiosity Tour & Travels Logo" className="logo-icon" />
             </div>
             <div className="logo-content">
               <span className="logo-text">Curiosity Tour & Travels</span>
@@ -191,9 +192,6 @@ const Navbar: React.FC = () => {
             <button className="icon-btn" aria-label="Favorites">
               <Heart size={20} />
             </button>
-            {/* <button className="icon-btn" aria-label="User profile">
-              <User size={20} />
-            </button> */}
             <button className="btn-primary" onClick={handleBookNowClick}>
               <MapPin size={18} />
               <span className="btn-text">Book Now</span>
@@ -216,7 +214,7 @@ const Navbar: React.FC = () => {
         <div className="mobile-menu-header">
           <a href="/" className="mobile-logo" onClick={handleLogoClick} aria-label="Go to homepage">
             <div className="mobile-logo-wrapper">
-              <Plane className="mobile-logo-icon" size={28} />
+              <img src={logo} alt="Curiosity Tour & Travels Logo" className="mobile-logo-icon" />
             </div>
             <div className="mobile-logo-content">
               <span className="mobile-logo-text">Curiosity</span>
@@ -295,9 +293,6 @@ const Navbar: React.FC = () => {
               <button className="mobile-icon-btn" aria-label="Favorites">
                 <Heart size={20} />
               </button>
-              {/* <button className="mobile-icon-btn" aria-label="User profile">
-                <User size={20} />
-              </button> */}
             </div>
           </div>
         </div>
