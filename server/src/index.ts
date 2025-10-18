@@ -1,9 +1,11 @@
 import express from "express";
 import pkg from "pg";
 import cors from "cors";
+import contactRouter from "./routes/contactRoutes"; // Import the router
 
 const { Pool } = pkg;
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
@@ -12,6 +14,9 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL, // from Neon
   ssl: { rejectUnauthorized: false },
 });
+
+// Mount the contact router
+app.use("/api", contactRouter);
 
 // ✅ Add Destination
 app.post("/api/destinations", async (req, res) => {
@@ -38,6 +43,7 @@ app.get("/api/destinations", async (req, res) => {
     res.status(500).json({ success: false });
   }
 });
+
 // ✅ Add Package
 app.post("/api/packages", async (req, res) => {
   const { title, price, duration, description } = req.body;
@@ -48,7 +54,7 @@ app.post("/api/packages", async (req, res) => {
     );
     res.json({ success: true, package: result.rows[0] });
   } catch (err) {
-    res.status(500).json({ success: false});
+    res.status(500).json({ success: false });
   }
 });
 
@@ -57,7 +63,6 @@ app.get("/api/packages", async (req, res) => {
   const result = await pool.query("SELECT * FROM packages ORDER BY id ASC");
   res.json(result.rows);
 });
-
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));

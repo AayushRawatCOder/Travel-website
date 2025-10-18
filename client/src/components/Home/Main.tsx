@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MapPin, Calendar, ArrowRight, Star, Clock, ChevronLeft, ChevronRight, CheckCircle, Phone, User, Shield, Heart, Mountain, Compass, Sparkles, Award, Facebook, Twitter, Instagram, Linkedin, Mail, Users, Headphones, Globe } from 'lucide-react';
+import { MapPin, Calendar, ArrowRight, Star, Clock, ChevronLeft, ChevronRight, CheckCircle, Phone, User, Shield, Heart, Mountain, Compass, Sparkles, Award, Facebook, Instagram,Mail, Users, Headphones, Globe, MessageCircle } from 'lucide-react';
 import './Main.style.scss';
 import { destinations } from '../../data/destinations';
 import { useNavigate } from 'react-router-dom';
@@ -406,63 +406,113 @@ const HomePage = () => {
         </div>
       </section>
 
-      <footer className="footer" aria-label="Footer">
-        <div className="footer-content">
-          <div className="footer-section brand">
-            <div className="footer-logo">
-              <MapPin size={32} aria-hidden="true" />
-              <span>IndiaWander</span>
-            </div>
-            <p>Your trusted companion for exploring the incredible beauty and diversity of India.</p>
-            <div className="footer-social">
-              <a href="#" aria-label="Facebook"><Facebook size={18} /></a>
-              <a href="#" aria-label="Twitter"><Twitter size={18} /></a>
-              <a href="#" aria-label="Instagram"><Instagram size={18} /></a>
-              <a href="#" aria-label="LinkedIn"><Linkedin size={18} /></a>
-            </div>
-          </div>
-          <div className="footer-section">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="#destinations">Destinations</a></li>
-              <li><a href="#packages">Packages</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
-          <div className="footer-section">
-            <h4>Contact Info</h4>
-            <ul className="contact-list">
-              <li>
-                <Mail size={16} />
-                <span>info@indiawander.com</span>
-              </li>
-              <li>
-                <Phone size={16} />
-                <span>+91 123-456-7890</span>
-              </li>
-              <li>
-                <MapPin size={16} />
-                <span>Mumbai, Maharashtra</span>
-              </li>
-            </ul>
-          </div>
-          <div className="footer-section">
-            <h4>Newsletter</h4>
-            <p>Subscribe for exclusive deals and travel inspiration</p>
-            <div className="newsletter">
-              <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
-              <button aria-label="Subscribe to newsletter">
-                <ArrowRight size={18} />
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <p>&copy; 2025 IndiaWander. All rights reserved.</p>
-        </div>
-      </footer>
+<footer className="footer" aria-label="Footer">
+  <div className="footer-content">
+    <div className="footer-section brand">
+      <div className="footer-logo">
+        <MapPin size={32} aria-hidden="true" />
+        <span>Curiosity Tours & Travels</span>
+      </div>
+      <p>Your trusted companion for exploring the breathtaking beauty of Kashmir and beyond. Creating unforgettable travel experiences since years.</p>
+      <div className="footer-social">
+        <a 
+          href="https://www.facebook.com/share/16KFnrUrvv/?mibextid=wwXIfr" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <Facebook size={18} />
+        </a>
+        <a 
+          href="https://www.instagram.com/curiosity_travels?igsh=MWRzMTRocTk0M204NA%3D%3D&utm_source=qr" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
+          <Instagram size={18} />
+        </a>
+        <a 
+          href="http://wa.me/917006612065" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          aria-label="WhatsApp"
+        >
+          <MessageCircle size={18} />
+        </a>
+        <a 
+          href="mailto:info@curiositytours.in" 
+          aria-label="Email"
+        >
+          <Mail size={18} />
+        </a>
+      </div>
+    </div>
+    <div className="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="/destinations">Destinations</a></li>
+        <li><a href="/packages">Tour Packages</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="/reviews">Reviews</a></li>
+      </ul>
+    </div>
+    <div className="footer-section">
+      <h4>Popular Destinations</h4>
+      <ul>
+        <li><a href="/destinations/srinagar">Srinagar</a></li>
+        <li><a href="/destinations/gulmarg">Gulmarg</a></li>
+        <li><a href="/destinations/pahalgam">Pahalgam</a></li>
+        <li><a href="/destinations/sonmarg">Sonmarg</a></li>
+        <li><a href="/destinations/kashmir">Kashmir Valley</a></li>
+      </ul>
+    </div>
+    <div className="footer-section">
+      <h4>Contact Info</h4>
+      <ul className="contact-list">
+        <li>
+          <Mail size={16} />
+          <a href="mailto:info@curiositytours.in">info@curiositytours.in</a>
+        </li>
+        <li>
+          <Phone size={16} />
+          <a href="tel:+919797718559">+91 97977 18559</a>
+        </li>
+        <li>
+          <Phone size={16} />
+          <a href="tel:+917006612065">+91 70066 12065</a>
+        </li>
+        <li>
+          <MapPin size={16} />
+          <span>Rengrez Complex, Magam 193401</span>
+        </li>
+        <li>
+          <MessageCircle size={16} />
+          <a href="http://wa.me/917006612065" target="_blank" rel="noopener noreferrer">WhatsApp Us</a>
+        </li>
+      </ul>
+    </div>
+    <div className="footer-section">
+      <h4>Newsletter</h4>
+      <p>Subscribe for exclusive deals and travel inspiration</p>
+      <div className="newsletter">
+        <input type="email" placeholder="Your email" aria-label="Email for newsletter" />
+        <button aria-label="Subscribe to newsletter">
+          <ArrowRight size={18} />
+        </button>
+      </div>
+      <div className="footer-links">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-conditions">Terms & Conditions</a>
+      </div>
+    </div>
+  </div>
+  <div className="footer-bottom">
+    <p>&copy; 2025 Curiosity Tours & Travels. All rights reserved.</p>
+    <p className="footer-tagline">Crafted with ❤️ for travelers</p>
+  </div>
+</footer>
+
     </div>
   );
 };

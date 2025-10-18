@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Clock, MessageCircle, Facebook, Twitter, Instagram, Linkedin, Globe, Calendar, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Clock, MessageCircle, Facebook, Instagram, Globe, CheckCircle } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import './ContactUs.style.scss';
 import axios from 'axios';
 
@@ -13,31 +14,28 @@ const ContactUs = () => {
     message: '',
   });
   const [status, setStatus] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      const res = await axios.post('http://localhost:5000/api/contacts', formData);
+      if (res.data.success) {
+        setStatus('✅ Message sent successfully!');
+        setFormData({ name: '', email: '', inquiryType: 'general', travelDate: '', destination: '', message: '' });
+      }
+    } catch (err) {
+      setStatus('❌ Failed to send message. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post('http://localhost:5000/api/contact', formData);
-      if (res.data.success) {
-        setStatus('✅ Message sent successfully!');
-        setFormData({
-          name: '',
-          email: '',
-          inquiryType: 'general',
-          travelDate: '',
-          destination: '',
-          message: '',
-        });
-      }
-    } catch (err) {
-      setStatus('❌ Failed to send message. Please try again.');
-    }
   };
 
   const faqs = [
@@ -86,7 +84,17 @@ const ContactUs = () => {
                     </div>
                     <div>
                       <h4>Office Address</h4>
-                      <p>123 Wanderlust Lane, Travel City, Mumbai 400001</p>
+                      <p>Rengrez Complex, First Floor</p>
+                      <p>Near Jamia Masjid, Magam 193401</p>
+                      <p>Kashmir, India</p>
+                      <a 
+                        href="https://maps.app.goo.gl/xBaZDeqhhhk4DRFU6?g_st=ipc" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="location-link"
+                      >
+                        View on Google Maps
+                      </a>
                     </div>
                   </div>
 
@@ -95,9 +103,13 @@ const ContactUs = () => {
                       <Phone size={24} aria-hidden="true" />
                     </div>
                     <div>
-                      <h4>Phone Number</h4>
-                      <p>+91 123-456-7890</p>
-                      <p>+91 098-765-4321</p>
+                      <h4>Phone Numbers</h4>
+                      <p>
+                        <a href="tel:+919797718559">+91 97977 18559</a>
+                      </p>
+                      <p>
+                        <a href="tel:+917006612065">+91 70066 12065</a>
+                      </p>
                     </div>
                   </div>
 
@@ -107,8 +119,28 @@ const ContactUs = () => {
                     </div>
                     <div>
                       <h4>Email Address</h4>
-                      <p>info@indiawander.com</p>
-                      <p>support@indiawander.com</p>
+                      <p>
+                        <a href="mailto:info@curiositytours.in">info@curiositytours.in</a>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="info-item">
+                    <div className="info-icon whatsapp-icon">
+                      <FaWhatsapp size={24} aria-hidden="true" />
+                    </div>
+                    <div>
+                      <h4>WhatsApp</h4>
+                      <p>
+                        <a 
+                          href="http://wa.me/917006612065" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="whatsapp-link"
+                        >
+                          Chat with us on WhatsApp
+                        </a>
+                      </p>
                     </div>
                   </div>
 
@@ -118,9 +150,8 @@ const ContactUs = () => {
                     </div>
                     <div>
                       <h4>Office Hours</h4>
-                      <p>Monday - Friday: 9:00 AM - 7:00 PM</p>
-                      <p>Saturday: 10:00 AM - 5:00 PM</p>
-                      <p>Sunday: Closed</p>
+                      <p>Monday - Saturday: 9:00 AM - 8:00 PM</p>
+                      <p>Sunday: 10:00 AM - 6:00 PM</p>
                     </div>
                   </div>
                 </div>
@@ -129,17 +160,39 @@ const ContactUs = () => {
               <div className="social-card">
                 <h3 className="social-title">Connect With Us</h3>
                 <div className="social-links">
-                  <a href="#" className="social-link" aria-label="Facebook">
+                  <a 
+                    href="https://www.facebook.com/share/16KFnrUrvv/?mibextid=wwXIfr" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="social-link facebook" 
+                    aria-label="Facebook"
+                  >
                     <Facebook size={20} />
                   </a>
-                  <a href="#" className="social-link" aria-label="Twitter">
-                    <Twitter size={20} />
-                  </a>
-                  <a href="#" className="social-link" aria-label="Instagram">
+                  <a 
+                    href="https://www.instagram.com/curiosity_travels?igsh=MWRzMTRocTk0M204NA%3D%3D&utm_source=qr" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="social-link instagram" 
+                    aria-label="Instagram"
+                  >
                     <Instagram size={20} />
                   </a>
-                  <a href="#" className="social-link" aria-label="LinkedIn">
-                    <Linkedin size={20} />
+                  <a 
+                    href="http://wa.me/917006612065" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="social-link whatsapp" 
+                    aria-label="WhatsApp"
+                  >
+                    <FaWhatsapp size={20} />
+                  </a>
+                  <a 
+                    href="mailto:info@curiositytours.in" 
+                    className="social-link email" 
+                    aria-label="Email"
+                  >
+                    <Mail size={20} />
                   </a>
                 </div>
               </div>
@@ -228,7 +281,7 @@ const ContactUs = () => {
                       id="destination-input"
                       type="text"
                       name="destination"
-                      placeholder="e.g., Kerala, Rajasthan, Goa"
+                      placeholder="e.g., Kashmir, Gulmarg, Pahalgam"
                       value={formData.destination}
                       onChange={handleChange}
                       aria-label="Preferred Destination"
@@ -252,9 +305,9 @@ const ContactUs = () => {
                   </div>
                 </div>
 
-                <button type="submit" className="submit-btn" aria-label="Send Message">
+                <button type="submit" className="submit-btn" aria-label="Send Message" disabled={isLoading}>
                   <Send size={20} aria-hidden="true" />
-                  <span>Send Message</span>
+                  <span>{isLoading ? 'Sending...' : 'Send Message'}</span>
                 </button>
 
                 {status && (
@@ -299,27 +352,36 @@ const ContactUs = () => {
                 <span>VISIT OUR OFFICE</span>
               </div>
               <h2 className="map-title">Find Us Here</h2>
-              <p className="map-description">Stop by our office for personalized travel planning assistance. Our expert team is ready to help you create your dream vacation.</p>
+              <p className="map-description">Stop by our office for personalized travel planning assistance. Our expert team is ready to help you create your dream vacation to Kashmir and beyond.</p>
               <div className="map-features">
                 <div className="map-feature">
-                  <Calendar size={20} />
-                  <span>Schedule a Visit</span>
+                  <MapPin size={20} />
+                  <span>Rengrez Complex, Magam</span>
                 </div>
                 <div className="map-feature">
                   <Phone size={20} />
-                  <span>Call Ahead</span>
+                  <span>Call: +91 70066 12065</span>
                 </div>
               </div>
+              <a 
+                href="https://maps.app.goo.gl/xBaZDeqhhhk4DRFU6?g_st=ipc" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="directions-btn"
+              >
+                <MapPin size={18} />
+                <span>Get Directions</span>
+              </a>
             </div>
             <div className="map-embed">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609823277!2d72.74109995709657!3d19.082177784059642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.8!2d74.6!3d34.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDAwJzAwLjAiTiA3NMKwMzYnMDAuMCJF!5e0!3m2!1sen!2sin!4v1234567890"
                 width="100%"
                 height="100%"
                 style={{ border: 0, borderRadius: '20px' }}
                 allowFullScreen
                 loading="lazy"
-                title="Office Location Map"
+                title="Curiosity Tours Office Location"
               ></iframe>
             </div>
           </div>
