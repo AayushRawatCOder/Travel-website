@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Target, Heart, Award, Users, Globe, TrendingUp, Star, CheckCircle, Phone, Mail, Shield, Mountain, Sparkles, ArrowRight, Camera, Map, Plane, Compass, Clock, Calendar, ThumbsUp, MessageCircle, Quote, Snowflake, Sun, Palmtree, Wind, Eye, Briefcase, Layers, ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Target, Heart, Award, Users, Globe, TrendingUp, Star, CheckCircle, Phone, Mail, Shield, Mountain, Sparkles, ArrowRight, Camera, Map, Plane, Compass, Clock, Calendar, ThumbsUp, Quote, Snowflake, Sun, Palmtree, Wind, Eye, Briefcase, Layers, ChevronRight } from 'lucide-react';
 import './About.style.scss';
 import founderImg from '../../assets/Images/founder and ceo.jpg'
 
 const AboutPage = () => {
+  const navigate = useNavigate();
   const [activeValue, setActiveValue] = useState(0);
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(interval);
+    const script = document.createElement('script');
+    script.src = 'https://static.elfsight.com/platform/platform.js';
+    script.async = true;
+    script.setAttribute('data-use-service-core', '');
+    document.body.appendChild(script);
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
   }, []);
 
   const stats = [
@@ -128,7 +136,7 @@ const AboutPage = () => {
     { 
       year: '2013', 
       title: 'The Beginning', 
-      description: 'Dilawar Hussain founded the agency in Magam with a vision to showcase Kashmir & Ladakh\'s authentic beauty to the world.',
+      description: 'Dilawar Hussain founded Curiosity Tour and Travels in the heart of Kashmir with a passionate dream to showcase the region\'s authentic beauty.',
       icon: <Plane size={28} /> 
     },
     { 
@@ -168,33 +176,6 @@ const AboutPage = () => {
     { icon: <Star size={32} />, title: 'Top Rated Agency 2024', org: 'Google Reviews' },
     { icon: <Shield size={32} />, title: 'Trusted Travel Partner', org: 'Verified by travelers' },
     { icon: <Heart size={32} />, title: 'Sustainable Tourism', org: 'Eco-Friendly Practices' },
-  ];
-
-  const testimonials = [
-    {
-      name: 'Priya & Rahul Sharma',
-      location: 'Mumbai, India',
-      text: 'Our honeymoon in Kashmir was magical thanks to Dilawar\'s team. Every detail was perfect, from the houseboat stay to the shikara rides. Truly unforgettable!',
-      rating: 5,
-      package: 'Honeymoon Package',
-      image: 'https://images.unsplash.com/photo-1494790778202-cad84cf45f1d?w=200&q=80'
-    },
-    {
-      name: 'Vikram Malhotra',
-      location: 'Delhi, India',
-      text: 'The Ladakh trek was challenging but amazing. Our guide was knowledgeable and the arrangements were top-notch. Highly recommend for adventure seekers!',
-      rating: 5,
-      package: 'Trekking Adventure',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80'
-    },
-    {
-      name: 'Ananya Reddy Family',
-      location: 'Bangalore, India',
-      text: 'Perfect family vacation! The itinerary balanced adventure and relaxation. Kids loved the pony rides in Pahalgam. Thank you for the memories!',
-      rating: 5,
-      package: 'Family Tour',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80'
-    },
   ];
 
   const whyChooseUs = [
@@ -242,16 +223,6 @@ const AboutPage = () => {
           </div>
           <h1 className="hero-title">Your Gateway to<br />Kashmir & Ladakh</h1>
           <p className="hero-subtitle">Crafting unforgettable Himalayan journeys since 2013. Experience the magic of Kashmir's valleys and Ladakh's high-altitude deserts with local experts who call these mountains home.</p>
-          {/* <div className="hero-buttons">
-            <button className="hero-btn primary">
-              <span>Start Your Journey</span>
-              <ArrowRight size={20} />
-            </button>
-            <button className="hero-btn secondary">
-              <Phone size={20} />
-              <span>Call Us Now</span>
-            </button>
-          </div> */}
         </div>
         <div className="hero-scroll">
           <span>Scroll to explore</span>
@@ -362,7 +333,7 @@ const AboutPage = () => {
                 <Phone size={18} />
                 <span>Call</span>
               </a>
-              <a href="curiositytravels12@gmail.com" className="contact-btn">
+              <a href="mailto:info@curiositytours.in" className="contact-btn">
                 <Mail size={18} />
                 <span>Send Email</span>
               </a>
@@ -380,9 +351,10 @@ const AboutPage = () => {
               <span>OUR STORY</span>
             </div>
             <h2 className="section-title">A Journey Born from Passion</h2>
-            <p className="story-paragraph">In 2013, Dilawar Hussain transformed his lifelong passion for the Himalayas into a mission to share Kashmir and Ladakh's extraordinary beauty with the world. Growing up in Magam, surrounded by snow-capped peaks and pristine valleys, he witnessed firsthand the transformative power of these landscapes.</p>
-            <p className="story-paragraph">What began as a modest local travel service has blossomed into one of Kashmir and Ladakh's most trusted travel agencies. We've guided over 5,000 travelers through these magnificent regions, crafting personalized journeys that honor both the land and its people.</p>
-            <p className="story-paragraph">Our philosophy is rooted in authenticity and sustainability. We don't just plan trips—we curate life-changing experiences that connect travelers with local cultures, pristine nature, and the spiritual essence of the Himalayas. Every itinerary is designed to create lasting memories while supporting local communities.</p>
+            <p className="story-paragraph">Founded a decade ago by Dilawar Hussain in the heart of Kashmir, Curiosity Tour and Travels has grown from a passionate dream into a trusted name in experiential travel. What began as a small venture rooted in love for the valley has blossomed into a company known for crafting unforgettable journeys across the majestic landscapes of Kashmir.</p>
+            <p className="story-paragraph">Over the years, we've guided thousands of travelers—from solo wanderers to families and honeymooners—through snow-capped peaks, serene lakes, vibrant bazaars, and hidden cultural gems. Each trip is a story, and every smiling face we've served is a chapter in our legacy.</p>
+            <p className="story-paragraph">Our strength lies in personalized itineraries, local expertise, and a commitment to making every moment magical. Whether it's a sunrise shikara ride or a trek through alpine meadows, we ensure your curiosity is rewarded with wonder.</p>
+            <p className="story-paragraph">At Curiosity Tour and Travels, we don't just take you places—we create memories that last a lifetime.</p>
             <div className="story-features">
               <div className="feature-item">
                 <CheckCircle size={20} />
@@ -569,54 +541,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="testimonials-section">
-        <div className="section-header">
-          <div className="section-badge">
-            <MessageCircle size={14} />
-            <span>TESTIMONIALS</span>
-          </div>
-          <h2 className="section-title">Stories from Our Travelers</h2>
-          <p className="section-subtitle">Real experiences from real people who explored Kashmir & Ladakh with us</p>
-        </div>
-        <div className="testimonials-slider">
-          {testimonials.map((testimonial, index) => (
-            <div 
-              key={index} 
-              className={`testimonial-card ${activeTestimonial === index ? 'active' : ''}`}
-            >
-              <div className="testimonial-header">
-                <div className="testimonial-image" style={{ backgroundImage: `url(${testimonial.image})` }}></div>
-                <div className="testimonial-info">
-                  <h4>{testimonial.name}</h4>
-                  <p>{testimonial.location}</p>
-                  <div className="testimonial-rating">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} size={16} fill="#f59e0b" color="#f59e0b" />
-                    ))}
-                  </div>
-                </div>
-                <Quote size={32} />
-              </div>
-              <p className="testimonial-text">{testimonial.text}</p>
-              <div className="testimonial-package">
-                <CheckCircle size={14} />
-                <span>{testimonial.package}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="testimonial-dots">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              className={`dot ${activeTestimonial === index ? 'active' : ''}`}
-              onClick={() => setActiveTestimonial(index)}
-              aria-label={`Testimonial ${index + 1}`}
-            />
-          ))}
-        </div>
-      </section>
-
       <section className="achievements-section">
         <div className="section-header">
           <div className="section-badge">
@@ -642,10 +566,10 @@ const AboutPage = () => {
         <div className="section-header">
           <div className="section-badge">
             <Star size={14} />
-            <span>GOOGLE REVIEWS</span>
+            <span>CUSTOMER REVIEWS</span>
           </div>
           <h2 className="section-title">What Our Travelers Say</h2>
-          <p className="section-subtitle">Authentic reviews from our happy customers</p>
+          <p className="section-subtitle">Authentic reviews from our happy customers on Google</p>
         </div>
         <div className="reviews-container">
           <div 
@@ -665,15 +589,15 @@ const AboutPage = () => {
           <h2 className="cta-title">Ready for Your Himalayan Adventure?</h2>
           <p className="cta-subtitle">Let us create a personalized journey through Kashmir & Ladakh tailored just for you. Our local experts are ready to bring your dreams to life.</p>
           <div className="cta-buttons">
-            <button className="cta-btn primary">
+            <button className="cta-btn primary" onClick={() => navigate('/contact')}>
               <Calendar size={20} />
               <span>Plan Your Trip</span>
               <ArrowRight size={20} />
             </button>
-            <button className="cta-btn secondary">
+            <a href="tel:+917006612065" className="cta-btn secondary">
               <Phone size={20} />
-              <span>+91 123-456-7890</span>
-            </button>
+              <span>+917006612065</span>
+            </a>
           </div>
           <div className="cta-features">
             <div className="cta-feature">
@@ -691,6 +615,7 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
+
     </div>
   );
 };
