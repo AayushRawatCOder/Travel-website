@@ -4,7 +4,6 @@ import './Main.style.scss';
 import { destinations } from '../../data/destinations';
 import { useNavigate } from 'react-router-dom';
 
-
 const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedTheme, setSelectedTheme] = useState<string | null>(null);
@@ -21,6 +20,21 @@ const HomePage = () => {
       setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
     }, 5000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://static.elfsight.com/platform/platform.js';
+    script.setAttribute('data-use-service-core', '');
+    script.defer = true;
+    document.body.appendChild(script);
+
+    return () => {
+      const existingScript = document.querySelector('script[src="https://static.elfsight.com/platform/platform.js"]');
+      if (existingScript) {
+        document.body.removeChild(existingScript);
+      }
+    };
   }, []);
 
   const carouselImages = [
@@ -59,19 +73,12 @@ const HomePage = () => {
     { icon: <CheckCircle size={48} />, title: 'Easy Refunds', desc: 'Hassle-free refund process for flexible and worry-free planning.', color: '#f59e0b', stat: '100% Guarantee', image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80' },
   ].map((item, index) => ({ ...item, index }));
 
-  const testimonials = [
-    { photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80', name: 'Priya Sharma', location: 'Mumbai', review: 'An absolutely unforgettable trip to Kerala! Every arrangement was perfect and the service exceeded all my expectations.', rating: 5, alt: 'Priya Sharma testimonial' },
-    { photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80', name: 'Raj Patel', location: 'Delhi', review: 'The Ladakh adventure was thrilling beyond words. Highly recommend their professional and attentive services.', rating: 5, alt: 'Raj Patel testimonial' },
-    { photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80', name: 'Anita Verma', location: 'Bangalore', review: 'Spiritual journey to Varanasi was truly soul-touching. The guides were knowledgeable and respectful.', rating: 5, alt: 'Anita Verma testimonial' },
-  ].map((test, index) => ({ ...test, index }));
-
   const blogs = [
     { title: 'Hidden Gems of India', image: 'https://images.unsplash.com/photo-1548013146-13a21f08d0f7?w=600&q=80', excerpt: 'Discover lesser-known destinations across India that offer unique and authentic experiences.', date: 'March 15, 2025', category: 'Destinations', alt: 'Hidden gems India exploration' },
     { title: 'Kerala Backwaters Guide', image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80', excerpt: 'Everything you need to know for planning the perfect backwater journey in Kerala.', date: 'March 12, 2025', category: 'Travel Tips', alt: 'Kerala backwaters complete guide' },
     { title: 'Ladakh Adventures', image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=600&q=80', excerpt: 'From mountain biking to high-altitude trekking, explore the thrills that Ladakh offers.', date: 'March 10, 2025', category: 'Adventure', alt: 'Ladakh adventure activities' },
   ].map((blog, index) => ({ ...blog, index }));
 
-  // Map destinations to include index
   const indexedDestinations = destinations.map((dest, index) => ({ ...dest, index }));
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -309,24 +316,8 @@ const HomePage = () => {
           <h2 className="section-title">Traveler Stories</h2>
           <p className="section-subtitle">Real experiences and feedback from our satisfied explorers</p>
         </div>
-        <div className="testimonials-grid">
-          {testimonials.map((test) => (
-            <div key={test.index} className="testimonial-card" style={{ '--index': test.index } as React.CSSProperties}>
-              <div className="testimonial-header">
-                <img src={test.photo} alt={test.alt} className="testimonial-photo" />
-                <div className="testimonial-info">
-                  <h4 className="testimonial-name">{test.name}</h4>
-                  <p className="testimonial-location">{test.location}</p>
-                </div>
-              </div>
-              <div className="testimonial-rating">
-                {[...Array(test.rating)].map((_, i) => (
-                  <Star key={i} size={14} fill="currentColor" />
-                ))}
-              </div>
-              <p className="testimonial-review">"{test.review}"</p>
-            </div>
-          ))}
+        <div className="testimonials-container">
+          <div className="elfsight-app-c99f0272-00e3-41ef-8033-3d7f6155d682"></div>
         </div>
       </section>
 
@@ -364,7 +355,7 @@ const HomePage = () => {
             <h2 className="section-title">Ready for Your Dream Adventure?</h2>
             <p className="section-subtitle">Share your details and let our experts craft the perfect journey for you</p>
           </div>
-          <div className="cta-form" onClick={handleSubmit}>
+          <form className="cta-form" onSubmit={handleSubmit}>
             <div className="input-group">
               <User className="form-icon" size={18} />
               <input 
@@ -402,7 +393,7 @@ const HomePage = () => {
               <span>Start Planning</span>
               <ArrowRight size={18} />
             </button>
-          </div>
+          </form>
         </div>
       </section>
 

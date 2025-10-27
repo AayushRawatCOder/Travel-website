@@ -477,6 +477,341 @@ input::placeholder {
   }
 }
 
+
+  .testimonials-section {
+  background: linear-gradient(135deg, $light-mint 0%, $light-blue 50%, $warm-bg 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    left: -15%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .section-header {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.testimonials-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 3vw, 3rem);
+  border-radius: 32px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+
+  @media (max-width: 1024px) {
+    padding: clamp(2rem, 4vw, 3rem) clamp(1.25rem, 2.5vw, 2rem);
+    border-radius: 28px;
+  }
+
+  @media (max-width: 768px) {
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.5rem);
+    border-radius: 24px;
+    box-shadow: $shadow-lg;
+  }
+
+  @media (max-width: 480px) {
+    padding: clamp(1.25rem, 2.5vw, 2rem) clamp(0.875rem, 1.5vw, 1.25rem);
+    border-radius: 20px;
+  }
+}
+
+.elfsight-app-c99f0272-00e3-41ef-8033-3d7f6155d682 {
+  width: 100%;
+  min-height: 400px;
+  position: relative;
+
+  @media (max-width: 768px) {
+    min-height: 350px;
+  }
+
+  @media (max-width: 480px) {
+    min-height: 300px;
+  }
+}
+
+.eapps-google-reviews-badge {
+  background: linear-gradient(135deg, $off-white 0%, rgba(219, 234, 254, 0.8) 100%) !important;
+  border-radius: 20px !important;
+  padding: 1.5rem !important;
+  box-shadow: $shadow-md !important;
+  border: 2px solid rgba(6, 182, 212, 0.2) !important;
+  transition: $transition !important;
+
+  &:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: $shadow-lg, 0 0 30px rgba(6, 182, 212, 0.3) !important;
+    border-color: rgba(6, 182, 212, 0.4) !important;
+  }
+}
+
+.eapps-google-reviews-reviews-item {
+  background: linear-gradient(135deg, $light 0%, rgba(236, 253, 245, 0.5) 100%) !important;
+  border-radius: 24px !important;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) !important;
+  margin-bottom: 1.5rem !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  border: 2px solid rgba(20, 184, 166, 0.2) !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+
+  &:hover {
+    transform: translateY(-6px) scale(1.01) !important;
+    box-shadow: $shadow-lg, 0 0 40px rgba(20, 184, 166, 0.25) !important;
+    border-color: $accent-teal !important;
+  }
+
+  @media (max-width: 768px) {
+    padding: clamp(1rem, 2vw, 1.5rem) !important;
+    margin-bottom: 1.25rem !important;
+    border-radius: 20px !important;
+  }
+}
+
+.eapps-google-reviews-name {
+  font-weight: 800 !important;
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem) !important;
+  background: linear-gradient(135deg, $primary-dark 0%, $secondary 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  letter-spacing: -0.03em !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.eapps-google-reviews-date,
+.eapps-google-reviews-business-location {
+  color: $gray !important;
+  font-size: clamp(0.8125rem, 1.8vw, 0.9375rem) !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.eapps-google-reviews-rating {
+  margin: 0.75rem 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.375rem !important;
+}
+
+.eapps-google-reviews-star {
+  color: $accent-amber !important;
+  font-size: 1.125rem !important;
+  filter: drop-shadow(0 2px 4px rgba(245, 158, 11, 0.3)) !important;
+}
+
+.eapps-google-reviews-text {
+  color: $gray-dark !important;
+  font-size: clamp(0.9375rem, 2vw, 1.0625rem) !important;
+  line-height: 1.75 !important;
+  font-weight: 400 !important;
+  font-style: italic !important;
+  margin-top: 1rem !important;
+  padding: 1rem 0 !important;
+  border-top: 2px solid rgba(20, 184, 166, 0.15) !important;
+  position: relative !important;
+
+  &::before {
+    content: '"';
+    position: absolute;
+    top: -0.25rem;
+    left: -0.5rem;
+    font-size: 3rem;
+    color: rgba(8, 145, 178, 0.15);
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+}
+
+.eapps-google-reviews-avatar {
+  width: clamp(56px, 7vw, 72px) !important;
+  height: clamp(56px, 7vw, 72px) !important;
+  border-radius: 50% !important;
+  border: 3px solid $primary !important;
+  box-shadow: 0 4px 16px rgba(8, 145, 178, 0.35) !important;
+  object-fit: cover !important;
+  transition: $transition !important;
+
+  &:hover {
+    transform: scale(1.08) !important;
+    border-color: $secondary !important;
+    box-shadow: 0 6px 24px rgba(249, 115, 22, 0.4) !important;
+  }
+}
+
+.eapps-google-reviews-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.25rem !important;
+  margin-bottom: 1.25rem !important;
+  padding-bottom: 1rem !important;
+  border-bottom: 2px solid rgba(20, 184, 166, 0.15) !important;
+}
+
+.eapps-google-reviews-business-logo {
+  width: clamp(44px, 6vw, 56px) !important;
+  height: clamp(44px, 6vw, 56px) !important;
+  border-radius: 14px !important;
+  box-shadow: $shadow-sm !important;
+}
+
+.eapps-google-reviews-business-name {
+  font-size: clamp(1.0625rem, 2.2vw, 1.25rem) !important;
+  font-weight: 700 !important;
+  color: $dark-text !important;
+}
+
+.eapps-google-reviews-business-rating {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  font-size: clamp(0.9375rem, 2vw, 1.0625rem) !important;
+  font-weight: 700 !important;
+  color: $accent-amber !important;
+  padding: 0.5rem 1rem !important;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(251, 146, 60, 0.15) 100%) !important;
+  border-radius: 50px !important;
+  border: 2px solid rgba(245, 158, 11, 0.3) !important;
+}
+
+.eapps-google-reviews-more {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  padding: 0.875rem 1.75rem !important;
+  background: linear-gradient(135deg, $secondary 0%, $accent-coral 100%) !important;
+  color: $light !important;
+  border: none !important;
+  border-radius: 50px !important;
+  font-weight: 700 !important;
+  font-size: clamp(0.875rem, 2vw, 1rem) !important;
+  cursor: pointer !important;
+  transition: $transition !important;
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4) !important;
+  text-decoration: none !important;
+  margin: 2rem auto 0 !important;
+  display: block !important;
+  width: fit-content !important;
+
+  &:hover {
+    background: linear-gradient(135deg, $secondary-light 0%, $secondary 100%) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 30px rgba(251, 146, 60, 0.5) !important;
+  }
+}
+
+.eapps-google-reviews-load-more {
+  text-align: center !important;
+  margin-top: 2.5rem !important;
+}
+
+.eapps-google-reviews-slider-navigation {
+  button {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 2px solid rgba(8, 145, 178, 0.3) !important;
+    color: $primary !important;
+    width: clamp(44px, 5vw, 56px) !important;
+    height: clamp(44px, 5vw, 56px) !important;
+    border-radius: 50% !important;
+    transition: $transition !important;
+    box-shadow: $shadow-md !important;
+
+    &:hover {
+      background: $primary !important;
+      color: $light !important;
+      border-color: $primary !important;
+      transform: scale(1.12) !important;
+      box-shadow: $shadow-lg, 0 0 25px rgba(8, 145, 178, 0.5) !important;
+    }
+  }
+}
+
+.eapps-google-reviews-loader {
+  border-top-color: $primary !important;
+  border-right-color: $secondary !important;
+}
+
+@keyframes reviewFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.eapps-google-reviews-reviews-item {
+  animation: reviewFadeIn 0.6s ease-out backwards !important;
+  animation-delay: calc(var(--review-index, 0) * 0.1s) !important;
+}
+
+@media (max-width: 768px) {
+  .eapps-google-reviews-reviews-item {
+    padding: clamp(1rem, 2vw, 1.25rem) !important;
+  }
+
+  .eapps-google-reviews-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+  }
+
+  .eapps-google-reviews-avatar {
+    width: 52px !important;
+    height: 52px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .eapps-google-reviews-name {
+    font-size: 1rem !important;
+  }
+
+  .eapps-google-reviews-text {
+    font-size: 0.875rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .eapps-google-reviews-more {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+
 .section-header {
   text-align: center;
   margin-bottom: clamp(2.5rem, 5vw, 4rem);
@@ -1381,9 +1716,7 @@ input::placeholder {
   margin-top: auto;
 }
 
-.testimonials-section {
-  background: linear-gradient(135deg, $light-mint 0%, $light-blue 50%, $warm-bg 100%);
-}
+
 
 .testimonials-grid {
   display: grid;
