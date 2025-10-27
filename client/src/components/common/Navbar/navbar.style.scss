@@ -73,6 +73,19 @@ body {
   }
 }
 
+.navbar-logo-section {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.2rem !important;
+  flex-shrink: 0 !important;
+}
+
+@media (max-width: 1024px) {
+  .navbar-logo-section {
+    gap: 0 !important;
+  }
+}
+
 .navbar-logo {
   display: flex !important;
   align-items: center !important;
@@ -136,7 +149,6 @@ body {
   object-fit: contain;
 }
 
-
 @media (max-width: 768px) {
   .logo-icon {
     width: 28px !important;
@@ -198,6 +210,58 @@ body {
 @media (max-width: 640px) {
   .logo-tagline {
     font-size: 0.625rem !important;
+  }
+}
+
+.license-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  background: linear-gradient(105deg, #eaf7ff 60%, #fffbe1 100%) !important;
+  border: 2px solid $accent-blue !important;
+  border-radius: 10px !important;
+  padding: 0.38rem 0.85rem !important;
+  box-shadow: 0 2px 12px 0 rgba(76,205,196,0.18) !important;
+  transition: $transition !important;
+}
+
+.license-badge:hover {
+  box-shadow: 0 3px 16px 0 rgba(76,205,196,0.28) !important;
+  transform: translateY(-1px) !important;
+}
+
+.badge-icon {
+  width: 14px !important;
+  height: 14px !important;
+  flex-shrink: 0 !important;
+}
+
+.badge-text {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.02rem !important;
+}
+
+.license-title {
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  color: $accent-blue !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+}
+
+.license-number {
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  color: $primary-dark !important;
+  letter-spacing: 0.8px !important;
+  line-height: 1 !important;
+}
+
+@media (max-width: 1024px) {
+  .license-badge {
+    display: none !important;
   }
 }
 
@@ -561,6 +625,47 @@ body {
   gap: 2rem !important;
 }
 
+.mobile-license-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
+  background: linear-gradient(105deg, #eaf7ff 60%, #fffbe1 100%) !important;
+  border: 2.5px solid $accent-blue !important;
+  border-radius: 12px !important;
+  padding: 0.65rem 1.1rem !important;
+  box-shadow: 0 3px 14px 0 rgba(76,205,196,0.22) !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.mobile-badge-icon {
+  width: 16px !important;
+  height: 16px !important;
+  flex-shrink: 0 !important;
+}
+
+.mobile-badge-text {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.15rem !important;
+}
+
+.mobile-license-title {
+  font-size: 0.88rem !important;
+  font-weight: 800 !important;
+  color: $accent-blue !important;
+  letter-spacing: 0.6px !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+}
+
+.mobile-license-number {
+  font-size: 0.95rem !important;
+  font-weight: 900 !important;
+  color: $primary-dark !important;
+  letter-spacing: 1px !important;
+  line-height: 1 !important;
+}
+
 .mobile-nav-list {
   list-style: none !important;
   display: flex !important;
@@ -569,9 +674,6 @@ body {
   flex: 1 !important;
   margin: 0 !important;
   padding: 0 !important;
-}
-
-.mobile-nav-item {
 }
 
 .mobile-nav-item:last-child {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Heart, ChevronDown, Bell, MapPin } from 'lucide-react';
+import { Menu, X, ChevronDown, MapPin } from 'lucide-react';
 import './navbar.style.scss';
 import logo from '../../../assets/Images/Logo travelweb.png';
 
@@ -43,7 +43,6 @@ const Navbar: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [activeMobileDropdown, setActiveMobileDropdown] = useState<string | null>(null);
   const [isMobileView, setIsMobileView] = useState<boolean>(typeof window !== 'undefined' ? window.innerWidth <= 1024 : false);
-  const [notificationCount] = useState<number>(3);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -130,15 +129,27 @@ const Navbar: React.FC = () => {
         aria-label="Main navigation"
       >
         <div className="navbar-container">
-          <a href="/" className="navbar-logo" onClick={handleLogoClick} aria-label="Go to homepage">
-            <div className="logo-wrapper">
-              <img src={logo} alt="Curiosity Tour & Travels Logo" className="logo-icon" />
+          <div className="navbar-logo-section">
+            <a href="/" className="navbar-logo" onClick={handleLogoClick} aria-label="Go to homepage">
+              <div className="logo-wrapper">
+                <img src={logo} alt="Curiosity Tour & Travels Logo" className="logo-icon" />
+              </div>
+              <div className="logo-content">
+                <span className="logo-text">Curiosity Tour & Travels</span>
+                <span className="logo-tagline">Explore the World</span>
+              </div>
+            </a>
+            <div className="license-badge">
+              <svg className="badge-icon" width="14" height="14" viewBox="0 0 20 20" fill="none">
+                <circle cx="10" cy="10" r="10" fill="#4ecdc4"/>
+                <path d="M9 14l5-5-1.41-1.41L9 11.17l-1.59-1.59L6 11l3 3z" fill="#fff"/>
+              </svg>
+              <div className="badge-text">
+                <span className="license-title">J&amp;K Tourism</span>
+                <span className="license-number">LICENSE NO: JKEA00004062</span>
+              </div>
             </div>
-            <div className="logo-content">
-              <span className="logo-text">Curiosity Tour & Travels</span>
-              <span className="logo-tagline">Explore the World</span>
-            </div>
-          </a>
+          </div>
 
           <ul className="navbar-menu">
             {navItems.map((item) => (
@@ -183,15 +194,15 @@ const Navbar: React.FC = () => {
           </ul>
 
           <div className="navbar-actions">
-            <button className="icon-btn notification-btn" aria-label="Notifications">
+            {/* <button className="icon-btn notification-btn" aria-label="Notifications">
               <Bell size={20} />
               {notificationCount > 0 && (
                 <span className="notification-badge">{notificationCount}</span>
               )}
-            </button>
-            <button className="icon-btn" aria-label="Favorites">
+            </button> */}
+            {/* <button className="icon-btn" aria-label="Favorites">
               <Heart size={20} />
-            </button>
+            </button> */}
             <button className="btn-primary" onClick={handleBookNowClick}>
               <MapPin size={18} />
               <span className="btn-text">Book Now</span>
@@ -227,6 +238,17 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="mobile-menu-content">
+          <div className="mobile-license-badge">
+            <svg className="mobile-badge-icon" width="16" height="16" viewBox="0 0 20 20" fill="none">
+              <circle cx="10" cy="10" r="10" fill="#4ecdc4"/>
+              <path d="M9 14l5-5-1.41-1.41L9 11.17l-1.59-1.59L6 11l3 3z" fill="#fff"/>
+            </svg>
+            <div className="mobile-badge-text">
+              <span className="mobile-license-title">Registered J&amp;K Tourism</span>
+              <span className="mobile-license-number">LICENSE NO: JKEA00004062</span>
+            </div>
+          </div>
+
           <ul className="mobile-nav-list">
             {navItems.map((item) => (
               <li key={item.name} className="mobile-nav-item">
@@ -284,15 +306,15 @@ const Navbar: React.FC = () => {
               <span className="btn-text">Book Now</span>
             </button>
             <div className="mobile-icons">
-              <button className="mobile-icon-btn notification-btn" aria-label="Notifications">
+              {/* <button className="mobile-icon-btn notification-btn" aria-label="Notifications">
                 <Bell size={20} />
                 {notificationCount > 0 && (
                   <span className="notification-badge">{notificationCount}</span>
                 )}
-              </button>
-              <button className="mobile-icon-btn" aria-label="Favorites">
+              </button> */}
+              {/* <button className="mobile-icon-btn" aria-label="Favorites">
                 <Heart size={20} />
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
