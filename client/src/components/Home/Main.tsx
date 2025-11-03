@@ -499,7 +499,7 @@ const HomePage = () => {
     </div>
   </div>
   <div className="footer-bottom">
-    <p>&copy; 2025 Curiosity Tours & Travels. All rights reserved.</p>
+    <p>&copy; CyberFort Tech. engineered in Kashmir, built for global explorers. All rights reserved.</p>
     <p className="footer-tagline">Crafted with ❤️ for travelers</p>
   </div>
 </footer>
