@@ -74,7 +74,14 @@ const HomePage = () => {
   ].map((item, index) => ({ ...item, index }));
 
   const blogs = [
-    { title: 'Hidden Gems of India', image: 'https://images.unsplash.com/photo-1548013146-13a21f08d0f7?w=600&q=80', excerpt: 'Discover lesser-known destinations across India that offer unique and authentic experiences.', date: 'March 15, 2025', category: 'Destinations', alt: 'Hidden gems India exploration' },
+    {
+  title: 'Hidden Gems of India',
+  image: 'https://travellersworldonline.com/wp-content/uploads/2024/06/Hidden-Gems-in-India.jpg',
+  excerpt: 'Discover lesser-known destinations across India that offer unique and authentic experiences.',
+  date: 'March 15, 2025',
+  category: 'Destinations',
+  alt: 'Hidden gems India exploration'
+},
     { title: 'Kerala Backwaters Guide', image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80', excerpt: 'Everything you need to know for planning the perfect backwater journey in Kerala.', date: 'March 12, 2025', category: 'Travel Tips', alt: 'Kerala backwaters complete guide' },
     { title: 'Ladakh Adventures', image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?w=600&q=80', excerpt: 'From mountain biking to high-altitude trekking, explore the thrills that Ladakh offers.', date: 'March 10, 2025', category: 'Adventure', alt: 'Ladakh adventure activities' },
   ].map((blog, index) => ({ ...blog, index }));
