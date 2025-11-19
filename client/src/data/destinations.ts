@@ -54,7 +54,7 @@ export const destinations: Destination[] = [
   {
     id: 'e8e616e0-d894-4936-a3f5-391682ee794c',
     name: 'Dal Lake',
-    image: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=600&q=80',
+    image: 'https://t4.ftcdn.net/jpg/04/66/74/07/360_F_466740766_ROSqOYMWZo81wDiiABv8CoEwPDxoyUDs.jpg',
     hero: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Dal_Lake_Hazratbal_Srinagar.jpg/1200px-Dal_Lake_Hazratbal_Srinagar.jpg',
     alt: 'Dal Lake houseboats',
     category: 'Kashmir',
@@ -120,7 +120,7 @@ export const destinations: Destination[] = [
   {
     id: 'd3d09d59-7b6d-4ba2-b4de-7cbc28a8b12b',
     name: 'Gulmarg',
-    image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=600&q=80',
+    image: 'https://media.istockphoto.com/id/532959840/photo/gulmarg-high-peaks.jpg?s=612x612&w=0&k=20&c=WP0MGH2QBSzAqrtYG4Ryr17303VkwoCfkONyjiruo7I=',
     hero: 'https://t4.ftcdn.net/jpg/03/62/19/27/360_F_362192710_3iIlgxQS78PoqysUTzdARNYeKFBaFxE9.jpg',
     alt: 'Gulmarg skiing paradise',
     category: 'Kashmir',
@@ -186,7 +186,7 @@ export const destinations: Destination[] = [
   {
     id: 'c4f7b2a1-8e4a-4c1b-9d3e-6a9b7c8d2f3e',
     name: 'Pahalgam',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80',
+    image: 'https://media.istockphoto.com/id/1155829196/photo/pahalgao-valley-kashmir.jpg?s=612x612&w=0&k=20&c=xn-kYE2VSCb0zdHGZfJG8MFsOqko25F_9qdrUdPlnU8=',
     hero: 'https://media.istockphoto.com/id/1195331435/photo/lidder-river-flowing-through-the-beautiful-mountains-of-pahalgam-kashmir-india.jpg?s=612x612&w=0&k=20&c=eEXREbW7nLR7LHGv-UYXpFpJ-By5eu1Fqs0YtKTIY1U=',
     alt: 'Pahalgam valley streams',
     category: 'Kashmir',
@@ -205,7 +205,7 @@ export const destinations: Destination[] = [
     attractions: [
       { id: 1, name: 'Betaab Valley', description: 'Verdant meadow flanked by mountains and evergreen trees, known for its scenic beauty.', image: 'https://media.istockphoto.com/id/1155829196/photo/pahalgao-valley-kashmir.jpg?s=612x612&w=0&k=20&c=xn-kYE2VSCb0zdHGZfJG8MFsOqko25F_9qdrUdPlnU8=' },
       { id: 2, name: 'Baisaran Valley', description: 'Lush valley with meadows surrounded by mountains and pine forests.', image: 'https://www.shutterstock.com/image-photo/serene-landscape-liddar-valley-phalgam-260nw-2498432239.jpg' },
-      { id: 3, name: 'Kolahoi Glacier', description: 'Hanging glacier below Kolahoi Peak, accessible via a 35 km trail from Pahalgam.', image: 'https://media.istockphoto.com/id/488722541/photo/the-beautiful-nature-with-himalaya-mountain-background.jpg?s=612x612&w=0&k=20&c=9TOH5KqrKuHvVC_yd6Y3Vxpi8mBoyKcbQs0YtK8hO4=' },
+      { id: 3, name: 'Kolahoi Glacier', description: 'Hanging glacier below Kolahoi Peak, accessible via a 35 km trail from Pahalgam.', image: 'https://treklandadventures.com/wp-content/uploads/2024/10/Kolahoi-Glacier-trek.jpeg' },
       { id: 4, name: 'Pahalgam Golf Course', description: '18-hole golf course in the Lidder Valley, opened in 2011.', image: 'https://s7ap1.scene7.com/is/image/incredibleindia/lidder-river-pahalgam-j&k-1-attr-nearby?qlt=82&ts=1726728872783' }
     ],
     packages: [
@@ -252,7 +252,7 @@ export const destinations: Destination[] = [
   {
     id: 'a2b9c7d4-5e6f-4d3a-8c9b-1d2e3f4a5b6c',
     name: 'Sonamarg',
-    image: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=600&q=80',
+    image: 'https://3.bp.blogspot.com/-r4IComYvECQ/VpeiXfyVXZI/AAAAAAAADH8/iTrRc2UupSU/s1600/20130607-080723.jpg',
     hero: 'https://media-cdn.tripadvisor.com/media/photo-s/0f/c2/09/26/sonmarg-kashmir-india.jpg',
     alt: 'Sonamarg golden meadow',
     category: 'Kashmir',
@@ -269,7 +269,7 @@ export const destinations: Destination[] = [
       'Popular for hikers and fishers, it’s a base for the Amarnath Yatra and offers glacier treks, river rafting, and access to Zoji La pass.'
     ],
     attractions: [
-      { id: 1, name: 'Thajiwas Glacier', description: 'Prominent glacier accessible by pony rides in summer, known for scenic beauty.', image: 'https://media.istockphoto.com/id/1326926711/photo/beautiful-view-of-sonmarg-in-winter-sonmarg-kashmir.jpg?s=612x612&w=0&k=20&c=XQ3A8BGL-4HY7_r03z145xWx22IlqBspxGKGcZ__Q8=' },
+      { id: 1, name: 'Thajiwas Glacier', description: 'Prominent glacier accessible by pony rides in summer, known for scenic beauty.', image: 'https://tse3.mm.bing.net/th/id/OIP.eMMshRFLweyJNn51QdQTBQHaEj?pid=Api&P=0&h=180' },
       { id: 2, name: 'Vishansar Lake', description: 'High-altitude lake reachable by trekking, stocked with snowtrout and brown trout.', image: 'https://thumbs.dreamstime.com/b/beautiful-mountain-landscape-sonamarg-jammu-kashmir-state-india-100488176.jpg' },
       { id: 3, name: 'Sind River', description: 'Meandering river ideal for fishing and river rafting tournaments.', image: 'https://upload.wikimedia.org/wikipedia/commons/a/a2/Sonmarg_rishav7336.jpg' },
       { id: 4, name: 'Zoji La Pass', description: 'Mountain pass 15 km east of Sonamarg, used by trekkers to reach Leh.', image: 'https://media.istockphoto.com/id/908260572/photo/valley-of-flowers-at-kashmir-great-lakes-trek-in-sonamarg-town-india-clear-blue-sky-and-white.jpg?s=612x612&w=0&k=20&c=nHgSwnGtxbW_n8ObwtOwYAoxTBBtdP03ITjZbUkb2Ww=' }
@@ -318,7 +318,7 @@ export const destinations: Destination[] = [
   {
     id: 'b7c8d9e5-6f7a-4e5b-9c1d-2e3f4a5b6c7d',
     name: 'Doodhpathri',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80',
+    image: 'https://t.eucdn.in/tourism/lg/doodhpathri-894140.webp',
     hero: 'https://media.gettyimages.com/id/971355764/photo/doodhpathri-budgam-jammu-kashmir-india-a-general-view-of-water-flowing-through-meadows-of.jpg?s=612x612&w=gi&k=20&c=pyp2aLo6-dS9pdEN8rnHagOsvmJXMgslZm0jj1kg8T0=',
     alt: 'Doodhpathri meadows',
     category: 'Kashmir',
@@ -336,7 +336,7 @@ export const destinations: Destination[] = [
     ],
     attractions: [
       { id: 1, name: 'Lush Meadows', description: 'Vast green grasslands with wildflowers and scenic views', image: 'https://upload.wikimedia.org/wikipedia/commons/a/ae/A_bench_with_scenic_view_Doodhpathri_southwest_Jammu_Kashmir_India.jpg' },
-      { id: 2, name: 'Gushing Streams', description: 'Crystal clear water bodies flowing through the valley', image: 'https://media.gettyimages.com/id/971355878/photo/doodhpathri-budgam-jammu-kashmir-india-a-general-view-of-meadows-of-doodhpathri-valley-some-50.jpg?s=612x612&w=gi&k=20&c=Q2HETp8YElIrb_MoKsb9mL8QARRqZkc0zqMcYx5GqQ=' },
+      { id: 2, name: 'Gushing Streams', description: 'Crystal clear water bodies flowing through the valley', image: 'https://tse1.mm.bing.net/th/id/OIP.wlopFcPclqQVi_I4Z8YKCwHaEc?pid=Api&P=0&h=180' },
       { id: 3, name: 'Paragliding Point', description: 'Spot for aerial adventures with panoramic valley views', image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/d5/19/5e/doodhpathri.jpg?w=1200&h=-1&s=1' },
       { id: 4, name: 'Pine Forests', description: 'Dense forests offering trekking and picnic opportunities', image: 'https://media.gettyimages.com/id/971355784/photo/doodhpathri-budgam-jammu-kashmir-india-a-general-view-of-meadows-of-doodhpathri-valley-some-50.jpg?s=612x612&w=gi&k=20&c=ULmQO8UtTcRNJceJMqixhZzDGHfGVO8eBNxQByC3RzU=' }
     ],
@@ -384,7 +384,7 @@ export const destinations: Destination[] = [
   {
     id: 'e9f0a1b6-7c8b-4f6c-9d2e-3f4a5b6c7d8e',
     name: 'Aru Valley',
-    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80',
+    image: 'https://vargiskhan.com/log/wp-content/uploads/2022/03/aru-valley-3.jpg',
     hero: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0b/ec/dc/15/aru-city.jpg?w=1200&h=-1&s=1',
     alt: 'Aru Valley pristine nature',
     category: 'Kashmir',
@@ -403,7 +403,7 @@ export const destinations: Destination[] = [
     attractions: [
       { id: 1, name: 'Kolahoi Glacier', description: 'Largest glacier in Kashmir Valley, near Mt. Kolahoi, a key trekking destination.', image: 'https://www.shutterstock.com/image-photo/stunning-view-kashmirs-aru-valley-600nw-2473158391.jpg' },
       { id: 2, name: 'Tarsar Lake', description: 'Pristine alpine lake accessible via trekking, known for scenic beauty.', image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/a3/63/d9/back-view-of-a-government.jpg?w=900&h=500&s=1' },
-      { id: 3, name: 'Overa-Aru Biosphere Reserve', description: 'Wildlife sanctuary spanning 511 km², home to rare species.', image: 'https://i0.wp.com/beyondwildplaces.com/wp-content/uploads/2021/12/bbj/ae2zfkg9b52yemoj1gkw.jpg' },
+      { id: 3, name: 'Overa-Aru Biosphere Reserve', description: 'Wildlife sanctuary spanning 511 km², home to rare species.', image: 'https://tse4.mm.bing.net/th/id/OIP.BDC41ZEpANOsbtg3bgxzVwHaDt?pid=Api&P=0&h=180' },
       { id: 4, name: 'Aru River', description: 'Tributary of Lidder River, offering trout fishing and scenic views.', image: 'https://taleof2backpackers.com/wp-content/uploads/2021/08/Aru-Valley-Travel-Guide-1.jpg' }
     ],
     packages: [
@@ -450,7 +450,7 @@ export const destinations: Destination[] = [
   {
     id: 'f0a1b2c7-8d9c-4f7d-9e3f-4a5b6c7d8e9f',
     name: 'Betaab Valley',
-    image: 'https://images.unsplash.com/photo-1548013146-13a21f08d0f7?auto=format&fit=crop&w=600&q=80',
+    image: 'https://tse2.mm.bing.net/th/id/OIP.keWH1bmPBdONvvsS6Bz0UwHaDB?pid=Api&P=0&h=180',
     hero: 'https://static.toiimg.com/img/99910099/Master.jpg',
     alt: 'Betaab Valley scenic beauty',
     category: 'Kashmir',
@@ -469,7 +469,7 @@ export const destinations: Destination[] = [
     attractions: [
       { id: 1, name: 'Lidder River', description: 'Crystal clear river flowing through the valley, used by locals for drinking.', image: 'https://www.shutterstock.com/image-photo/betaab-valley-betab-very-popular-600nw-2377086873.jpg' },
       { id: 2, name: 'Lush Green Meadows', description: 'Expansive meadows with dense vegetation, ideal for relaxation.', image: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Betaab_Valley.jpg' },
-      { id: 3, name: 'Snow-Clad Mountains', description: 'Himalayan peaks of Pir Panjal and Zanskar ranges, ideal for trekking.', image: 'https://media.gettyimages.com/id/1242961885/photo/betaab-valley-kashmir-india-stream-gushes-through-the-betaab-valley-on-september-4-2022-in.jpg?s=612x612&w=gi&k=20&c=skVyRRvR5KmtrZE5P93cDPG2FzxWQxhZA0qeTInoXJ7qXxA=' },
+      { id: 3, name: 'Snow-Clad Mountains', description: 'Himalayan peaks of Pir Panjal and Zanskar ranges, ideal for trekking.', image: 'https://tse1.mm.bing.net/th/id/OIP.vajlruLSXVef9d5Jppc7RAHaEK?pid=Api&P=0&h=180s' },
       { id: 4, name: 'Stream from Snowy Hills', description: 'Delightful stream from snowy mountains, enhancing natural beauty.', image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/06/45/eb/betaab-valley-view-from.jpg?w=1200&h=1200&s=1' }
     ],
     packages: [
@@ -516,7 +516,7 @@ export const destinations: Destination[] = [
   {
     id: 'a1b2c3d8-9e0f-4g6h-9i1j-2k3l4m5n6o7p',
     name: 'Leh',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80',
+    image: 'https://static.toiimg.com/thumb/msid-48262604,width-748,height-499,resizemode=4,imgsize-179958/.jpg',
     hero: 'https://media.istockphoto.com/id/1218830644/photo/beautiful-lake.jpg?s=612x612&w=0&k=20&c=r5or5KmtrZE5P93cDPG2FzxWQxhZA0qeTInoXJ7qXxA=',
     alt: 'Leh Ladakh monastery',
     category: 'Ladakh',
@@ -582,7 +582,7 @@ export const destinations: Destination[] = [
   {
     id: 'b2c3d4e9-0f1a-4g8h-9i2j-3k4l5m6n7o8p',
     name: 'Pangong Lake',
-    image: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=600&q=80',
+    image: 'https://media.istockphoto.com/id/1218830644/photo/beautiful-lake.jpg?s=612x612&w=0&k=20&c=r5or5KmtrZE5P93cDPG2FzxWQxhZA0qeTInoXJ7qXxA=',
     hero: 'https://media.gettyimages.com/id/1947093127/photo/pangong-tso-panorama-ladakh-india.jpg?s=612x612&w=gi&k=20&c=vvQvRmvTPFw1Wz3-Ddn97KakrfX3vimfpvRzKOoJN5o=',
     alt: 'Pangong Lake crystal waters',
     category: 'Ladakh',
@@ -648,7 +648,7 @@ export const destinations: Destination[] = [
   {
     id: 'c3d4e5f0-1a2b-4g9h-9i3j-4k5l6m7n8o9p',
     name: 'Nubra Valley',
-    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80',
+    image: 'https://media.istockphoto.com/id/1046314758/photo/sunrise-at-nubra-valley-ladakh-with-scenic-landscape.jpg?s=612x612&w=0&k=20&c=tWk6ttlr70qQPVmMdazHoy9n5tMpGqf63W5FEGEupbA=',
     hero: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/b9/e6/1c/nubra-valley.jpg?w=1200&h=-1&s=1',
     alt: 'Nubra Valley sand dunes',
     category: 'Ladakh',
@@ -714,7 +714,7 @@ export const destinations: Destination[] = [
   {
     id: 'd4e5f6g1-2a3b-4h0i-9j4k-5l6m7n8o9p0q',
     name: 'Kargil',
-    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=600&q=80',
+    image: 'https://www.ladakh-tourism.net/wp-content/uploads/2021/04/3-1-1024x536.jpg',
     hero: 'https://discoverlehladakh.in/wp-content/uploads/2021/03/Kargil-town-o-Ladakh-at-the-bank-of-Suru-river..jpg',
     alt: 'Kargil mountain valley',
     category: 'Ladakh',
@@ -731,10 +731,10 @@ export const destinations: Destination[] = [
       'Tourism highlights include the Kargil War Memorial, Mulbekh Monastery, and the scenic Suru and Dras Valleys, though challenges like harsh weather and limited infrastructure persist.'
     ],
     attractions: [
-      { id: 1, name: 'Kargil War Memorial', description: 'Tribute to soldiers of the 1999 Kargil War, located at Dras with war artifacts.', image: 'https://media.istockphoto.com/id/1471490544/photo/kargil-war-memorial-in-dras-ladakh-india.jpg?s=612x612&w=0&k=20&c=3R9gQ2k2Y2fX7R8X9Xz2Y2fX7R8X9Xz2Y2fX7R8X9X=' },
+      { id: 1, name: 'Kargil War Memorial', description: 'Tribute to soldiers of the 1999 Kargil War, located at Dras with war artifacts.', image: 'https://tse3.mm.bing.net/th/id/OIP.JJLpgON5agWrQ7thB9yP4AHaD4?pid=Api&P=0&h=180' },
       { id: 2, name: 'Mulbekh Monastery', description: 'Ancient Buddhist site with a 9-meter Maitreya Buddha statue carved into rock.', image: 'https://www.shutterstock.com/image-photo/mulbekh-monastery-kargil-ladakh-india-600nw-2377086873.jpg' },
-      { id: 3, name: 'Suru Valley', description: 'Scenic valley with lush greenery and snow-capped peaks, ideal for trekking.', image: 'https://media.gettyimages.com/id/1242961885/photo/suru-valley-kargil-ladakh-india.jpg?s=612x612&w=gi&k=20&c=skVyRRvR5KmtrZE5P93cDPG2FzxWQxhZA0qeTInoXJ7qXxA=' },
-      { id: 4, name: 'Dras Valley', description: 'Coldest inhabited place in India, known for war history and scenic beauty.', image: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/06/45/eb/dras-valley.jpg?w=1200&h=1200&s=1' }
+      { id: 3, name: 'Suru Valley', description: 'Scenic valley with lush greenery and snow-capped peaks, ideal for trekking.', image: 'https://tse1.mm.bing.net/th/id/OIP.ihGRoUrlNvRGRaDKZW188QHaEJ?pid=Api&P=0&h=180' },
+      { id: 4, name: 'Dras Valley', description: 'Coldest inhabited place in India, known for war history and scenic beauty.', image: 'https://tse2.mm.bing.net/th/id/OIP.okOzCdyvUKI6KswAkns6WgHaEK?pid=Api&P=0&h=180' }
     ],
     packages: [
       { id: 1, name: 'Kargil History Tour', duration: '4 Days / 3 Nights', price: 20000, highlights: ['Kargil War Memorial', 'Mulbekh Monastery', 'Dras Valley', 'Local markets'], image: 'https://www.lehladakhindia.com/wp-content/uploads/2024/07/kargil-war-memorial.jpg' },
